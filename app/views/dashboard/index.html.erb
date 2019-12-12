@@ -1,0 +1,43 @@
+<div>
+  simple_form_for
+  <table class="table table-striped">
+      <thead>
+        <tr>
+                <th>Reference</th>
+                <th>Customer</th>
+                <th>Status</th>
+                <th>Departure Time</th>
+                <th>Truck</th>
+                <th>Trailer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @load_ins.each do |loadin| %>
+          <tr>
+            <td><%= loadin.reference %></td>
+            <td><%= loadin.t1_customer.name %></td>
+            <td><%= loadin.status%></td>
+            <td><%= loadin.arrival_date%></td>
+            <td><%= loadin.truck_nr%></td>
+            <td><%= loadin.trailer_nr%></td>
+          </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+    <div>
+      <%= "There is total of #{@total_load_ins} Load In" %>
+    </div>
+     <div id = "nav">
+        <button><%= link_to 'First', dashboard_index_path %></button>
+        <button><%= link_to 'Previous', dashboard_index_path(page: @page - 1) %></button>
+        <button><%= link_to "Next", dashboard_index_path(page: @page + 1) %></button>
+          <% p = @page %>
+          <% while p < @total_pages do %>
+          <% p += 1%>
+            <button><%= link_to "#{p}", dashboard_index_path(page: p) %></button>
+        <% end %>
+        <button><%= link_to "Last", dashboard_index_path(page: @total_pages) %></button>
+      </div>
+
+</div>
