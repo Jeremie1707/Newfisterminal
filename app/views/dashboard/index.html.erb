@@ -1,0 +1,27 @@
+<div>
+  <div id="select-loadin-rows" class="select-loadin-rows">
+        <%= render 'dashboard/components/select_loadin_rows' %>
+  </div>
+  <table class="table table-striped">
+      <thead>
+        <tr>
+                <th>Reference</th>
+                <th>Customer</th>
+                <th>Status</th>
+                <th>Departure Time</th>
+                <th>Truck</th>
+                <th>Trailer</th>
+        </tr>
+      </thead>
+      <tbody id='loadin-list'>
+          <%= render 'dashboard/components/load_ins_rows' %>
+    </tbody>
+    </table>
+    <div>
+      <%= "There is a total of #{@total_load_ins} Load In" %>
+    </div>
+    <div id="loadin-nav" class="nav">
+      <%= render 'dashboard/components/nav_pagination' %>
+    </div>
+</div>
+

@@ -1,0 +1,10 @@
+<% @load_ins.each do |loadin| %>
+  <tr class="load-in-list-div" id="load_ins_rows-<%= loadin.id %>">
+    <td><%= loadin.reference %></td>
+    <td><%= loadin.t1_customer.name %></td>
+    <td><%= loadin.status%></td>
+    <td><%= loadin.arrival_date%></td>
+    <td><%= loadin.truck_nr%></td>
+    <td><%= loadin.trailer_nr%></td>
+  </tr>
+<% end %>

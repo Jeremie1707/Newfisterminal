@@ -1,0 +1,27 @@
+
+.btn-enter {
+  color: white;
+  background: #1FB09A;
+  border: 1px white solid #4A4A4A;
+  padding: 16px 60px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1.8rem;
+  font-family:roboto;
+  opacity: 0.9;
+}
+
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: black;
+  font-family:roboto;
+  transition: background 0.3s ease;
+  border: 1px solid white;
+}
+
+.actual-page-number a {
+  color: red;
+
+}

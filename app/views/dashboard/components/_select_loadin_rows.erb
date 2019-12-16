@@ -1,0 +1,7 @@
+<%= form_tag set_rows_path, remote: true do %>
+  <div class="input-group">
+    <%= select_tag :loadin_rows, options_for_select([5, 10, 15, 20], @rows_per_page) %>
+    <%= hidden_field_tag :page, @page %>
+  </div>
+
+<% end %>
