@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index]
   patch '/set_page/:page', to: 'dashboard#set_page', as: 'set_page'
   post '/set_rows/', to: 'dashboard#set_rows', as: 'set_rows'
+  post '/search/', to: 'dashboard#search', as: 'search'
 
 end

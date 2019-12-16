@@ -1,0 +1,5 @@
+console.log('<%= @total_load_ins %>')
+console.log('<%= @page %>')
+console.log('<%= @total_pages %>')
+replaceElement('#loadin-list', "<%= j render 'dashboard/components/load_ins_rows' %>")
+replaceElement('#loadin-nav', "<%= j render 'dashboard/components/nav_pagination' %>")
