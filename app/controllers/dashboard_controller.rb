@@ -1,33 +1,56 @@
 class DashboardController < ApplicationController
   DEFAULT_ROWS_PER_PAGE = 5
+  DEFAULT_SORT = 'id ASC'
 
   def index
     @page = 1
     session[:page] = @page
     set_rows_per_page
     session[:search] = nil
+    @sort = DEFAULT_SORT
+    session[:sort] = DEFAULT_SORT
     get_load_ins
   end
 
   def get_load_ins
+    p 'search'
+    p session[:search]
+    p 'query'
+    p params[:query]
+    p 'sort'
+    p @sort
     @index = (@page - 1) * @rows_per_page
     if session[:search].blank? && params[:query].blank?
-      @load_ins_all = LoadIn.all.order(:id)
+      p 'hello 1'
+      @load_ins_all = LoadIn.all.order(@sort)
       @load_ins = @load_ins_all[@index..@index + @rows_per_page - 1]
     elsif !params[:query].blank?
-      @load_ins_all = LoadIn.global_search(params[:query]).order(:id)
+      p 'hello 2'
+      @load_ins_all = LoadIn.order(@sort).global_search(params[:query])
       @load_ins = @load_ins_all[@index..@index + @rows_per_page - 1]
       session[:search] = params[:query]
     else #Serarch term present in session
-      @load_ins_all = LoadIn.global_search(session[:search]).order(:id)
+      p 'hello 3'
+      @load_ins_all = LoadIn.order(@sort).global_search(session[:search])
       @load_ins = @load_ins_all[@index..@index + @rows_per_page - 1]
     end
-    @total_load_ins = @load_ins_all.count
+    @total_load_ins = @load_ins_all.size
     @total_pages = (@total_load_ins / @rows_per_page)
     @search = session[:search]
+    p 'first loadin'
+    p @load_ins[0]
+  end
+
+  def set_sort
+    @page = 1
+    @sort = params[:sort]
+    session[:sort] = @sort
+    set_rows_per_page
+    get_load_ins
   end
 
   def set_page
+    @sort = session[:sort]
     set_rows_per_page
     @page = params[:page].to_i || 1
     session[:page] = @page
@@ -37,11 +60,11 @@ class DashboardController < ApplicationController
   end
 
   def set_rows
+    @sort = session[:sort]
     @rows_per_page = params[:loadin_rows].to_i || 1
     session[:rows_per_page] = @rows_per_page
     @page = params[:page].to_i || 1
     session[:page] = @page
-
     get_load_ins
 
   end
@@ -57,6 +80,7 @@ class DashboardController < ApplicationController
 
   def search
     # ESSAYER DE MEMORISE LES LOADINS DANS LA SESSION (commencé ligne)
+    @sort = session[:sort]
     @rows_per_page = session[:rows_per_page]
     session[:search] = nil
     @page = 1

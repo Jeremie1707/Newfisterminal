@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   patch '/set_page/:page', to: 'dashboard#set_page', as: 'set_page'
   post '/set_rows/', to: 'dashboard#set_rows', as: 'set_rows'
   post '/search/', to: 'dashboard#search', as: 'search'
+  post '/set_sort/', to: 'dashboard#set_sort', as: 'set_sort'
 
 end
