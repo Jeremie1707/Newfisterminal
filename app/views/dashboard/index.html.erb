@@ -1,34 +1,43 @@
-<div>
-  <div id="select-loadin-rows" class="select-loadin-rows">
-        <%= render 'dashboard/components/select_loadin_rows' %>
-  </div>
-  <div>
-    <%= form_tag search_path, method: "post", remote: true  do %>
-      <%= text_field_tag :query, '', placeholder: "search" %>
-      <%= hidden_field_tag :page, @page %>
-      <%= submit_tag "Go", class: "btn btn-primary" %>
-    <% end %>
-    <% if @search %>
-      <p>Hello</p>
-    <% end %>
-  </div>
-  <table class="table table-striped">
-      <thead>
-        <tr>
-                <th>Reference</th>
-                <th>Customer</th>
-                <th>Status</th>
-                <th>Departure Time</th>
-                <th>Truck</th>
-                <th>Trailer</th>
-        </tr>
-      </thead>
-      <tbody id='loadin-list'>
-          <%= render 'dashboard/components/load_ins_rows' %>
-    </tbody>
-    </table>
-    <div id="loadin-nav" class="nav">
-      <%= render 'dashboard/components/nav_pagination' %>
+<div class="container">
+  <div class="loadins-container d-flex flex-row">
+    <div class="loadins-form-container col-md-3">
+      <p>this is a loadin form</p>
     </div>
+    <div class="loadins-table-container col-md-9">
+      <div class="search-and-number-rows-container d-flex flex-row">
+        <div id="select-loadin-rows" class="select-loadin-rows mr-1 p-1">
+                <%= render 'dashboard/components/select_loadin_rows' %>
+          </div>
+          <div class="search-box mb-1">
+            <%= form_tag search_path, method: "post", remote: true  do %>
+              <%= text_field_tag :query, '', placeholder: "search" %>
+              <%= hidden_field_tag :page, @page %>
+              <%#= submit_tag "Go", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+      </div>
+          <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Reference<%= link_to  "⬆︎", set_sort_path(sort: "reference DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "reference ASC"), method: "post",remote: true %></th>
+                  <th><%=  "Customer" %></th>
+                  <th>Status<%= link_to  "⬆︎", set_sort_path(sort: "status DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "status ASC"), method: "post",remote: true %></th>
+                  <th>Arrival date<%= link_to  "⬆︎", set_sort_path(sort: "arrival_date DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "arrival_date ASC"), method: "post",remote: true %></th>
+                  <th>Truck<%= link_to  "⬆︎", set_sort_path(sort: "truck_nr DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "truck_nr ASC"), method: "post",remote: true %></th>
+                  <th>Trailer<%= link_to  "⬆︎", set_sort_path(sort: "trailer_nr DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "trailer_nr ASC"), method: "post",remote: true %></th>
+                </tr>
+              </thead>
+              <tbody id='loadin-list'>
+                  <%= render 'dashboard/components/load_ins_rows' %>
+              </tbody>
+            </table>
+            <div id="loadin-nav" class="nav d-flex flex-column ">
+              <%= render 'dashboard/components/nav_pagination' %>
+            </div>
+    </div>
+  </div>
 </div>
+
+
+
 

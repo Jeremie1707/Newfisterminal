@@ -3,7 +3,7 @@
       <td><%= loadin.reference  %></td>
       <td><%= loadin.t1_customer.name %></td>
       <td><%= loadin.status %></td>
-      <td><%= loadin.arrival_date %></td>
+      <td><%= loadin.arrival_date.strftime("%-d %b %Y %H:%M") %></td>
       <td><%= loadin.truck_nr %></td>
       <td><%= loadin.trailer_nr %></td>
 
