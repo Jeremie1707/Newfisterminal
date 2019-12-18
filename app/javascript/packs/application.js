@@ -5,6 +5,9 @@
 import "bootstrap";
 import { replaceElement } from '../components/replaceElements';
 import { listSize } from '../components/listSize';
+import { autoSearch } from '../components/autoSearch';
+
+autoSearch()
 
 listSize();
 window.listSize = listSize;

@@ -1,3 +1,6 @@
+<div>
+      <%= "There is a total of #{@total_load_ins} Load In" %>
+</div>
 <button><%= link_to 'First', set_page_path(page: 1), method: :patch, remote: true %></button>
 <button class="actual-page-number"><%= link_to "#{@page} /#{@total_pages}", set_page_path(page: 1) %></button>
 <% if @page <1 %>

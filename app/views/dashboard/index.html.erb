@@ -2,6 +2,16 @@
   <div id="select-loadin-rows" class="select-loadin-rows">
         <%= render 'dashboard/components/select_loadin_rows' %>
   </div>
+  <div>
+    <%= form_tag search_path, method: "post", remote: true  do %>
+      <%= text_field_tag :query, '', placeholder: "search" %>
+      <%= hidden_field_tag :page, @page %>
+      <%= submit_tag "Go", class: "btn btn-primary" %>
+    <% end %>
+    <% if @search %>
+      <p>Hello</p>
+    <% end %>
+  </div>
   <table class="table table-striped">
       <thead>
         <tr>
@@ -17,9 +27,6 @@
           <%= render 'dashboard/components/load_ins_rows' %>
     </tbody>
     </table>
-    <div>
-      <%= "There is a total of #{@total_load_ins} Load In" %>
-    </div>
     <div id="loadin-nav" class="nav">
       <%= render 'dashboard/components/nav_pagination' %>
     </div>
