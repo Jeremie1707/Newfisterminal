@@ -1,7 +1,28 @@
-<div class="container">
+<div class="dashboard-container">
   <div class="loadins-container d-flex flex-row">
     <div class="loadins-form-container col-md-3">
-      <p>this is a loadin form</p>
+      <div class="card mb-4 p-2">
+        <div class="card-body">
+          <%= simple_form_for [@load_in] do |f| %>
+        <%= f.association :t1_customer, label: false, collection: T1Customer.all, selected: [0] %>
+        <%= f.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
+        <%= f.input :arrival_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "arrival date?" %>
+        <div class="d-flex justify-content-between">
+          <div id= "search-truck" class="form-search search-data mb-1 mr-1" data-truck="<%= @truck_nr.to_json %>">
+        <%= text_field_tag :research_truck, nil, autocomplete: :off, class: "form-control search-input", placeholder: "Truck number" %>
+        </div>
+        <div id= "search-trailer" class="form-search search-data mb-1 ml-1" data-trailer="<%= @trailer_nr.to_json %>">
+        <%= text_field_tag :research_trailer, nil, autocomplete: :off, class: "form-control search-input", placeholder: "Trailer number" %>
+        </div>
+        </div>
+
+        <%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["Truck to Truck", "Truck Terminal Truck", "Picking"], wrapper: :vertical_collection_inline %>
+
+        <%= f.button :submit, "Add", class: 'btn btn-success w-100' %>
+        <% end %>
+        </div>
+
+        </div>
     </div>
     <div class="loadins-table-container col-md-9">
       <div class="search-and-number-rows-container d-flex flex-row">

@@ -3,12 +3,22 @@
 // first in their respected files in order to be available
 
 import "bootstrap";
+import { truckAutocompleteSearch} from '../plugins/autocomplete';
+import { trailerAutocompleteSearch} from '../plugins/autocomplete';
 import { replaceElement } from '../components/replaceElements';
 import { listSize } from '../components/listSize';
 import { autoSearch } from '../components/autoSearch';
+import flatpickr from "flatpickr";
+import 'flatpickr/dist/flatpickr.min.css';
+import { initFlatpickr } from '../plugins/flatpickr';
 
-autoSearch()
-
+truckAutocompleteSearch();
+trailerAutocompleteSearch();
+autoSearch();
+initFlatpickr();
 listSize();
 window.listSize = listSize;
 window.replaceElement = replaceElement;
+
+
+
