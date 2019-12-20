@@ -8,17 +8,37 @@
         <%= f.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
         <%= f.input :arrival_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "arrival date?" %>
         <div class="d-flex justify-content-between">
-          <div id= "search-truck" class="form-search search-data mb-1 mr-1" data-truck="<%= @truck_nr.to_json %>">
-        <%= text_field_tag :research_truck, nil, autocomplete: :off, class: "form-control search-input", placeholder: "Truck number" %>
+
+          <%= f.input :truck_nr, label: false, placeholder: "Truck_nr"%>
+          <%= f.input :trailer_nr, label: false, placeholder: "Truck_nr"%>
+
+
+          <!-- <div id= "search-truck" class="form-search search-data mb-1 mr-1" data-truck="<%= @truck_nr.to_json %>">
+        <#%= f.text_field :research_truck, placeholder: "Truck number", class: "form-control search-input" %>
         </div>
         <div id= "search-trailer" class="form-search search-data mb-1 ml-1" data-trailer="<%= @trailer_nr.to_json %>">
-        <%= text_field_tag :research_trailer, nil, autocomplete: :off, class: "form-control search-input", placeholder: "Trailer number" %>
+        <#%= f.text_field :research_trailer, placeholder: "Trailer number", class: "form-control search-input" %>
+        </div> -->
         </div>
-        </div>
+
 
         <%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["Truck to Truck", "Truck Terminal Truck", "Picking"], wrapper: :vertical_collection_inline %>
 
+           <%=f.fields_for :in_assignments_attributes do |f| %>
+           <%= f.label :packer %>
+           <%= f.text_field :packer %>
+
+           <%= f.label :lot_nr %>
+           <%= f.text_field :lot_nr %>
+
+           <%= f.label :incoming_order_ref %>
+           <%= f.text_field :incoming_order_ref %>
+
+           <%= f.label :other_ref %>
+           <%= f.text_field :other_ref %>
+           <% end %>
         <%= f.button :submit, "Add", class: 'btn btn-success w-100' %>
+
         <% end %>
         </div>
 

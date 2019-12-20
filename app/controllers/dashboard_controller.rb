@@ -3,8 +3,6 @@ class DashboardController < ApplicationController
   DEFAULT_SORT = 'id ASC'
 
   def index
-    @truck_nr = LoadIn.pluck(:truck_nr).uniq.sort
-    @trailer_nr = LoadIn.pluck(:trailer_nr).uniq.sort
     @load_in = LoadIn.new
     @in_assignment = InAssignment.new
     @page = 1
@@ -13,7 +11,10 @@ class DashboardController < ApplicationController
     session[:search] = nil
     @sort = DEFAULT_SORT
     session[:sort] = DEFAULT_SORT
+    @truck_nr = LoadIn.pluck(:truck_nr).uniq.sort
+    @trailer_nr = LoadIn.pluck(:trailer_nr).uniq.sort
     get_load_ins
+
   end
 
   def get_load_ins
@@ -85,4 +86,7 @@ class DashboardController < ApplicationController
     @total_pages = (@total_load_ins / @rows_per_page)
     @load_ins = session[:loadins]
   end
+
+
+
 end
