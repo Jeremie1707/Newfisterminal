@@ -11,43 +11,20 @@
 
           <%= f.input :truck_nr, label: false, placeholder: "Truck_nr"%>
           <%= f.input :trailer_nr, label: false, placeholder: "Truck_nr"%>
-
-
-          <!-- <div id= "search-truck" class="form-search search-data mb-1 mr-1" data-truck="<%= @truck_nr.to_json %>">
-        <#%= f.text_field :research_truck, placeholder: "Truck number", class: "form-control search-input" %>
-        </div>
-        <div id= "search-trailer" class="form-search search-data mb-1 ml-1" data-trailer="<%= @trailer_nr.to_json %>">
-        <#%= f.text_field :research_trailer, placeholder: "Trailer number", class: "form-control search-input" %>
-        </div> -->
         </div>
 
 
         <%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["Truck to Truck", "Truck Terminal Truck", "Picking"], wrapper: :vertical_collection_inline %>
 
-        <label class="form-group string required" for="load_in_in_assignments_attributes_packer">Packer</label>
-        <input class="form-control" label = "false" type="text" name="load_in[in_assignments_attributes][][packer_id]">
-        <label class="string required" for="load_in_in_assignments_attributes_lot_nr">Lot number</label>
-        <input class="form-control" label = "false" type="text" name="load_in[in_assignments_attributes][][lot_nr]">
-        <label class="form-group string required" for="load_in_in_assignments_attributes_incoming_order_ref">Incoming order</label>
-        <input class="form-control" label = "false" type="text" name="load_in[in_assignments_attributes][][incoming_order_ref]">
-        <label class=" form-group string required" for="load_in_in_assignments_attributes_other_ref">Other ref</label>
-        <input class="form-control mb-2" label = "false" type="text" name="load_in[in_assignments_attributes][][other_ref]">
+        <label class="form-group string required" for="load_in_in_assignments_attributes_packer"></label>
+        <input class="form-control" label = "false" type="text" placeholder="Packer number" name="load_in[in_assignments_attributes][][packer_id]">
+        <label class="string required" for="load_in_in_assignments_attributes_lot_nr"></label>
+        <input class="form-control" label = "false" type="text" placeholder="Lot number" name="load_in[in_assignments_attributes][][lot_nr]">
+        <label class="form-group string required" for="load_in_in_assignments_attributes_incoming_order_ref"></label>
+        <input class="form-control" label = "false" type="text" placeholder="Incoming order Ref." name="load_in[in_assignments_attributes][][incoming_order_ref]">
+        <label class=" form-group string required" for="load_in_in_assignments_attributes_other_ref"></label>
+        <input class="form-control mb-2" label = "false" type="text" placeholder="Other Ref" name="load_in[in_assignments_attributes][][other_ref]">
 
-        <%#= t.text_field :packer_id, label: false %>
-
-           <%#=f.simple_fields_for :in_assignments_attributes  do |t| %>
-           <%#= t.label :packer %>
-           <%#= t.text_field :packer_id, label: false %>
-
-           <%#= t.label :lot_nr %>
-           <%#= t.text_field :lot_nr %>
-
-           <%#= t.label :incoming_order_ref %>
-           <%#= t.text_field :incoming_order_ref %>
-
-           <%#= t.label :other_ref %>
-           <%#= t.text_field :other_ref %>
-           <%# end %>
         <%= f.button :submit, "Add", class: 'btn btn-success w-100' %>
 
         <% end %>

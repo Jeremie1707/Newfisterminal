@@ -6,15 +6,11 @@ import "bootstrap";
 
 import { replaceElement } from '../components/replaceElements';
 import { listSize } from '../components/listSize';
-import { autoSearch } from '../components/autoSearch';
 import flatpickr from "flatpickr";
 import 'flatpickr/dist/flatpickr.min.css';
 import { initFlatpickr } from '../plugins/flatpickr';
-// import { truckAutocompleteSearch} from '../plugins/autocomplete';
-// import { trailerAutocompleteSearch} from '../plugins/autocomplete';
+import { autoSearch } from '../components/autoSearch';
 
-// truckAutocompleteSearch();
-// trailerAutocompleteSearch();
 initFlatpickr();
 listSize();
 window.listSize = listSize;
@@ -22,5 +18,9 @@ window.replaceElement = replaceElement;
 autoSearch();
 
 
+// import { truckAutocompleteSearch} from '../plugins/autocomplete';
+// import { trailerAutocompleteSearch} from '../plugins/autocomplete';
 
+// truckAutocompleteSearch();
+// trailerAutocompleteSearch();
 

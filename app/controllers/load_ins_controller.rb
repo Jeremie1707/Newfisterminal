@@ -5,8 +5,7 @@ class LoadInsController < ApplicationController
   end
 
   def create
-    p "hello strong params"
-    p strong_params
+
     @load_in = LoadIn.new(strong_params)
     p @load_in
     if @load_in.save!
