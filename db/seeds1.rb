@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
-puts "new seed"
+puts "running seed 1"
 puts "T1 Customer  = #{T1Customer.count}"
 puts "User count  = #{User.count}"
 puts "LoadIn = #{LoadIn.count}"
@@ -32,7 +32,7 @@ Recipient.destroy_all
 
 
 
-packer = ['N-950',
+packer = [ 'N-950',
             'T-436',
             'T-470',
             'F-430',
@@ -103,6 +103,7 @@ puts "---------- creating Loadins ----------"
 counter = 0
 10000.times do
 loadin_attributes = {
+  reference: "LI-#{counter + 1 }",
   t1_customer_id: rand(2..5),
   status: status_loadin[rand(0..1)],
   arrival_date: Time.new(2020, 1, 3),
@@ -205,7 +206,6 @@ in_assignment_attributes = {
   reference: "INA-#{counter + 1 }",
   load_in_id: counter + 1,
   packer: packer[rand(0..4)],
-  # packer_id: rand(1..5),
   lot_nr: "LOT-#{counter + 1 }",
   incoming_order_ref: "INCO-#{counter + 1 }",
   other_ref: "OTHER-#{counter + 1 }",
@@ -225,6 +225,7 @@ counter = 0
 
 10000.times do
 loadout_attributes = {
+  reference: "LO-#{counter + 1 }",
   t1_customer_id: rand(2..5),
   status: status_loadout[rand(0..1)],
   departure_date: Time.new(2020, 1, 4),
@@ -275,4 +276,3 @@ puts "InAssignment = #{InAssignment.count}"
 puts "LoadOut = #{LoadOut.count}"
 puts "Recipient = #{Recipient.count}"
 puts "OutAssignment = #{OutAssignment.count}"
-
