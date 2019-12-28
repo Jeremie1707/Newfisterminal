@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   DEFAULT_ROWS_PER_PAGE = 5
-  DEFAULT_SORT = 'id ASC'
+  DEFAULT_SORT = 'id DESC'
 
   def index
     @load_in = LoadIn.new

@@ -49,6 +49,7 @@
           <table class="table table">
               <thead>
                 <tr>
+                  <th></th>
                   <th>Reference<%= link_to  "⬆︎", set_sort_path(sort: "reference DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "reference ASC"), method: "post",remote: true %></th>
                   <th><%=  "Customer" %></th>
                   <th>Status<%= link_to  "⬆︎", set_sort_path(sort: "status DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "status ASC"), method: "post",remote: true %></th>

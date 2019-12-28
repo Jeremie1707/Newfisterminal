@@ -1,0 +1,20 @@
+<tr class="in-assignment-title">
+          <th>In Assignment</th>
+          <th>Ref</th>
+          <th>Packer</th>
+          <th>Lot Nr</th>
+          <th>Incomin Order Ref</th>
+          <th>Other Ref</th>
+          <th></th>
+        </tr>
+        <% loadin.in_assignments.each do |assignment| %>
+        <tr class="in-assignment-rows">
+          <td></td>
+          <td><%= assignment.reference %></td>
+          <td><%= assignment.packer %></td>
+          <td><%= assignment.lot_nr %></td>
+          <td ><%= assignment.incoming_order_ref %></td>
+          <td><%= assignment.other_ref %></td>
+          <td></td>
+        </tr>
+        <% end %>
