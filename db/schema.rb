@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_152834) do
+ActiveRecord::Schema.define(version: 2019_12_27_175100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2019_12_10_152834) do
   create_table "in_assignments", force: :cascade do |t|
     t.string "reference"
     t.bigint "load_in_id"
-    t.bigint "packer_id"
     t.string "lot_nr"
     t.string "incoming_order_ref"
     t.string "other_ref"
@@ -26,8 +25,8 @@ ActiveRecord::Schema.define(version: 2019_12_10_152834) do
     t.integer "number_of_pallet"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "packer"
     t.index ["load_in_id"], name: "index_in_assignments_on_load_in_id"
-    t.index ["packer_id"], name: "index_in_assignments_on_packer_id"
   end
 
   create_table "load_ins", force: :cascade do |t|
@@ -149,7 +148,6 @@ ActiveRecord::Schema.define(version: 2019_12_10_152834) do
   end
 
   add_foreign_key "in_assignments", "load_ins"
-  add_foreign_key "in_assignments", "packers"
   add_foreign_key "load_ins", "t1_customers"
   add_foreign_key "load_outs", "t1_customers"
   add_foreign_key "out_assignments", "in_assignments"

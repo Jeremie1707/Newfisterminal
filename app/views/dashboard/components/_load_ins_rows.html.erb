@@ -3,9 +3,38 @@
       <td><%= loadin.reference  %></td>
       <td><%= loadin.t1_customer.name %></td>
       <td><%= loadin.status %></td>
+      <td><%= loadin.type_of_service %></td>
       <td><%= loadin.arrival_date.strftime("%-d %b %Y %H:%M") %></td>
       <td><%= loadin.truck_nr %></td>
       <td><%= loadin.trailer_nr %></td>
 
+      <% if !loadin.in_assignments.nil? %>
+        <tr class="in-assignment-title">
+          <th>In Assignment</th>
+          <th>Ref</th>
+          <th>Packer</th>
+          <th>Lot Nr</th>
+          <th>Incomin Order Ref</th>
+          <th>Other Ref</th>
+          <th></th>
+        </tr>
+        <% loadin.in_assignments.each do |assignment| %>
+        <tr class="in-assignment-rows">
+          <td></td>
+          <td><%= assignment.reference %></td>
+          <td><%= assignment.packer %></td>
+          <td><%= assignment.lot_nr %></td>
+          <td ><%= assignment.incoming_order_ref %></td>
+          <td><%= assignment.other_ref %></td>
+          <td></td>
+        </tr>
+        <% end %>
+      <% end %>
+
   </tr>
+
+
+
+
+
 <% end %>

@@ -4,20 +4,21 @@
       <div class="card mb-4 p-2">
         <div class="card-body">
           <%= simple_form_for [@load_in] do |f| %>
-        <%= f.association :t1_customer, label: false, collection: T1Customer.all, selected: [0] %>
-        <%= f.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
-        <%= f.input :arrival_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "arrival date?" %>
+            <%= f.association :t1_customer, label: false, input: T1Customer.all, selected: [0] %>
+            <%= f.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
+            <%= f.input :arrival_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "arrival date?" %>
         <div class="d-flex justify-content-between">
-
-          <%= f.input :truck_nr, label: false, placeholder: "Truck_nr"%>
-          <%= f.input :trailer_nr, label: false, placeholder: "Truck_nr"%>
+          <div class="mr-1">
+            <%= f.input :truck_nr, label: false, placeholder: "Truck_nr"%>
+          </div>
+          <div>
+            <%= f.input :trailer_nr, label: false, placeholder: "Trailer_nr"%>
+          </div>
         </div>
-
-
         <%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["Truck to Truck", "Truck Terminal Truck", "Picking"], wrapper: :vertical_collection_inline %>
 
-        <label class="form-group string required" for="load_in_in_assignments_attributes_packer"></label>
-        <input class="form-control" label = "false" type="text" placeholder="Packer number" name="load_in[in_assignments_attributes][][packer_id]">
+        <label class="form-group string required" for="load_in_in_assignments_attributes_packer" id="packers-list" data-packers="<%= @packers.to_json %>" ></label>
+        <input class="form-control" label ="false" type="text" placeholder="Packer number" id="packer-form" name="load_in[in_assignments_attributes][][packer_name]">
         <label class="string required" for="load_in_in_assignments_attributes_lot_nr"></label>
         <input class="form-control" label = "false" type="text" placeholder="Lot number" name="load_in[in_assignments_attributes][][lot_nr]">
         <label class="form-group string required" for="load_in_in_assignments_attributes_incoming_order_ref"></label>
@@ -45,12 +46,13 @@
             <% end %>
           </div>
       </div>
-          <table class="table table-striped">
+          <table class="table table">
               <thead>
                 <tr>
                   <th>Reference<%= link_to  "⬆︎", set_sort_path(sort: "reference DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "reference ASC"), method: "post",remote: true %></th>
                   <th><%=  "Customer" %></th>
                   <th>Status<%= link_to  "⬆︎", set_sort_path(sort: "status DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "status ASC"), method: "post",remote: true %></th>
+                  <th>Type<%= link_to  "⬆︎", set_sort_path(sort: "type_of_service DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "type_of_service ASC"), method: "post",remote: true %></th>
                   <th>Arrival date<%= link_to  "⬆︎", set_sort_path(sort: "arrival_date DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "arrival_date ASC"), method: "post",remote: true %></th>
                   <th>Truck<%= link_to  "⬆︎", set_sort_path(sort: "truck_nr DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "truck_nr ASC"), method: "post",remote: true %></th>
                   <th>Trailer<%= link_to  "⬆︎", set_sort_path(sort: "trailer_nr DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "trailer_nr ASC"), method: "post",remote: true %></th>

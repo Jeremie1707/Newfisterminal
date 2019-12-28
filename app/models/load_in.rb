@@ -1,4 +1,6 @@
 class LoadIn < ApplicationRecord
+  before_create :set_reference
+  validates :reference, uniqueness: true
   include PgSearch::Model
   belongs_to :t1_customer
   has_many :in_assignments
@@ -11,5 +13,14 @@ class LoadIn < ApplicationRecord
       using: {
         tsearch: { prefix: true }
       }
+
+  private
+  def set_reference
+    if LoadIn.last.nil?
+       self.reference = "10001-LI"
+    else
+     self.reference = (LoadIn.last.id.to_i + 10001).to_s + "-LI"
+    end
+  end
 
 end

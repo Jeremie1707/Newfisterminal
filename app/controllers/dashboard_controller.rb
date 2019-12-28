@@ -11,8 +11,7 @@ class DashboardController < ApplicationController
     session[:search] = nil
     @sort = DEFAULT_SORT
     session[:sort] = DEFAULT_SORT
-    @truck_nr = LoadIn.pluck(:truck_nr).uniq.sort
-    @trailer_nr = LoadIn.pluck(:trailer_nr).uniq.sort
+    @packers = Packer.pluck(:packer_nr).uniq.sort
     get_load_ins
 
   end
@@ -31,7 +30,10 @@ class DashboardController < ApplicationController
       @load_ins = @load_ins_all[@index..@index + @rows_per_page - 1]
     end
     @total_load_ins = @load_ins_all.size
-    @total_pages = (@total_load_ins / @rows_per_page)
+    @total_pages = (@total_load_ins.to_f / @rows_per_page.to_f).ceil
+    p @total_load_ins
+    p @rows_per_page
+    p @total_pages
     @search = session[:search]
   end
 

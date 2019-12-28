@@ -1,0 +1,20 @@
+<table>
+  <thead>
+  <tr>
+    <th>Ref</th>
+    <th>Packer</th>
+    <th>Lot Nr</th>
+    <th>Incomin Order Ref</th>
+    <th>Other Ref</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @load_in.in_assignments.each do |assignment| %>
+    <td><%= assignment.reference %></td>
+    <td><%= assignment.packer %></td>
+    <td><%= assignment.incoming_order_ref %></td>
+    <td><%= lassignment.other_ref %></td>
+    <% end %>
+  </tbody>
+</table>
+
