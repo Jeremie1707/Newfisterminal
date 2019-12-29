@@ -45,8 +45,9 @@
               <%#= submit_tag "Go", class: "btn btn-primary" %>
             <% end %>
           </div>
+          <div><%= link_to "print", "#",  :onclick => 'load-in-table.print();return false;'%></div>
       </div>
-          <table class="table table">
+          <table class="table" id="load-in-table">
               <thead>
                 <tr>
                   <th></th>
@@ -69,6 +70,7 @@
     </div>
   </div>
 </div>
+
 
 
 
