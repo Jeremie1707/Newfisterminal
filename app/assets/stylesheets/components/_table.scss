@@ -1,11 +1,20 @@
 .in-assignment-rows {
   background-color: $light;
-  line-height: 1;
+  line-height: 0.8;
   font-style: italic;
+  font-size: 0.8rem;
 }
 
 .in-assignment-title {
   background-color: $light;
-  line-height: 1;
+  line-height: 0.8;
   font-style: italic;
+  font-size: 0.8rem;
+}
+
+table {
+line-height: 1;
+font-size: 1rem;
+font-weight: lighter;
+font-family: "Open Sans";
 }

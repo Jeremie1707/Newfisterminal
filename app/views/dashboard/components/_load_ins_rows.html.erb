@@ -1,5 +1,6 @@
 <% @load_ins.each do |loadin| %>
-  <tr class="load-in-list-div" id="load_ins_rows-<%= loadin.id %>">
+  <tr>
+      <td class="load-in-list-div clickable" id="load_ins_rows-<%= loadin.id %>" data-toggle="collapse" data-target="#accordeon-<%= loadin.id %>"><i class="far fa-plus-square"></i></td>
       <td><%= loadin.reference  %></td>
       <td><%= loadin.t1_customer.name %></td>
       <td><%= loadin.status %></td>
@@ -7,34 +8,35 @@
       <td><%= loadin.arrival_date.strftime("%-d %b %Y %H:%M") %></td>
       <td><%= loadin.truck_nr %></td>
       <td><%= loadin.trailer_nr %></td>
+      <td><a id="link-loadin-<%=loadin.id%>" href="#" data-toggle="modal" data-target="#card-loadin-<%=loadin.id%>"><i class="fas fa-ellipsis-h"></i></td>
 
       <% if !loadin.in_assignments.nil? %>
-        <tr class="in-assignment-title">
-          <th>In Assignment</th>
-          <th>Ref</th>
-          <th>Packer</th>
-          <th>Lot Nr</th>
-          <th>Incomin Order Ref</th>
-          <th>Other Ref</th>
-          <th></th>
-        </tr>
-        <% loadin.in_assignments.each do |assignment| %>
-        <tr class="in-assignment-rows">
-          <td></td>
-          <td><%= assignment.reference %></td>
-          <td><%= assignment.packer %></td>
-          <td><%= assignment.lot_nr %></td>
-          <td ><%= assignment.incoming_order_ref %></td>
-          <td><%= assignment.other_ref %></td>
-          <td></td>
-        </tr>
-        <% end %>
+        <tr class="in-assignment-title collapse" id="accordeon-<%= loadin.id %>">
+            <th>Assignment</th>
+            <th>Ref</th>
+            <th>Packer</th>
+            <th>Lot Nr</th>
+            <th>Incoming Order Ref.</th>
+            <th>Other Reference</th>
+            <th></th>
+          </tr>
+          <% loadin.in_assignments.each do |assignment| %>
+          <tr class="in-assignment-rows collapse" id="accordeon-<%= loadin.id %>">
+            <td></td>
+            <td><%= assignment.reference %></td>
+            <td><%= assignment.packer %></td>
+            <td><%= assignment.lot_nr %></td>
+            <td ><%= assignment.incoming_order_ref %></td>
+            <td><%= assignment.other_ref %></td>
+            <td></td>
+          </tr>
+          <% end %>
+        <%#= render 'dashboard/components/in_assignments_rows', loadin: loadin %>
       <% end %>
-
   </tr>
+<% end %>
 
-
-
-
-
+<!-- FOR RENDERING POPUPS -->
+<% @load_ins.each do |loadin| %>
+<%= render partial: "dashboard/components/detail_loadin", locals: { loadin: loadin } %>
 <% end %>

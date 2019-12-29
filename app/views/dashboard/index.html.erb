@@ -45,10 +45,12 @@
               <%#= submit_tag "Go", class: "btn btn-primary" %>
             <% end %>
           </div>
+          <div><%= link_to "print", "#",  :onclick => 'load-in-table.print();return false;'%></div>
       </div>
-          <table class="table table">
+          <table class="table" id="load-in-table">
               <thead>
                 <tr>
+                  <th></th>
                   <th>Reference<%= link_to  "⬆︎", set_sort_path(sort: "reference DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "reference ASC"), method: "post",remote: true %></th>
                   <th><%=  "Customer" %></th>
                   <th>Status<%= link_to  "⬆︎", set_sort_path(sort: "status DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "status ASC"), method: "post",remote: true %></th>
@@ -68,6 +70,7 @@
     </div>
   </div>
 </div>
+
 
 
 
