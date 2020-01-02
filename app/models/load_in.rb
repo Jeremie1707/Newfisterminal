@@ -3,7 +3,7 @@ class LoadIn < ApplicationRecord
   validates :reference, uniqueness: true
   include PgSearch::Model
   belongs_to :t1_customer
-  has_many :in_assignments
+  has_many :in_assignments, dependent: :destroy
   accepts_nested_attributes_for :in_assignments
 
   pg_search_scope :global_search, against: [:reference, :status, :truck_nr, :trailer_nr, :arrival_date ], associated_against: {
