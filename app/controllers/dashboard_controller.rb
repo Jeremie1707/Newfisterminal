@@ -91,7 +91,8 @@ class DashboardController < ApplicationController
 
   def set_modal
     @load_in = LoadIn.find(params[:loadin])
-    p @load_in
+    @in_assignment = InAssignment.new
+
   end
 
 

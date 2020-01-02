@@ -22,37 +22,53 @@
           <div class="col-md-2 modal-detail trailer"><h6>Trailer Number:</h6><p><%=@load_in.trailer_nr%></p></div>
         </div>
 
+        <div>
+          <%= simple_form_for([@in_assignment], remote: true, html: {class: "form-inline flex-grow-1"} )do |form| %>
+          <!-- <div class="row "> -->
+            <%= form.input :packer, as: :text, label: false, input_html: {class: 'flex-grow-1'}, placeholder: "Packer" %>
+            <%= form.input :lot_nr, as: :text, label: false, input_html: {class: 'flex-grow-1'}, placeholder: "Lot" %>
+            <%= form.input :incoming_order_ref, as: :text, label: false, input_html: {class: 'flex-grow-1'}, placeholder: "Incoming order" %>
+            <%= form.input :number_of_boxe, as: :text, label: false, input_html: {class: 'flex-grow-1'}, placeholder: "Boxes" %>
 
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Ref</th>
-              <th>Packer</th>
-              <th>Lot</th>
-              <th>Incoming Order</th>
-              <th>Boxes</th>
-              <th>Pallet</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @load_in.in_assignments.each do |assignment| %>
+            <%= form.input :number_of_pallet, as: :text, label: false, input_html: {class: 'flex-grow-1'}, placeholder: "Pallet" %>
+
+            <%= form.button :submit, value:"create", class:"btn btn-success"%></td>
+
+          </div>
+          <% end %>
+
+          <table class="table table-bordered">
+            <thead>
               <tr>
-                  <th scope="row"><%= assignment.reference %></th>
-                  <td><%= assignment.packer %></td>
-                  <td><%= assignment.lot_nr %></td>
-                  <td><%= assignment.incoming_order_ref %></td>
-                  <td><%= assignment.number_of_boxe %></td>
-                  <td><%= assignment.number_of_pallet %></td>
+                <th>Ref</th>
+                <th>Packer</th>
+                <th>Lot</th>
+                <th>Incoming Order</th>
+                <th>Boxes</th>
+                <th>Pallet</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @load_in.in_assignments.each do |assignment| %>
+              <tr>
+                <th scope="row"><%= assignment.reference %></th>
+                <td><%= assignment.packer %></td>
+                <td><%= assignment.lot_nr %></td>
+                <td><%= assignment.incoming_order_ref %></td>
+                <td><%= assignment.number_of_boxe %></td>
+                <td><%= assignment.number_of_pallet %></td>
+                <td><%=link_to 'edit', in_assignment_path(id: assignment), method: :patch %></td>
+                <td><%=link_to 'delete', in_assignment_path(id: assignment), method: :delete%></td>
               </tr>
               <% end %>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>

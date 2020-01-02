@@ -1,4 +1,6 @@
 class OutAssignment < ApplicationRecord
+  before_create :set_reference
+  validates :reference, uniqueness: true
   belongs_to :in_assignment
   belongs_to :load_out
   belongs_to :recipient

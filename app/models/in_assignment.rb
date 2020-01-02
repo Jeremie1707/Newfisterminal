@@ -1,4 +1,6 @@
 class InAssignment < ApplicationRecord
+  before_create :set_reference
+  validates :reference, uniqueness: true
   belongs_to :load_in
   # belongs_to :packer
   has_many :out_assignments

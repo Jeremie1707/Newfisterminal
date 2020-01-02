@@ -2,7 +2,7 @@ class LoadOut < ApplicationRecord
   before_create :set_reference
   validates :reference, uniqueness: true
   belongs_to :t1_customer
-  has_many :out_assignments
+  has_many :out_assignments, dependent: :destroy
 
   private
     def set_reference

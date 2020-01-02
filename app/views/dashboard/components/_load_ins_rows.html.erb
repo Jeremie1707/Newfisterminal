@@ -9,7 +9,8 @@
       <td><%= loadin.arrival_date.strftime("%d/%m/%Y %H:%M") %></td>
       <td><%= loadin.truck_nr %></td>
       <td><%= loadin.trailer_nr %></td>
-      <td><%= link_to 'test', set_modal_path(loadin: loadin), method: :post, remote: true %></td>
+      <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_path(loadin: loadin), method: :post, remote: true %>
+      </td>
 
       <% if !loadin.in_assignments.nil? %>
         <tr class="in-assignment-title collapse" id="accordeon-<%= loadin.id %>">
