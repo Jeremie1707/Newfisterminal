@@ -89,6 +89,10 @@ class DashboardController < ApplicationController
     @load_ins = session[:loadins]
   end
 
+  def set_modal
+    @load_in = LoadIn.find(params[:loadin])
+    p @load_in
+  end
 
 
 end

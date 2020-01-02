@@ -1,14 +1,53 @@
-<div class="modal fade" id="card-loadin-<%=loadin.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+
+<div class="modal fade" id="my-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
+      <div class="modal-body" >
+        <div class="row">
+          <div class="col-md-4 modal-detail company"><h6>Company name:</h6><p><%=@load_in.t1_customer.name%></p></div>
+          <div class="col-md-4 modal-detail arrival"><h6>Arrival date:</h6><p><%=@load_in.arrival_date.strftime("%d/%m/%Y %H:%M")%></p></div>
+          <div class="col-md-4 modal-detail status"><h6>Status:</h6><p><%=@load_in.status%></p></div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 modal-detail reference"><h6>Reference:</h6><p><%=@load_in.reference%></p></div>
+          <div class="col-md-2 modal-detail truck"><h6>Truck Number:</h6><p><%=@load_in.truck_nr%></p></div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 modal-detail trailer"><h6>Trailer Number:</h6><p><%=@load_in.trailer_nr%></p></div>
+        </div>
+
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Ref</th>
+              <th>Packer</th>
+              <th>Lot</th>
+              <th>Incoming Order</th>
+              <th>Boxes</th>
+              <th>Pallet</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @load_in.in_assignments.each do |assignment| %>
+              <tr>
+                  <th scope="row"><%= assignment.reference %></th>
+                  <td><%= assignment.packer %></td>
+                  <td><%= assignment.lot_nr %></td>
+                  <td><%= assignment.incoming_order_ref %></td>
+                  <td><%= assignment.number_of_boxe %></td>
+                  <td><%= assignment.number_of_pallet %></td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

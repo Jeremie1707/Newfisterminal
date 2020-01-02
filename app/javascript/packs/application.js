@@ -5,6 +5,8 @@
 import "bootstrap";
 
 import { replaceElement } from '../components/replaceElements';
+import { showModal } from '../components/showModal';
+import { destroyModal } from '../components/showModal';
 import { listSize } from '../components/listSize';
 import flatpickr from "flatpickr";
 import 'flatpickr/dist/flatpickr.min.css';
@@ -12,10 +14,13 @@ import { initFlatpickr } from '../plugins/flatpickr';
 import { autoSearch } from '../components/autoSearch';
 import { packerAutocompleteSearch} from '../plugins/autocomplete';
 
+
 initFlatpickr();
 listSize();
 window.listSize = listSize;
 window.replaceElement = replaceElement;
+window.showModal = showModal;
+window.destroyModal = destroyModal;
 autoSearch();
 packerAutocompleteSearch();
 

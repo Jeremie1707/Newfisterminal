@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   post '/set_rows/', to: 'dashboard#set_rows', as: 'set_rows'
   post '/search/', to: 'dashboard#search', as: 'search'
   post '/set_sort/', to: 'dashboard#set_sort', as: 'set_sort'
+  post '/set_modal/:loadin', to: 'dashboard#set_modal', as: 'set_modal'
 
 end

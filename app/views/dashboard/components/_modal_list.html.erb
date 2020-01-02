@@ -1,0 +1,5 @@
+<% @load_ins.each do |loadin| %>
+<div id="detail-">
+  <%= render partial: "dashboard/components/detail_loadin", locals: { loadin: loadin } %>
+</div>
+<% end %>

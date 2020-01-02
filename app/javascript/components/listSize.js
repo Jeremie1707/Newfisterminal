@@ -8,8 +8,6 @@ function listSize() {
 
 
 selectLoadin.addEventListener("change", () => {
-  console.log(form)
-  console.log(selectLoadin)
   Rails.fire(form, 'submit');
 });
 
