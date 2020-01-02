@@ -1,0 +1,31 @@
+.modal-detail {
+  border: 1px solid $gray;
+  padding: 0.5rem;
+
+};
+
+.modal-body {
+  .company {
+
+  }
+  .arrival {
+    border-left-style: none;
+  }
+  .status {
+    border-left-style: none;
+  }
+  .reference {
+    border-top: none;
+
+  }
+  .trailer {
+    border-top: none;
+    margin-bottom: 1rem;
+
+  }
+  .truck {
+    border-top: none;
+    border-left: none;
+
+  }
+};
