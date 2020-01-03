@@ -202,7 +202,6 @@ counter = 0
 
 10000.times do
 in_assignment_attributes = {
-  reference: "INA-#{counter + 1 }",
   load_in_id: counter + 1,
   packer: packer[rand(0..4)],
   # packer_id: rand(1..5),
@@ -243,7 +242,6 @@ counter = 0
 
 10000.times do
 out_assignment_attributes = {
-  reference: "OUTA-#{counter + 1 }",
   in_assignment_id: counter + 1,
   load_out_id: counter + 1,
   recipient_id: rand(1..4),

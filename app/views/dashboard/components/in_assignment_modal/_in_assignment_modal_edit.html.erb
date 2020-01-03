@@ -1,0 +1,16 @@
+<div>
+  <%= simple_form_for([@in_assignment], html: {class: "form-inline"} ) do |form| %>
+  <div class="form-group col-md-12 mb-2">
+    <!-- <div class="row "> -->
+      <%= form.input :packer, as: :text, label: false, placeholder: "Packer" %>
+      <%= form.input :lot_nr, as: :text, label: false, placeholder: "Lot" %>
+      <%= form.input :incoming_order_ref, as: :text, label: false, placeholder: "Incoming order" %>
+      <%= form.input :number_of_boxe, as: :text, label: false, placeholder: "Boxes" %>
+
+      <%= form.input :number_of_pallet, as: :text, label: false, placeholder: "Pallet" %>
+
+
+      <%= form.button :submit, value:"update", class:"btn btn-success m-1"%></td>
+    </div>
+  </div>
+  <% end %>
