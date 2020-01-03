@@ -90,10 +90,23 @@ class DashboardController < ApplicationController
   end
 
   def set_modal
-    @load_in = LoadIn.find(params[:loadin])
+    @load_in = LoadIn.find(params[:load_in])
     @in_assignment = InAssignment.new
-
   end
 
+  def create_modal_in_assignment
+    @in_assignment = InAssignment.new(in_assignment_params)
+    @load_in = LoadIn.find(params[:load_in])
+  end
+
+  def edit_modal_in_assignment
+    @in_assignment = InAssignment.find(params[:id])
+  end
+
+private
+
+def in_assignment_params
+  params.permit(:packer, :lot_nr, :incoming_order_ref, :other_ref, :boxe_number, :pallet_number, :load_in_id)
+end
 
 end

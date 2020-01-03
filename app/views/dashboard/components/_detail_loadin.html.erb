@@ -1,6 +1,6 @@
 
 <div class="modal fade" id="my-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle"></h5>
@@ -23,19 +23,9 @@
         </div>
 
         <div>
-          <%= simple_form_for([@in_assignment], remote: true, html: {class: "form-inline flex-grow-1"} )do |form| %>
-          <!-- <div class="row "> -->
-            <%= form.input :packer, as: :text, label: false, input_html: {class: 'flex-grow-1'}, placeholder: "Packer" %>
-            <%= form.input :lot_nr, as: :text, label: false, input_html: {class: 'flex-grow-1'}, placeholder: "Lot" %>
-            <%= form.input :incoming_order_ref, as: :text, label: false, input_html: {class: 'flex-grow-1'}, placeholder: "Incoming order" %>
-            <%= form.input :number_of_boxe, as: :text, label: false, input_html: {class: 'flex-grow-1'}, placeholder: "Boxes" %>
-
-            <%= form.input :number_of_pallet, as: :text, label: false, input_html: {class: 'flex-grow-1'}, placeholder: "Pallet" %>
-
-            <%= form.button :submit, value:"create", class:"btn btn-success"%></td>
-
+            <%=link_to '<i class="far fa-plus-square"></i><span><p>Add an Assignment<p></span>'.html_safe, create_modal_in_assignment_path(load_in: @load_in), method: :post, remote: true %>
           </div>
-          <% end %>
+
 
           <table class="table table-bordered">
             <thead>
@@ -57,7 +47,7 @@
                 <td><%= assignment.incoming_order_ref %></td>
                 <td><%= assignment.number_of_boxe %></td>
                 <td><%= assignment.number_of_pallet %></td>
-                <td><%=link_to 'edit', in_assignment_path(id: assignment), method: :patch %></td>
+                <td><%=link_to 'edit', edit_modal_in_assignment_path(id: assignment), method: :post, remote: true %></td>
                 <td><%=link_to 'delete', in_assignment_path(id: assignment), method: :delete%></td>
               </tr>
               <% end %>
