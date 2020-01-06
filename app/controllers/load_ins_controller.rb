@@ -15,6 +15,13 @@ class LoadInsController < ApplicationController
     end
   end
 
+  def edit
+    @load_in = LoadIn.find(params[:id])
+      respond_to do |format|
+        format.js
+      end
+  end
+
   def update
     @load_in.update_attributes(strong_params)
     respond_to do |format|

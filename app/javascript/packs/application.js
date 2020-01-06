@@ -13,7 +13,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import { initFlatpickr } from '../plugins/flatpickr';
 import { autoSearch } from '../components/autoSearch';
 import { packerAutocompleteSearch} from '../plugins/autocomplete';
-import { clickCloseCreate, clickCloseEdit } from '../components/modalForm';
+import { inAssignmentClickCloseCreate, inAssignmentClickCloseEdit, loadinClickCloseEdit } from '../components/modalForm';
 import { printArea, printElement } from '../packs/print';
 import { printTable} from '../packs/printTable';
 
@@ -22,8 +22,9 @@ initFlatpickr();
 listSize();
 
 window.listSize = listSize;
-window.clickCloseCreate = clickCloseCreate ;
-window.clickCloseEdit = clickCloseEdit ;
+window.inAssignmentClickCloseCreate = inAssignmentClickCloseCreate ;
+window.inAssignmentClickCloseEdit = inAssignmentClickCloseEdit ;
+window.loadinClickCloseEdit = loadinClickCloseEdit ;
 window.printArea = printArea;
 window.printTable = printTable;
 window.replaceElement = replaceElement;

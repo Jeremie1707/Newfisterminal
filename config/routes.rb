@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :dashboard, only: [:index]
-  resources :load_ins, only: [:new, :create, :update, :destroy]
+  resources :load_ins, only: [:new, :create, :edit, :update, :destroy]
   resources :in_assignments, only: [:new, :create, :update, :destroy]
   patch '/set_page/:page', to: 'dashboard#set_page', as: 'set_page'
   post '/set_rows/', to: 'dashboard#set_rows', as: 'set_rows'

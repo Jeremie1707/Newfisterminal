@@ -8,7 +8,7 @@
           <%= button_to 'delete Load In', load_in_path(id: @load_in), method: :delete, data: {confirm: "Are you sure you want to delete this Load In?"}, class:'btn btn-outline-danger'%>
         </div>
         <div id="LoadIn-update-button">
-          <%= button_to 'Update Load In', load_in_path(id: @load_in), method: :update, class:'btn btn-outline-success ml-2'%>
+          <%= button_to 'Update Load In', edit_load_in_path(id: @load_in),method: :get, remote: true, class:'btn btn-outline-success ml-2'%>
         </div>
 
           <button id="btnPrint" type="button" class="btn btn-outline-primary ml-2">Print</button>
