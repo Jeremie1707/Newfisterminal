@@ -1,16 +1,22 @@
 <div>
-  <%= simple_form_for([@in_assignment], html: {class: "form-inline"}) do |form| %>
+  <%= simple_form_for([@in_assignment], html: {class: "form-inline modal-form create in-assignment-form-create"}, remote: true) do |form| %>
   <%# byebug %>
-  <div class="form-group col-md-12 mb-2">
-    <%= form.input :packer, as: :text, label: false, placeholder: "Packer" %>
-    <%= form.input :lot_nr, as: :text, label: false, placeholder: "Lot" %>
-    <%= form.input :incoming_order_ref, as: :text, label: false, placeholder: "Incoming order" %>
-    <%= form.input :number_of_boxe, as: :text, label: false, placeholder: "Boxes" %>
+  <div class="form-group col-md-12">
+    <%= form.input :packer, as: :string, label: false, placeholder: "Packer" %>
+    <%= form.input :lot_nr, as: :string, label: false, placeholder: "Lot" %>
+    <%= form.input :incoming_order_ref, as: :string, label: false, placeholder: "Incoming order" %>
+    <%= form.input :number_of_boxe, as: :string, label: false, placeholder: "Boxes" %>
 
-    <%= form.input :number_of_pallet, as: :text, label: false, placeholder: "Pallet" %>
+    <%= form.input :number_of_pallet, as: :string, label: false, placeholder: "Pallet" %>
     <%= form.input :load_in_id, :as => :hidden, :input_html => { :value => @load_in.id }%>
 
-    <%= form.button :submit, value:"create", class:"btn btn-success m-1"%></td>
+    <%= form.button :submit, value:"create", class:"btn btn-success"%></td>
+  <div id="in-assignment-form-create-close">
+    <button type="button" class="btn btn-outline-secondary ml-1 ">Close</button>
+  </div>
+
+
   </div>
 </div>
 <% end %>
+

@@ -13,11 +13,15 @@ import 'flatpickr/dist/flatpickr.min.css';
 import { initFlatpickr } from '../plugins/flatpickr';
 import { autoSearch } from '../components/autoSearch';
 import { packerAutocompleteSearch} from '../plugins/autocomplete';
+import { clickCloseCreate, clickCloseEdit } from '../components/modalForm';
 
 
 initFlatpickr();
 listSize();
+
 window.listSize = listSize;
+window.clickCloseCreate = clickCloseCreate ;
+window.clickCloseEdit = clickCloseEdit ;
 window.replaceElement = replaceElement;
 window.showModal = showModal;
 window.destroyModal = destroyModal;

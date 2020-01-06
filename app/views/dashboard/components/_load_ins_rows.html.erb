@@ -2,13 +2,16 @@
 
   <tr>
       <td class="load-in-list-div clickable" id="load_ins_rows-<%= loadin.id %>" data-toggle="collapse" data-target="#accordeon-<%= loadin.id %>"><i class="far fa-plus-square"></i></td>
-      <td><%= loadin.reference  %></td>
+
       <td><%= loadin.t1_customer.name %></td>
+      <td><%= loadin.truck_nr %></td>
+      <td><%= loadin.trailer_nr %></td>
+    <!--   <td><%#= loadin.in_assignment.packer %></td> -->
       <td><%= loadin.status %></td>
       <td><%= loadin.type_of_service %></td>
       <td><%= loadin.arrival_date.strftime("%d/%m/%Y %H:%M") %></td>
-      <td><%= loadin.truck_nr %></td>
-      <td><%= loadin.trailer_nr %></td>
+      <td><%= loadin.reference  %></td>
+
       <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_path(load_in: loadin), method: :post, remote: true %>
       </td>
 
