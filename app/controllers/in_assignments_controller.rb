@@ -13,7 +13,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
       if @in_assignment.save!
         format.html { redirect_to dashboard_index_path, notice: 'Assignment was successfully created.' }
         format.js
-        format.json { render json: @in_assignment, status: :created, location: @in_assignment }
+        # format.json { render json: @in_assignment, status: :created, location: @in_assignment }
       else
         format.html { render action: "new" }
         format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
@@ -27,21 +27,31 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
   def update
     @in_assignment.update_attributes(strong_params)
     @load_in = LoadIn.find(@in_assignment.load_in_id)
-    p @in_assignment
-    p @load_in
     respond_to do |format|
       if @in_assignment.save!
         format.html { redirect_to dashboard_index_path, notice: 'Assignment was successfully updated.' }
         format.js
-        format.json { render json: @in_assignment, status: :updated, location: @in_assignment }
+        # format.json { render json: @in_assignment, status: :updated, location: @in_assignment }
       else
-        format.html { render action: "new" }
+        format.html { render action: "update" }
         format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
+    @in_assignment = InAssignment.find(params[:id])
+    @load_in = LoadIn.find(@in_assignment.load_in_id)
+    @in_assignment.destroy
+    respond_to do |format|
+    if @in_assignment.destroy!
+      format.html { redirect_to dashboard_index_path, notice: 'Assignment was successfully deleted.'  }
+      format.js
+    else
+        format.html { render action: "new" }
+        format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
