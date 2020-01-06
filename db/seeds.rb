@@ -101,7 +101,7 @@ end
 
 puts "---------- creating Loadins ----------"
 counter = 0
-10000.times do
+1000.times do
 loadin_attributes = {
   t1_customer_id: rand(2..5),
   status: status_loadin[rand(0..1)],
@@ -200,7 +200,7 @@ end
 puts "---------- creating IN Assignment ----------"
 counter = 0
 
-10000.times do
+1000.times do
 in_assignment_attributes = {
   load_in_id: counter + 1,
   packer: packer[rand(0..4)],
@@ -222,7 +222,7 @@ end
 puts "---------- creating Loadouts ----------"
 counter = 0
 
-10000.times do
+1000.times do
 loadout_attributes = {
   t1_customer_id: rand(2..5),
   status: status_loadout[rand(0..1)],
@@ -240,7 +240,7 @@ end
 puts "---------- creating OUT Assignment ----------"
 counter = 0
 
-10000.times do
+1000.times do
 out_assignment_attributes = {
   in_assignment_id: counter + 1,
   load_out_id: counter + 1,

@@ -23,11 +23,11 @@
         </div>
 
         <div>
-            <%=link_to '<i class="far fa-plus-square"></i><span><p>Add an Assignment<p></span>'.html_safe, create_modal_in_assignment_path(load_in: @load_in), method: :post, remote: true %>
+            <%=link_to '<i class="far fa-plus-square mr-1"></i>Add an Assignment'.html_safe, create_modal_in_assignment_path(load_in: @load_in), method: :post, remote: true %>
           </div>
 
 
-          <table class="table table-bordered">
+          <table class="table table-bordered modal-in-assignment">
             <thead>
               <tr>
                 <th>Ref</th>
@@ -38,19 +38,8 @@
                 <th>Pallet</th>
               </tr>
             </thead>
-            <tbody>
-              <% @load_in.in_assignments.each do |assignment| %>
-              <tr>
-                <th scope="row"><%= assignment.reference %></th>
-                <td><%= assignment.packer %></td>
-                <td><%= assignment.lot_nr %></td>
-                <td><%= assignment.incoming_order_ref %></td>
-                <td><%= assignment.number_of_boxe %></td>
-                <td><%= assignment.number_of_pallet %></td>
-                <td><%=link_to 'edit', edit_modal_in_assignment_path(id: assignment), method: :post, remote: true %></td>
-                <td><%=link_to 'delete', in_assignment_path(id: assignment), method: :delete%></td>
-              </tr>
-              <% end %>
+            <tbody class="modal-in-assignment-list">
+              <%= render 'dashboard/components/in_assignment_modal/detail_loadin_in_assignment_rows' %>
             </tbody>
           </table>
 

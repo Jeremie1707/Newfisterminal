@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+  class DashboardController < ApplicationController
   DEFAULT_ROWS_PER_PAGE = 5
   DEFAULT_SORT = 'id DESC'
 
