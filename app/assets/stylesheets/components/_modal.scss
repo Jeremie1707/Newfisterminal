@@ -29,3 +29,25 @@
 
   }
 };
+
+@media screen {
+  #printSection {
+      display: none;
+  }
+}
+
+@media print {
+  body * {
+    visibility:hidden;
+  }
+  #printSection, #printSection * {
+    visibility:visible;
+
+  }
+  #printSection {
+    position:absolute;
+    left:2em;
+    top:2em;
+    width: 90%;
+  }
+}

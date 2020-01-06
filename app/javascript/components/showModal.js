@@ -1,7 +1,7 @@
 function showModal() {
   $('#my-modal').modal('show');
   console.log("hello Modal");
-
+  printArea();
 };
 
 

@@ -1,0 +1,12 @@
+<div >
+  <%= simple_form_for([@load_in], html: {class: "form-inline modal-form in-assignment-form-edit"}, remote: true) do |form| %>
+  <div class="form-group col-md-12">
+    <!-- <div class="row "> -->
+      <%= form.association :t1_customer, label: false, input: T1Customer.all, selected: [0] %>
+      <%= form.button :submit, value:"update", class:"btn btn-success"%></td>
+      <div id="in-assignment-form-edit-close">
+        <button type="button" class="btn btn-outline-secondary ml-1 ">Close</button>
+      </div>
+    </div>
+  </div>
+  <% end %>
