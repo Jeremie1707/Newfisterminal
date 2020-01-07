@@ -9,7 +9,9 @@
   font-size: 1.8rem;
   font-family:roboto;
   opacity: 0.9;
+
 }
+
 
 .btn-flat {
   color: white;
@@ -19,7 +21,13 @@
   font-family:roboto;
   transition: background 0.3s ease;
   border: 1px solid white;
+
 }
+
+.btn-flat:hover{
+    background: $green;
+    color: white;
+  }
 
 .actual-page-number a {
   color: red;
