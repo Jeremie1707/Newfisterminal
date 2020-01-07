@@ -4,6 +4,7 @@ const initFlatpickr = () => {
       enableTime: true,
       // Select the altvailable meetings dates from groups/show.html.erb file
       minDate: "today",
+      defaultHour: 8,
       altInput: true
     });
   }

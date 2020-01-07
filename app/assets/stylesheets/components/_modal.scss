@@ -44,6 +44,10 @@
   }
 };
 
+.form-control.is-valid {
+  background-image: none;
+}
+
 @media screen {
   #printSection {
       display: none;
