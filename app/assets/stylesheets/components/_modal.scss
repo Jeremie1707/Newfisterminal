@@ -1,10 +1,19 @@
 .modal-detail {
-  border: 1px solid $gray;
+  border: 1px solid #dee2e6;
   padding: 0.5rem;
+
 
 };
 
+.modal-header {
+  border-bottom: none;
+  margin-bottom:none;
+}
+
 .modal-body {
+  .divLoadin{
+  margin-bottom: 1rem;
+  }
   .company {
 
   }

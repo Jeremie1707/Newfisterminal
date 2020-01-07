@@ -21,7 +21,7 @@
          <%= render 'dashboard/components/load_in_modal/detail_loadin_global' %>
         <% end %>
        <div>
-        <%=link_to '<i class="far fa-plus-square mr-1"></i>Add an Assignment'.html_safe, create_modal_in_assignment_path(load_in: @load_in), method: :post, remote: true %>
+        <%=link_to '<i class="far fa-plus-square mr-1"></i>Add an Assignment'.html_safe, create_modal_in_assignment_path(load_in: @load_in), method: :post, remote: true%>
       </div>
 
 
@@ -34,6 +34,8 @@
             <th>Incoming Order</th>
             <th>Boxes</th>
             <th>Pallet</th>
+            <th>Net Weight</th>
+            <th>other Ref.</th>
           </tr>
         </thead>
         <tbody class="modal-in-assignment-list">
@@ -43,8 +45,7 @@
 
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
+
     </div>
   </div>
 </div>

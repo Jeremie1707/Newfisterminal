@@ -1,44 +1,48 @@
 <% @load_ins.each do |loadin| %>
 
-  <tr>
-      <td class="load-in-list-div clickable" id="load_ins_rows-<%= loadin.id %>" data-toggle="collapse" data-target="#accordeon-<%= loadin.id %>"><i class="far fa-plus-square"></i></td>
+<tr>
+  <td class="load-in-list-div clickable" id="load_ins_rows-<%= loadin.id %>" data-toggle="collapse" data-target="#accordeon-<%= loadin.id %>"><i class="far fa-plus-square"></i></td>
 
-      <td><%= loadin.t1_customer.name %></td>
-      <td><%= loadin.truck_nr %></td>
-      <td><%= loadin.trailer_nr %></td>
-    <!--   <td><%#= loadin.in_assignment.packer %></td> -->
-      <td><%= loadin.status %></td>
-      <td><%= loadin.type_of_service %></td>
-      <td><%= loadin.arrival_date.strftime("%d/%m/%Y %H:%M") %></td>
-      <td><%= loadin.reference  %></td>
+  <td><%= loadin.t1_customer.name %></td>
+  <td><%= loadin.truck_nr %></td>
+  <td><%= loadin.trailer_nr %></td>
+  <!--   <td><%#= loadin.in_assignment.packer %></td> -->
+  <td><%= loadin.status %></td>
+  <td><%= loadin.type_of_service %></td>
+  <td><%= loadin.arrival_date.strftime("%d/%m/%Y %H:%M") %></td>
+  <td><%= loadin.reference  %></td>
 
-      <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_path(load_in: loadin), method: :post, remote: true %>
-      </td>
-
-      <% if !loadin.in_assignments.nil? %>
-        <tr class="in-assignment-title collapse" id="accordeon-<%= loadin.id %>">
-            <th>Assignment</th>
-            <th>Ref</th>
-            <th>Packer</th>
-            <th>Lot Nr</th>
-            <th>Incoming Order Ref.</th>
-            <th>Other Reference</th>
-            <th></th>
-          </tr>
-          <% loadin.in_assignments.each do |assignment| %>
-          <tr class="in-assignment-rows collapse" id="accordeon-<%= loadin.id %>">
-            <td></td>
-            <td><%= assignment.reference %></td>
-            <td><%= assignment.packer %></td>
-            <td><%= assignment.lot_nr %></td>
-            <td ><%= assignment.incoming_order_ref %></td>
-            <td><%= assignment.other_ref %></td>
-            <td></td>
-          </tr>
-          <% end %>
-        <%#= render 'dashboard/components/in_assignments_rows', loadin: loadin %>
-      <% end %>
-  </tr>
+  <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_path(load_in: loadin), method: :post, remote: true %></td>
+</tr>
+<% if !loadin.in_assignments.nil? %>
+<tr class="in-assignment-title collapse" id="accordeon-<%= loadin.id %>">
+  <th>Assignment</th>
+  <th>Packer</th>
+  <th>Lot Nr</th>
+  <th>Boxes</th>
+  <th>Pallet</th>
+  <th>Net weight</th>
+  <th>Incoming Order Ref.</th>
+  <th>Other Reference</th>
+  <th>Ref</th>
+  <th></th>
+</tr>
+<% loadin.in_assignments.each do |assignment| %>
+<tr class="in-assignment-rows collapse" id="accordeon-<%= loadin.id %>">
+  <td></td>
+  <td><%= assignment.packer %></td>
+  <td><%= assignment.lot_nr %></td>
+  <td><%= assignment.number_of_boxe %></td>
+  <td><%= assignment.number_of_pallet %></td>
+  <td><%= assignment.net_weight %></td>
+  <td ><%= assignment.incoming_order_ref %></td>
+  <td><%= assignment.other_ref %></td>
+  <td><%= assignment.reference %></td>
+  <td></td>
+</tr>
+<% end %>
+<% end %>
+<!-- </tr> -->
 <% end %>
 
 
