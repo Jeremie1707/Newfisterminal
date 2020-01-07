@@ -23,6 +23,7 @@ class LoadInsController < ApplicationController
   end
 
   def update
+    @load_in = LoadIn.find(params[:id])
     @load_in.update_attributes(strong_params)
     respond_to do |format|
       if @load_in.save!

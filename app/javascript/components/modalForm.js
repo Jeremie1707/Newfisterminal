@@ -6,18 +6,19 @@ const inAssignmentClickCloseCreate = () => {
 }
 const inAssignmentClickCloseEdit = () => {
   document.getElementById('in-assignment-form-edit-close').querySelector('button').addEventListener('click', (event) => {
+    console.log(event);
     event.preventDefault();
     event.toElement.form.style.display = 'none';
   });
 }
 
-const loadinClickCloseEdit = () => {
-  document.getElementById('loadin-form-edit-close').querySelector('button').addEventListener('click', (event) => {
+const loadinClickClose = (element, replaceBy) => {
+  document.getElementById(element).querySelector('button').addEventListener('click', (event) => {
     event.preventDefault();
-    event.toElement.form.style.display = 'none';
+    replaceElement('.divLoadin', replaceBy);
   });
 }
 
 
-export {inAssignmentClickCloseCreate, inAssignmentClickCloseEdit, loadinClickCloseEdit }
+export {inAssignmentClickCloseCreate, inAssignmentClickCloseEdit, loadinClickClose }
 

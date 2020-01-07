@@ -3,9 +3,11 @@
   <div class="form-group col-md-12">
     <!-- <div class="row "> -->
       <%= form.association :t1_customer, label: false, input: T1Customer.all, selected: [0] %>
-      <%= form.button :submit, value:"update", class:"btn btn-success"%></td>
+      <%= form.button :submit, value:"update", class:"btn btn-success"%>
       <div id="loadin-form-edit-close">
-        <button type="button" class="btn btn-outline-secondary ml-1 ">Close</button>
+        <button type="button" class="close ml-2">
+           <span aria-hidden="true">&times;</span>
+        </button>
       </div>
     </div>
   </div>

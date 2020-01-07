@@ -1,0 +1,20 @@
+
+<div class="row">
+  <div class="col-md-4 modal-detail loadin-company" >
+    <h6>Company name:</h6>
+    <p><%=@load_in.t1_customer.name%></p>
+  </div>
+  <div class="col-md-4 modal-detail loadin-arrival"><h6>Arrival date:</h6><p><%=@load_in.arrival_date.strftime("%d/%m/%Y %H:%M")%></p>
+  </div>
+  <div class="col-md-4 modal-detail status"><h6>Status:</h6>
+    <p><%=@load_in.status%></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2 modal-detail reference"><h6>Reference:</h6><p><%=@load_in.reference%></p></div>
+  <div class="col-md-2 modal-detail truck"><h6>Truck Number:</h6><p><%=@load_in.truck_nr%></p></div>
+</div>
+<div class="row">
+  <div class="col-md-2 modal-detail trailer"><h6>Trailer Number:</h6><p><%=@load_in.trailer_nr%></p></div>
+</div>
+
