@@ -2,6 +2,7 @@
   <%= simple_form_for([@in_assignment], html: {class: "form-inline modal-form in-assignment-form-edit"}, remote: true) do |form| %>
   <div class="form-group col-md-12">
     <!-- <div class="row "> -->
+      <%= form.input :order_index, as: :string, label: false, placeholder: "Index" %>
       <%= form.input :packer, as: :string, label: false, placeholder: "Packer" %>
       <%= form.input :lot_nr, as: :string, label: false, placeholder: "Lot" %>
       <%= form.input :incoming_order_ref, as: :string, label: false, placeholder: "Incoming order" %>
