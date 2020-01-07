@@ -1,0 +1,49 @@
+<%= simple_form_for([@load_in],remote: true) do |form| %>
+  <div class="row">
+    <div class="col-md-4 modal-detail loadin-company" >
+      <h6>Company name:</h6>
+      <div class="form-group col-md-12">
+        <%= form.association :t1_customer, label: false, input: T1Customer.all, selected: [0] %>
+      </div>
+    </div>
+
+    <div class="col-md-4 modal-detail loadin-arrival">
+      <h6>Arrival date:</h6>
+      <%= form.input :arrival_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "arrival date?" %>
+    </div>
+    <div class="col-md-4 modal-detail status">
+
+      <%= form.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 modal-detail reference">
+      <h6>Reference:</h6>
+      <p><%=@load_in.reference%></p></div>
+    <div class="col-md-2 modal-detail truck">
+      <h6>Truck Number:</h6>
+      <%= form.input :truck_nr, label: false, placeholder: "Truck_nr"%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 modal-detail trailer">
+      <h6>Trailer Number:</h6>
+      <%= form.input :trailer_nr, label: false, placeholder: "Trailer_nr"%>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-md-3 d-flex flex-row">
+      <%= form.button :submit, value:"update Load In", class:"btn btn-success mb-2"%>
+      <div id="loadin-form-edit-close">
+           <button type="button" class="btn btn-outline-secondary ml-1 ">Close</button>
+        </div>
+    </div>
+  </div>
+ <% end %>
+
+
+
+
+
+
+

@@ -11,7 +11,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
     @in_assignment.load_in = @load_in
     respond_to do |format|
       if @in_assignment.save!
-        format.html { redirect_to dashboard_index_path, notice: 'Assignment was successfully created.' }
+        format.html { redirect_to dashboard_index_path, success: 'Assignment was successfully created.' }
         format.js
         # format.json { render json: @in_assignment, status: :created, location: @in_assignment }
       else
