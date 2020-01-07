@@ -10,11 +10,21 @@
     <p><%=@load_in.status%></p>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-2 modal-detail reference"><h6>Reference:</h6><p><%=@load_in.reference%></p></div>
-  <div class="col-md-2 modal-detail truck"><h6>Truck Number:</h6><p><%=@load_in.truck_nr%></p></div>
+<div class="row mb-2">
+  <div class="col-md-2 modal-detail reference">
+    <h6>Reference:</h6>
+    <p><%=@load_in.reference%></p>
+  </div>
+  <div class="col-md-2 modal-detail truck">
+    <h6>Truck Number:</h6>
+    <p><%=@load_in.truck_nr%></p>
+    <h6>Trailer Number:</h6>
+    <p><%=@load_in.trailer_nr%></p>
+  </div>
+  <div class="col-md-8 modal-detail note">
+    <h6>Note:</h6>
+    <p><%=@load_in.note%></p>
+  </div>
 </div>
-<div class="row">
-  <div class="col-md-2 modal-detail trailer"><h6>Trailer Number:</h6><p><%=@load_in.trailer_nr%></p></div>
-</div>
+
 

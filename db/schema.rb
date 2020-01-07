@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_27_175100) do
+ActiveRecord::Schema.define(version: 2020_01_07_133617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_12_27_175100) do
     t.string "type_of_service"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "note"
     t.index ["t1_customer_id"], name: "index_load_ins_on_t1_customer_id"
   end
 
