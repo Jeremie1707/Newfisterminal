@@ -6,8 +6,9 @@
     <%= form.input :lot_nr, as: :string, label: false, placeholder: "Lot" %>
     <%= form.input :incoming_order_ref, as: :string, label: false, placeholder: "Incoming order" %>
     <%= form.input :number_of_boxe, as: :string, label: false, placeholder: "Boxes" %>
-
     <%= form.input :number_of_pallet, as: :string, label: false, placeholder: "Pallet" %>
+    <%= form.input :net_weight, as: :string, label: false, placeholder: "Net Weight" %>
+    <%= form.input :other_ref, as: :string, label: false, placeholder: "Other Ref." %>
     <%= form.input :load_in_id, :as => :hidden, :input_html => { :value => @load_in.id }%>
 
     <%= form.button :submit, value:"create", class:"btn btn-success"%></td>
