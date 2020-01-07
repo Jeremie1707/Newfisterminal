@@ -56,7 +56,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
 
   private
   def strong_params
-    params.require(:in_assignment).permit(:packer, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :net_weight, :load_in_id)
+    params.require(:in_assignment).permit(:order_index, :packer, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :net_weight, :load_in_id)
   end
 
   def set_in_assignment
