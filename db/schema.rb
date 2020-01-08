@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 2020_01_08_074256) do
     t.datetime "updated_at", null: false
     t.string "packer"
     t.integer "order_index"
-    t.integer "et_weight"
     t.integer "net_weight"
     t.index ["load_in_id"], name: "index_in_assignments_on_load_in_id"
   end
