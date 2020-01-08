@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_07_210450) do
+ActiveRecord::Schema.define(version: 2020_01_08_074256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 2020_01_07_210450) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "packer"
-    t.integer "net_weight"
     t.integer "order_index"
+    t.integer "net_weight"
     t.index ["load_in_id"], name: "index_in_assignments_on_load_in_id"
   end
 
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_01_07_210450) do
     t.integer "div_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order_index"
     t.index ["in_assignment_id"], name: "index_out_assignments_on_in_assignment_id"
     t.index ["load_out_id"], name: "index_out_assignments_on_load_out_id"
     t.index ["recipient_id"], name: "index_out_assignments_on_recipient_id"
