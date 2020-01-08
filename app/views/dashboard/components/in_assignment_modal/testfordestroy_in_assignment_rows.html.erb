@@ -10,4 +10,5 @@
   <td><%= @in_assignment.other_ref %></td>
   <td><%=link_to '<i class="fas fa-pen"></i>'.html_safe, edit_modal_in_assignment_path(id: @in_assignment), method: :post, remote: true %></td>
   <td><%=link_to '<i class="fas fa-trash-alt"></i>'.html_safe, in_assignment_path(id: @in_assignment), method: :delete, remote: true, data: {confirm: "Are you sure you want to delete this Assignment?"}%></td>
+
 </tr>
