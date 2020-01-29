@@ -77,189 +77,189 @@ puts "User count  = #{User.count}"
 
 
 
-puts "---------- creating T1 Customer Address ----------"
+# puts "---------- creating T1 Customer Address ----------"
 
-counter = 0
+# counter = 0
 
-5.times do
-  attributes = {
+# 5.times do
+#   attributes = {
 
-    street: Faker::Address.street_name,
-    street_nr: (rand(1..20)).to_s,
-    postcode: Faker::Address.zip_code,
-    city: Faker::Address.city,
-    country: Faker::Address.country,
-    phone_nr: Faker::PhoneNumber.phone_number,
-    t1_customer_id: counter + 1
+#     street: Faker::Address.street_name,
+#     street_nr: (rand(1..20)).to_s,
+#     postcode: Faker::Address.zip_code,
+#     city: Faker::Address.city,
+#     country: Faker::Address.country,
+#     phone_nr: Faker::PhoneNumber.phone_number,
+#     t1_customer_id: counter + 1
 
-  }
+#   }
 
-  T1CustomerAddress.create(attributes)
-  counter += 1
-  puts counter
-end
+#   T1CustomerAddress.create(attributes)
+#   counter += 1
+#   puts counter
+# end
 
-puts "---------- creating Loadins ----------"
-counter = 0
-1000.times do
-loadin_attributes = {
-  t1_customer_id: rand(2..5),
-  status: status_loadin[rand(0..1)],
-  arrival_date: Time.new(2020, 1, 3),
-  truck_nr: truck_nr_in[rand(0..4)],
-  trailer_nr: trailer_nr_in[rand(0..4)],
-  type_of_service: type_of_service[rand(0..2)]
+# puts "---------- creating Loadins ----------"
+# counter = 0
+# 1000.times do
+# loadin_attributes = {
+#   t1_customer_id: rand(2..5),
+#   status: status_loadin[rand(0..1)],
+#   arrival_date: Time.new(2020, 1, 3),
+#   truck_nr: truck_nr_in[rand(0..4)],
+#   trailer_nr: trailer_nr_in[rand(0..4)],
+#   type_of_service: type_of_service[rand(0..2)]
 
-  }
+#   }
 
-  LoadIn.create(loadin_attributes)
-  counter += 1
-  puts counter
-  puts "LoadIn = #{LoadIn.count}"
+#   LoadIn.create(loadin_attributes)
+#   counter += 1
+#   puts counter
+#   puts "LoadIn = #{LoadIn.count}"
 
-end
-
-
-puts "---------- creating Packers ----------"
-counter = 0
-5.times do
-  packer_attributes = {
-
-    packer_nr: packer[counter],
-    name: Faker::Company.name
-
-  }
-
-  Packer.create(packer_attributes)
-  counter += 1
-  puts counter
-end
+# end
 
 
-puts "---------- creating Packers Address ----------"
-counter = 0
+# puts "---------- creating Packers ----------"
+# counter = 0
+# 5.times do
+#   packer_attributes = {
 
-5.times do
-  packer_address_attributes = {
+#     packer_nr: packer[counter],
+#     name: Faker::Company.name
 
-    street: Faker::Address.street_name,
-    street_nr: (rand(1..20)).to_s,
-    postcode: Faker::Address.zip_code,
-    city: Faker::Address.city,
-    country: Faker::Address.country,
-    phone_nr: Faker::PhoneNumber.phone_number,
-    packer_id: counter + 1
+#   }
 
-  }
-
-  PackerAddress.create(packer_address_attributes)
-  counter += 1
-  puts counter
-end
+#   Packer.create(packer_attributes)
+#   counter += 1
+#   puts counter
+# end
 
 
-puts "---------- creating Recipients ----------"
-counter = 0
+# puts "---------- creating Packers Address ----------"
+# counter = 0
 
-5.times do
-  recipient_attributes = {
+# 5.times do
+#   packer_address_attributes = {
 
-    name: recipient[counter],
-    email: "#{recipient[counter].downcase}@mail.com"
+#     street: Faker::Address.street_name,
+#     street_nr: (rand(1..20)).to_s,
+#     postcode: Faker::Address.zip_code,
+#     city: Faker::Address.city,
+#     country: Faker::Address.country,
+#     phone_nr: Faker::PhoneNumber.phone_number,
+#     packer_id: counter + 1
 
-  }
+#   }
 
-  Recipient.create(recipient_attributes)
-  counter += 1
-  puts counter
-end
-
-
-puts "---------- creating Recipients Address ----------"
-counter = 0
-
-5.times do
-  recipient_address_attributes = {
-
-    street: Faker::Address.street_name,
-    street_nr: (rand(1..20)).to_s,
-    postcode: Faker::Address.zip_code,
-    city: Faker::Address.city,
-    country: Faker::Address.country,
-    phone_nr: Faker::PhoneNumber.phone_number,
-    recipient_id: counter + 1
-
-  }
-
-  RecipientAddress.create(recipient_address_attributes)
-  counter += 1
-  puts counter
-
-end
-
-puts "---------- creating IN Assignment ----------"
-counter = 0
-
-1000.times do
-in_assignment_attributes = {
-  load_in_id: counter + 1,
-  packer: packer[rand(0..4)],
-  # packer_id: rand(1..5),
-  lot_nr: "LOT-#{counter + 1 }",
-  incoming_order_ref: "INCO-#{counter + 1 }",
-  other_ref: "OTHER-#{counter + 1 }",
-  number_of_boxe: number_of_boxe_in[rand(0..2)],
-  number_of_pallet: number_of_pallet_in[rand(0..2)]
-   }
+#   PackerAddress.create(packer_address_attributes)
+#   counter += 1
+#   puts counter
+# end
 
 
-  InAssignment.create(in_assignment_attributes)
-  counter += 1
-  puts counter
-end
+# puts "---------- creating Recipients ----------"
+# counter = 0
+
+# 5.times do
+#   recipient_attributes = {
+
+#     name: recipient[counter],
+#     email: "#{recipient[counter].downcase}@mail.com"
+
+#   }
+
+#   Recipient.create(recipient_attributes)
+#   counter += 1
+#   puts counter
+# end
 
 
-puts "---------- creating Loadouts ----------"
-counter = 0
+# puts "---------- creating Recipients Address ----------"
+# counter = 0
 
-1000.times do
-loadout_attributes = {
-  t1_customer_id: rand(2..5),
-  status: status_loadout[rand(0..1)],
-  departure_date: Time.new(2020, 1, 4),
-  truck_nr: truck_nr_out[rand(0..4)],
-  trailer_nr: trailer_nr_out[rand(0..4)]
+# 5.times do
+#   recipient_address_attributes = {
 
-}
+#     street: Faker::Address.street_name,
+#     street_nr: (rand(1..20)).to_s,
+#     postcode: Faker::Address.zip_code,
+#     city: Faker::Address.city,
+#     country: Faker::Address.country,
+#     phone_nr: Faker::PhoneNumber.phone_number,
+#     recipient_id: counter + 1
 
-  LoadOut.create(loadout_attributes)
-  counter += 1
-  puts counter
-end
+#   }
 
-puts "---------- creating OUT Assignment ----------"
-counter = 0
+#   RecipientAddress.create(recipient_address_attributes)
+#   counter += 1
+#   puts counter
 
-1000.times do
-out_assignment_attributes = {
-  in_assignment_id: counter + 1,
-  load_out_id: counter + 1,
-  recipient_id: rand(1..4),
-  lot_nr: "LOT-#{counter + 1 }",
-  other_ref: "OTHER-#{counter + 1 }",
-  number_of_boxe: number_of_boxe_in[rand(0..2)],
-  number_of_pallet: number_of_pallet_in[rand(0..2)],
-  net_weight: net_weight[rand(0..2)],
-  cost: cost[rand(0..2)],
-  div_cost: div_cost[rand(0..2)]
+# end
 
-   }
+# puts "---------- creating IN Assignment ----------"
+# counter = 0
+
+# 1000.times do
+# in_assignment_attributes = {
+#   load_in_id: counter + 1,
+#   packer: packer[rand(0..4)],
+#   # packer_id: rand(1..5),
+#   lot_nr: "LOT-#{counter + 1 }",
+#   incoming_order_ref: "INCO-#{counter + 1 }",
+#   other_ref: "OTHER-#{counter + 1 }",
+#   number_of_boxe: number_of_boxe_in[rand(0..2)],
+#   number_of_pallet: number_of_pallet_in[rand(0..2)]
+#    }
 
 
-  OutAssignment.create!(out_assignment_attributes)
-  counter += 1
-  puts counter
-end
+#   InAssignment.create(in_assignment_attributes)
+#   counter += 1
+#   puts counter
+# end
+
+
+# puts "---------- creating Loadouts ----------"
+# counter = 0
+
+# 1000.times do
+# loadout_attributes = {
+#   t1_customer_id: rand(2..5),
+#   status: status_loadout[rand(0..1)],
+#   departure_date: Time.new(2020, 1, 4),
+#   truck_nr: truck_nr_out[rand(0..4)],
+#   trailer_nr: trailer_nr_out[rand(0..4)]
+
+# }
+
+#   LoadOut.create(loadout_attributes)
+#   counter += 1
+#   puts counter
+# end
+
+# puts "---------- creating OUT Assignment ----------"
+# counter = 0
+
+# 1000.times do
+# out_assignment_attributes = {
+#   in_assignment_id: counter + 1,
+#   load_out_id: counter + 1,
+#   recipient_id: rand(1..4),
+#   lot_nr: "LOT-#{counter + 1 }",
+#   other_ref: "OTHER-#{counter + 1 }",
+#   number_of_boxe: number_of_boxe_in[rand(0..2)],
+#   number_of_pallet: number_of_pallet_in[rand(0..2)],
+#   net_weight: net_weight[rand(0..2)],
+#   cost: cost[rand(0..2)],
+#   div_cost: div_cost[rand(0..2)]
+
+#    }
+
+
+#   OutAssignment.create!(out_assignment_attributes)
+#   counter += 1
+#   puts counter
+# end
 
 
 
