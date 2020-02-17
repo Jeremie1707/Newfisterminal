@@ -1,3 +1,4 @@
 replaceElement('.modal-in-assignment-list', "<%= j render 'dashboard/components/in_assignment_modal/detail_loadin_in_assignment_rows' %>");
 replaceElement(('#<%= dom_id(@load_in) %>'), "<%= j render 'dashboard/components/load_in_modal/detail_loadin_global' %>");
-
+replaceElement(('#load_in_row_single-<%=(@load_in.id)%>'), "<%= j render 'dashboard/components/load_in_row_single' %>");
+document.querySelector('.in_assignment_row_single-<%=(@in_assignment.id)%>').remove();

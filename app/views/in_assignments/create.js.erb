@@ -7,9 +7,9 @@ document.querySelector('.in-assignment-form-create').remove();
 var insertHere = document.querySelectorAll('#accordeon-<%=(@load_in.id)%>');
 console.log(insertHere);
 if (insertHere[1].classList.contains('show')) {
-  insertHere[0].insertAdjacentHTML('afterend','<tr class="in-assignment-rows in_assignments-<%= @in_assignment.id %> collapse show" id="accordeon-<%= @load_in.id %>"><td></td><td><%= @in_assignment.packer %></td><td><%= @in_assignment.lot_nr %></td><td><%= @in_assignment.number_of_boxe %></td><td><%= @in_assignment.number_of_pallet %></td><td><%= @in_assignment.net_weight %></td><td ><%= @in_assignment.incoming_order_ref %></td><td><%= @in_assignment.other_ref %></td><td><%= @in_assignment.reference %></td><td></td></tr>');
+  insertHere[0].insertAdjacentHTML('afterend','<tr class="in-assignment-rows .in_assignment_row_single-<%= @in_assignment.id %> collapse show" id="accordeon-<%= @load_in.id %>"><td></td><td><%= @in_assignment.packer %></td><td><%= @in_assignment.lot_nr %></td><td><%= @in_assignment.number_of_boxe %></td><td><%= @in_assignment.number_of_pallet %></td><td><%= @in_assignment.net_weight %></td><td ><%= @in_assignment.incoming_order_ref %></td><td><%= @in_assignment.other_ref %></td><td><%= @in_assignment.reference %></td><td></td></tr>');
 }
 else {
-  insertHere[0].insertAdjacentHTML('afterend','<tr class="in-assignment-rows in_assignments-<%= @in_assignment.id %> collapse" id="accordeon-<%= @load_in.id %>"><td></td><td><%= @in_assignment.packer %></td><td><%= @in_assignment.lot_nr %></td><td><%= @in_assignment.number_of_boxe %></td><td><%= @in_assignment.number_of_pallet %></td><td><%= @in_assignment.net_weight %></td><td ><%= @in_assignment.incoming_order_ref %></td><td><%= @in_assignment.other_ref %></td><td><%= @in_assignment.reference %></td><td></td></tr>');
+  insertHere[0].insertAdjacentHTML('afterend','<tr class="in-assignment-rows .in_assignment_row_single-<%= @in_assignment.id %> collapse" id="accordeon-<%= @load_in.id %>"><td></td><td><%= @in_assignment.packer %></td><td><%= @in_assignment.lot_nr %></td><td><%= @in_assignment.number_of_boxe %></td><td><%= @in_assignment.number_of_pallet %></td><td><%= @in_assignment.net_weight %></td><td ><%= @in_assignment.incoming_order_ref %></td><td><%= @in_assignment.other_ref %></td><td><%= @in_assignment.reference %></td><td></td></tr>');
 };
 
