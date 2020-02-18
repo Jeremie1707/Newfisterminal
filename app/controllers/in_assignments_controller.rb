@@ -9,8 +9,11 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
   def create
     @in_assignment = InAssignment.new(strong_params)
     @in_assignment.load_in = @load_in
+
     respond_to do |format|
       if @in_assignment.save!
+        @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
+        @load_in.save!
         format.html { redirect_to dashboard_index_path, success: 'Assignment was successfully created.' }
         format.js
         # format.json { render json: @in_assignment, status: :created, location: @in_assignment }
@@ -29,6 +32,8 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
     @load_in = LoadIn.find(@in_assignment.load_in_id)
     respond_to do |format|
       if @in_assignment.save!
+        @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
+        @load_in.save!
         format.html { redirect_to dashboard_index_path, notice: 'Assignment was successfully updated.' }
         format.js
         # format.json { render json: @in_assignment, status: :updated, location: @in_assignment }
@@ -45,6 +50,8 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
     @in_assignment.destroy
     respond_to do |format|
     if @in_assignment.destroy!
+      @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
+      @load_in.save!
       format.html { redirect_to dashboard_index_path, notice: 'Assignment was successfully deleted.'  }
       format.js
     else

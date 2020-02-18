@@ -56,14 +56,15 @@
         <thead>
           <tr>
             <th class="clickable" data-toggle="collapse" data-target=".collapse"><i class="fas fa-plus-circle"></i></th>
-            <th><%=  "Customer" %></th>
 
             <th>Truck<%= link_to  "⬆︎", set_sort_path(sort: "truck_nr DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "truck_nr ASC"), method: "post",remote: true %></th>
             <th>Trailer<%= link_to  "⬆︎", set_sort_path(sort: "trailer_nr DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "trailer_nr ASC"), method: "post",remote: true %></th>
+            <th>Total Weight<%= link_to  "⬆︎", set_sort_path(sort: "total_weight DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "total_weight ASC"), method: "post",remote: true %></th>
 
 
             <th>Status<%= link_to  "⬆︎", set_sort_path(sort: "status DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "status ASC"), method: "post",remote: true %></th>
             <th>Type<%= link_to  "⬆︎", set_sort_path(sort: "type_of_service DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "type_of_service ASC"), method: "post",remote: true %></th>
+            <th><%=  "Customer" %></th>
             <th>Arrival date<%= link_to  "⬆︎", set_sort_path(sort: "arrival_date DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "arrival_date ASC"), method: "post",remote: true %></th>
             <th>Reference<%= link_to  "⬆︎", set_sort_path(sort: "reference DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "reference ASC"), method: "post",remote: true %></th>
           </tr>
