@@ -12,9 +12,9 @@
   <td><%= loadin.type_of_service %></td>
   <td><%= loadin.t1_customer.name %></td>
   <%if loadin.arrival_date != nil %>
-    <td><%= loadin.arrival_date.strftime("%d/%m/%Y %H:%M") %></td>
+  <td><%= loadin.arrival_date.strftime("%d/%m/%Y %H:%M") %></td>
   <%else%>
-    <td><%= loadin.arrival_date %></td>
+  <td><%= loadin.arrival_date %></td>
   <%end%>
   <td><%= loadin.reference  %></td>
 
@@ -34,20 +34,22 @@
   <th>Ref</th>
   <th></th>
 </tr>
-<% loadin.in_assignments.each do |assignment| %>
-<tr class="in-assignment-rows in_assignment_row_single-<%= assignment.id %> collapse" id="accordeon-<%= loadin.id %>">
-  <td></td>
-  <td><%= assignment.packer %></td>
-  <td><%= assignment.lot_nr %></td>
-  <td><%= assignment.number_of_boxe %></td>
-  <td><%= assignment.number_of_pallet %></td>
-  <td><%= assignment.net_weight %></td>
-  <td ><%= assignment.incoming_order_ref %></td>
-  <td><%= assignment.other_ref %></td>
-  <td><%= assignment.reference %></td>
-  <td></td>
-</tr>
-<% end %>
+
+  <% loadin.in_assignments.each do |assignment| %>
+  <tr class="in-assignment-rows in_assignment_row_single-<%= assignment.id %> collapse" id="accordeon-<%= loadin.id %>">
+    <td></td>
+    <td><%= assignment.packer %></td>
+    <td><%= assignment.lot_nr %></td>
+    <td><%= assignment.number_of_boxe %></td>
+    <td><%= assignment.number_of_pallet %></td>
+    <td><%= assignment.net_weight %></td>
+    <td ><%= assignment.incoming_order_ref %></td>
+    <td><%= assignment.other_ref %></td>
+    <td><%= assignment.reference %></td>
+    <td></td>
+  </tr>
+  <% end %>
+
 <% end %>
 <!-- </tr> -->
 <% end %>

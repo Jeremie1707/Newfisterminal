@@ -53,7 +53,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
       @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
       @load_in.save!
       format.html { redirect_to dashboard_index_path, notice: 'Assignment was successfully deleted.'  }
-      format.js locals: { in_assignment: @in_assignment }
+      format.js
     else
         format.html { render action: "new" }
         format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
