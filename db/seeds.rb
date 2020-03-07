@@ -198,7 +198,7 @@ counter = 0
 
 end
 
-puts "---------- creating IN Assignment ----------"
+puts "---------- creating IN Assignments ----------"
 counter = 0
 
 1000.times do
@@ -244,12 +244,11 @@ loadout_attributes = {
   puts counter
 end
 
-puts "---------- creating OUT Assignment ----------"
+puts "---------- creating OUT Assignments ----------"
 counter = 0
 
 1000.times do
 out_assignment_attributes = {
-  in_assignment_id: counter + 1,
   load_out_id: counter + 1,
   recipient_id: rand(1..4),
   lot_nr: "LOT-#{counter + 1 }",
@@ -268,6 +267,20 @@ out_assignment_attributes = {
   puts counter
 end
 
+puts "---------- creating Assignments ----------"
+counter = 0
+
+1000.times do
+assignment_attributes = {
+  in_assignment_id: counter + 1,
+  out_assignment_id: counter + 1
+   }
+
+  Assignment.create!(assignment_attributes)
+  counter += 1
+  puts counter
+end
+
 
 
 puts "---------- seeding done ----------"
@@ -280,4 +293,5 @@ puts "InAssignment = #{InAssignment.count}"
 puts "LoadOut = #{LoadOut.count}"
 puts "Recipient = #{Recipient.count}"
 puts "OutAssignment = #{OutAssignment.count}"
+puts "Assignment = #{Assignment.count}"
 

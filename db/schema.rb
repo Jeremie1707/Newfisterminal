@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_084722) do
+ActiveRecord::Schema.define(version: 2020_03_07_145050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", force: :cascade do |t|
+    t.bigint "in_assignment_id"
+    t.bigint "out_assignment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["in_assignment_id"], name: "index_assignments_on_in_assignment_id"
+    t.index ["out_assignment_id"], name: "index_assignments_on_out_assignment_id"
+  end
 
   create_table "in_assignments", force: :cascade do |t|
     t.string "reference"
@@ -62,7 +71,6 @@ ActiveRecord::Schema.define(version: 2020_02_17_084722) do
 
   create_table "out_assignments", force: :cascade do |t|
     t.string "reference"
-    t.bigint "in_assignment_id"
     t.bigint "load_out_id"
     t.bigint "recipient_id"
     t.string "lot_nr"
@@ -75,7 +83,6 @@ ActiveRecord::Schema.define(version: 2020_02_17_084722) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order_index"
-    t.index ["in_assignment_id"], name: "index_out_assignments_on_in_assignment_id"
     t.index ["load_out_id"], name: "index_out_assignments_on_load_out_id"
     t.index ["recipient_id"], name: "index_out_assignments_on_recipient_id"
   end
@@ -153,10 +160,11 @@ ActiveRecord::Schema.define(version: 2020_02_17_084722) do
     t.index ["t1_customer_id"], name: "index_users_on_t1_customer_id"
   end
 
+  add_foreign_key "assignments", "in_assignments"
+  add_foreign_key "assignments", "out_assignments"
   add_foreign_key "in_assignments", "load_ins"
   add_foreign_key "load_ins", "t1_customers"
   add_foreign_key "load_outs", "t1_customers"
-  add_foreign_key "out_assignments", "in_assignments"
   add_foreign_key "out_assignments", "load_outs"
   add_foreign_key "out_assignments", "recipients"
   add_foreign_key "packer_addresses", "packers"
