@@ -1,17 +1,30 @@
 class LoadInsController < ApplicationController
 
   def new
+    puts "starts loadins controller"
     @load_in = LoadIn.new
   end
 
   def create
 
     @load_in = LoadIn.new(strong_params)
-    p @load_in
-    if @load_in.save!
-      redirect_to dashboard_index_path
-    else
-       p "erreur"
+    respond_to do |format|
+      if @load_in.save
+        format.html { redirect_to dashboard_index_path, notice: 'Load In was successfully created.' }
+      else
+        flash[:error] = @load_in.errors
+        puts  "hello flash"
+        p flash[:error]
+        format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the Load In. " }
+        format.json { render json: @load_in.errors, status: :unprocessable_entity }
+
+        #redirect_to controller: 'dashboard', action: 'index', status: params['load_in']['status'] #dashboard_index_path, alert: params, params: params
+        # puts "hello createte"
+        # puts @load_in.t1_customer_id
+        # redirect_to dashboard_index_path(@load_in)
+        # puts @load_in.t1_customer_id
+
+      end
     end
   end
 

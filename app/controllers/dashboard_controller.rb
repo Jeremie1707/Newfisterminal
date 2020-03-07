@@ -3,7 +3,13 @@
   DEFAULT_SORT = 'id DESC'
 
   def index
-    @load_in = LoadIn.new
+    if params['load_in'].nil? || params.values.all? { |x| x.nil? }
+      @load_in = LoadIn.new
+    else
+      @load_in = LoadIn.new(params['load_in'].permit('status'.to_sym,'t1_customer_id'.to_sym, 'arrival_date'.to_sym, 'truck_nr'.to_sym, 'trailer_nr'.to_sym,'type_of_service'.to_sym,'note'.to_sym#, 'in_assignments_attributes' => [ :packer, :lot_nr, :incoming_order_ref, :other_ref]
+      ) )
+
+    end
     @in_assignment = InAssignment.new
     @page = 1
     session[:page] = @page
@@ -103,10 +109,11 @@
     @in_assignment = InAssignment.find(params[:id])
   end
 
-private
+  private
 
-def in_assignment_params
-  params.permit(:packer, :lot_nr, :incoming_order_ref, :other_ref, :boxe_number, :pallet_number, :load_in_id)
-end
+  def in_assignment_params
+    params.permit(:packer, :lot_nr, :incoming_order_ref, :other_ref, :boxe_number, :pallet_number, :load_in_id)
+  end
+
 
 end
