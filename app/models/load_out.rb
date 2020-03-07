@@ -1,5 +1,5 @@
 class LoadOut < ApplicationRecord
-  before_create :set_reference
+  before_create :set_reference, :formating_truck_nr, :formating_trailer_nr
   validates :reference, uniqueness: true
   belongs_to :t1_customer
   has_many :out_assignments, dependent: :destroy
@@ -12,4 +12,12 @@ class LoadOut < ApplicationRecord
        self.reference = (LoadOut.last.id.to_i + 50001).to_s + "-LO"
       end
     end
+
+  def formating_truck_nr
+    self.truck_nr = self.truck_nr.upcase.gsub(/\s+|\W+|_/, "").split(/(?<=\D)(?=\d)|(?<=\d)(?=\D)/).join(" ")
+  end
+
+  def formating_trailer_nr
+    self.trailer_nr = self.trailer_nr.upcase.gsub(/\s+|\W+|_/, "").split(/(?<=\D)(?=\d)|(?<=\d)(?=\D)/).join(" ")
+  end
 end

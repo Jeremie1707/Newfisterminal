@@ -11,15 +11,14 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
     @in_assignment.load_in = @load_in
 
     respond_to do |format|
-      if @in_assignment.save!
+      if @in_assignment.save
         @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
-        @load_in.save!
+        @load_in.save
         format.html { redirect_to dashboard_index_path, success: 'Assignment was successfully created.' }
         format.js
         # format.json { render json: @in_assignment, status: :created, location: @in_assignment }
       else
-        format.html { render action: "new" }
-        format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
+        # redirect_to dashboard_index_path, alert: @load_in.errors
       end
     end
   end
@@ -31,7 +30,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
     @in_assignment.update_attributes(strong_params)
     @load_in = LoadIn.find(@in_assignment.load_in_id)
     respond_to do |format|
-      if @in_assignment.save!
+      if @in_assignment.save
         @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
         @load_in.save!
         format.html { redirect_to dashboard_index_path, notice: 'Assignment was successfully updated.' }

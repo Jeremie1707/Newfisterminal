@@ -1,0 +1,33 @@
+<% flash.each do |name, msg| %>
+<%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+<%= simple_form_for [@load_in] do |f| %>
+
+<%= f.association :t1_customer, label: "Select customer", input: T1Customer.all %>
+<%= f.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
+<%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["Truck to Truck", "Truck Terminal Truck", "Picking"], wrapper: :vertical_collection_inline %>
+<%= f.input :arrival_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "arrival date?" %>
+<%= f.input :note, label: false,as: :text, placeholder: "add a note"%>
+
+<div class="d-flex justify-content-between">
+  <div class="mr-1">
+    <%= f.input :truck_nr, label: false, placeholder: "Truck_nr"%>
+  </div>
+  <div>
+    <%= f.input :trailer_nr, label: false, placeholder: "Trailer_nr"%>
+  </div>
+</div>
+
+
+<label class="form-group string required" for="load_in_in_assignments_attributes_packer" id="packers-list" data-packers="<%= @packers.to_json %>" ></label>
+<input class="form-control" label ="false" type="text" placeholder="Packer number" id="packer-form" name="load_in[in_assignments_attributes][][packer]" >
+<label class="string required" for="load_in_in_assignments_attributes_lot_nr"></label>
+<input class="form-control" label = "false" type="text" placeholder="Lot number" name="load_in[in_assignments_attributes][][lot_nr]">
+<label class="form-group string required" for="load_in_in_assignments_attributes_incoming_order_ref"></label>
+<input class="form-control" label = "false" type="text" placeholder="Incoming order Ref." name="load_in[in_assignments_attributes][][incoming_order_ref]">
+<label class=" form-group string required" for="load_in_in_assignments_attributes_other_ref"></label>
+<!--  <input class="form-control mb-2" label = "false" type="text" placeholder="Other Ref" name="load_in[in_assignments_attributes][][other_ref]"> -->
+
+<%= f.button :submit, "Add", class: 'btn btn-success w-100' %>
+
+<% end %>
