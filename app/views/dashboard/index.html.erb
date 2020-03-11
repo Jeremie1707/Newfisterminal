@@ -1,7 +1,7 @@
 <div class="dashboard-container mt-2">
   <div class="loadins-container d-flex flex-row">
     <div class="loadins-form-container col-md-2">
-      <div class="card mb-4 p-2">
+      <div class="card mb-4">
         <div class="card-body">
           <%= render 'dashboard/components/loadin_form' %>
         </div>
@@ -9,39 +9,23 @@
       </div>
     </div>
     <div class="loadins-table-container col-md-10">
-      <div class="search-and-number-rows-container d-flex flex-row">
+      <div class="search-and-number-rows-container d-flex flex-row align-items-center">
         <div id="select-loadin-rows" class="select-loadin-rows mr-1 p-1">
           <%= render 'dashboard/components/select_loadin_rows' %>
         </div>
-        <div class="search-box mb-1">
-          <%= form_tag search_path, method: "post", remote: true  do %>
-          <%= text_field_tag :query, '', placeholder: "search" %>
-          <%= hidden_field_tag :page, @page %>
-          <%= hidden_field_tag :sort, @sort %>
-          <%= hidden_field_tag :loadin_rows, @rows_per_page %>
+        <div id="search-box" class="search-box mb-1">
+          <%= render 'dashboard/components/search_box' %>
           <%#= submit_tag "Go", class: "btn btn-primary" %>
-          <% end %>
+
         </div>
         <a href="#" id="btnPrintTable" class=" ml-2 mb-1">
           <i class="fas fa-print" style="font-size: 1.5rem"></i>
         </a>
       </div>
       <table class="table printTable" id="load-in-table">
-        <thead>
-          <tr>
-            <th class="clickable" data-toggle="collapse" data-target=".collapse"><i class="fas fa-plus-circle"></i></th>
+        <thead id="loadin-table-head">
 
-            <th>Truck<%= link_to  "⬆︎", set_sort_path(sort: "truck_nr DESC", page: @page, loadin_rows: @rows_per_page), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "truck_nr ASC", page: @page, loadin_rows: @rows_per_page), method: "post",remote: true %></th>
-            <th>Trailer<%= link_to  "⬆︎", set_sort_path(sort: "trailer_nr DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "trailer_nr ASC"), method: "post",remote: true %></th>
-            <th>Total Weight<%= link_to  "⬆︎", set_sort_path(sort: "total_weight DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "total_weight ASC"), method: "post",remote: true %></th>
-
-
-            <th>Status<%= link_to  "⬆︎", set_sort_path(sort: "status DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "status ASC"), method: "post",remote: true %></th>
-            <th>Type<%= link_to  "⬆︎", set_sort_path(sort: "type_of_service DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "type_of_service ASC"), method: "post",remote: true %></th>
-            <th><%=  "Customer" %></th>
-            <th>Arrival date<%= link_to  "⬆︎", set_sort_path(sort: "arrival_date DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "arrival_date ASC"), method: "post",remote: true %></th>
-            <th>Reference<%= link_to  "⬆︎", set_sort_path(sort: "reference DESC"), method: "post",remote: true %><%= link_to  "⬇︎", set_sort_path(sort: "reference ASC"), method: "post",remote: true %></th>
-          </tr>
+            <%= render 'dashboard/components/load_ins_table_head' %>
         </thead>
         <tbody id='loadin-list'>
           <%= render 'dashboard/components/load_ins_rows' %>

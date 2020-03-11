@@ -7,8 +7,8 @@ class DashboardController
       @page = parameters[:page] || 1
       @rows_per_page = parameters[:loadin_rows] || 5
       @sort = parameters [:sort] || 'id DESC'
-      @query = parameters[:query] || {}
-      @session_search = session[:search] || {}
+      @query = parameters[:query] || ''
+      @session_search = session[:search] || ''
       @scope = parameters[:scope] || LoadIn.all.order(@sort)
 
       get_load_ins

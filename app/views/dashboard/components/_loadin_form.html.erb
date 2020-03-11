@@ -5,7 +5,7 @@
 
 <%= f.association :t1_customer, label: "Select customer", input: T1Customer.all %>
 <%= f.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
-<%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["Truck to Truck", "Truck Terminal Truck", "Picking"], wrapper: :vertical_collection_inline %>
+<%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["TRUCK TO TRUCK", "TRUCK TERMINAL TRUCK", "PICKING"], wrapper: :vertical_collection_inline %>
 <%= f.input :arrival_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "arrival date?" %>
 <%= f.input :note, label: false,as: :text, placeholder: "add a note"%>
 

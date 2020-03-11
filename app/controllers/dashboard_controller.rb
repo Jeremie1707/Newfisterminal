@@ -18,44 +18,34 @@ class DashboardController < ApplicationController
   end
 
   def scope_search
+    p "hello params"
+    p params
     @search = ScopeSearch.new(params, session)
+    p "hello search"
+    p @search
     @load_ins = @search.load_ins
     @page = @search.page
     @sort = @search.sort
     @rows_per_page = @search.rows_per_page
     @total_pages = @search.total_pages
     @query = @search.query
+    p "page #{@page}"
+    p "sort #{@sort}"
+    p "rows_per_page #{@rows_per_page}"
 
   end
 
 
-  def set_sort
-    scope_search
-  end
-
-  def set_page
-    scope_search
-  end
-
-  def set_rows
-    scope_search
-  end
+  # def set_rows
+  #   scope_search
+  # end
 
 
   def search
-    # ESSAYER DE MEMORISE LES LOADINS DANS LA SESSION (commencé ligne)
-    # @sort = session[:sort]
-    # @rows_per_page = session[:rows_per_page]
     session[:search] = nil
-    # @page = 1
-    # @search = params[:query]
-    # @session_search = session[:search]
-    # get_load_ins
+    p "hello there"
     scope_search
-    p "hello #{scope_search}"
   end
-
-
 
   def set_modal
     @load_in = LoadIn.find(params[:load_in])

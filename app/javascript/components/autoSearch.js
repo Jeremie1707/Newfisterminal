@@ -1,8 +1,9 @@
 function autoSearch() {
-  const query = document.querySelector('#query')
+  const search = document.querySelector('#search-query')
 
-query.addEventListener("keyup", () => {
-  Rails.fire(query.parentElement, 'submit');
+search.addEventListener("keyup", (event) => {
+  console.log(event);
+  Rails.fire(event.target, 'submit');
 });
 
 }

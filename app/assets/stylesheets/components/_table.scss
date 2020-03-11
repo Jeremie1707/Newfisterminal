@@ -21,16 +21,39 @@ font-family: "Open Sans";
 
 }
 
-.table th {
-    padding: 0.7rem !important;
-    font-weight: bolder;
+#loadin-table-head{
+  tr {
+    th {
+     border-bottom: 0 !important;
+    }
   }
+}
+
+
+.table th {
+  padding: 0.7rem !important;
+  font-weight: bolder;
+  padding: 0;
+  margin: 0;
+  }
+
+
+
 
 .table td {
-    padding: 0.7rem !important;
-    font-weight: lighter;
+  padding: 0.7rem !important;
+  font-weight: lighter;
+  padding: 0 10px 0 0;
+  margin: 0;
+
+
   }
 
-td .fa-plus-square {
-  margin-right: 2.5rem;
-}
+// .table td.first {
+//   padding: 0.7rem !important;
+//   font-weight: lighter;
+//   padding: 0 10px 0 0;
+//   margin: 0;
+//   border: 0
+
+//   }
