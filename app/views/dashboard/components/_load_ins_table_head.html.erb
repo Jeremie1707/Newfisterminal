@@ -1,0 +1,14 @@
+ <tr>
+            <th class="clickable" data-toggle="collapse" data-target=".collapse"><i class="fas fa-plus-circle"></i></th>
+
+            <th>Truck<%= link_to "⬆︎", scope_search_path(page: @page, sort: "truck_nr DESC", loadin_rows:  @rows_per_page, query: @query), method: :post, remote: true %><%= link_to  "⬇︎", scope_search_path(sort: "truck_nr ASC", page: @page, loadin_rows: @rows_per_page, query: @query ), method: :post,remote: true %></th>
+            <th>Trailer<%= link_to  "⬆︎", scope_search_path(sort: "trailer_nr DESC",page: @page, loadin_rows: @rows_per_page, query: @query), method: :post,remote: true %><%= link_to  "⬇︎", scope_search_path(sort: "trailer_nr ASC",page: @page, loadin_rows: @rows_per_page, query: @query), method: :post, remote: true %></th>
+            <th>Total Weight<%= link_to  "⬆︎", scope_search_path(sort: "total_weight DESC",page: @page, loadin_rows: @rows_per_page, query: @query), method: :post, remote: true %><%= link_to  "⬇︎", scope_search_path(sort: "total_weight ASC",page: @page, loadin_rows: @rows_per_page, query: @query), method: :post, remote: true %></th>
+
+
+            <th>Status<%= link_to  "⬆︎", scope_search_path(sort: "status DESC",page: @page, loadin_rows: @rows_per_page, query: @query), method: :post,remote: true %><%= link_to  "⬇︎", scope_search_path(sort: "status ASC",page: @page, loadin_rows: @rows_per_page, query: @query), method: :post,remote: true %></th>
+            <th>Type<%= link_to  "⬆︎", scope_search_path(sort: "type_of_service DESC",page: @page, loadin_rows: @rows_per_page, query: @query), method: :post,remote: true %><%= link_to  "⬇︎", scope_search_path(sort: "type_of_service ASC",page: @page, loadin_rows: @rows_per_page, query: @query), method: :post,remote: true %></th>
+            <th><%=  "Customer" %></th>
+            <th>Arrival date<%= link_to  "⬆︎", scope_search_path(sort: "arrival_date DESC",page: @page, loadin_rows: @rows_per_page, query: @query), method: :post,remote: true %><%= link_to  "⬇︎", scope_search_path(sort: "arrival_date ASC",page: @page, loadin_rows: @rows_per_page, query: @query), method: :post,remote: true %></th>
+            <th>Reference<%= link_to  "⬆︎", scope_search_path(sort: "reference DESC", page: @page, loadin_rows: @rows_per_page, query: @query), method: :post, remote: true %><%= link_to  "⬇︎", scope_search_path(sort: "reference ASC",page: @page, loadin_rows: @rows_per_page, query: @query), method: :post, remote: true %></th>
+          </tr>

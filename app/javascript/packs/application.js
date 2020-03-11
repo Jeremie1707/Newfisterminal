@@ -19,9 +19,9 @@ import { printTable} from '../packs/printTable';
 
 
 initFlatpickr();
-listSize();
+// listSize();
 
-window.listSize = listSize;
+// window.listSize = listSize;
 window.inAssignmentClickCloseCreate = inAssignmentClickCloseCreate ;
 window.inAssignmentClickCloseEdit = inAssignmentClickCloseEdit ;
 window.loadinClickClose = loadinClickClose ;
@@ -31,7 +31,7 @@ window.replaceElement = replaceElement;
 window.showModal = showModal;
 window.destroyModal = destroyModal;
 window.printElement = printElement;
-autoSearch();
+// autoSearch();
 packerAutocompleteSearch();
 printTable();
 

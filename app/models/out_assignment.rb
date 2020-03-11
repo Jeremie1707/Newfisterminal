@@ -1,7 +1,7 @@
 class OutAssignment < ApplicationRecord
   before_create :set_reference
   validates :reference, uniqueness: true
-  has_many :assignments
+  has_many :assignments, dependent: :destroy
   belongs_to :load_out
   belongs_to :recipient
 
