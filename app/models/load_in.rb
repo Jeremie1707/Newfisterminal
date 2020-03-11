@@ -32,6 +32,4 @@ class LoadIn < ApplicationRecord
   def formating_trailer_nr
     self.trailer_nr = self.trailer_nr.upcase.gsub(/\s+|\W+|_/, "").split(/(?<=\D)(?=\d)|(?<=\d)(?=\D)/).join(" ")
   end
-  # def total_weight
-  #   self.total_weight
 end

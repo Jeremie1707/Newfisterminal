@@ -14,10 +14,14 @@ class LoadOut < ApplicationRecord
     end
 
   def formating_truck_nr
+    if self.truck_nr != nil
     self.truck_nr = self.truck_nr.upcase.gsub(/\s+|\W+|_/, "").split(/(?<=\D)(?=\d)|(?<=\d)(?=\D)/).join(" ")
+    end
   end
 
   def formating_trailer_nr
+    if self.trailer_nr != nil
     self.trailer_nr = self.trailer_nr.upcase.gsub(/\s+|\W+|_/, "").split(/(?<=\D)(?=\d)|(?<=\d)(?=\D)/).join(" ")
+    end
   end
 end
