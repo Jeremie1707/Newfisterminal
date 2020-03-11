@@ -18,32 +18,19 @@ class DashboardController < ApplicationController
   end
 
   def scope_search
-    p "hello params"
-    p params
+
     @search = ScopeSearch.new(params, session)
-    p "hello search"
-    p @search
     @load_ins = @search.load_ins
     @page = @search.page
     @sort = @search.sort
     @rows_per_page = @search.rows_per_page
     @total_pages = @search.total_pages
     @query = @search.query
-    p "page #{@page}"
-    p "sort #{@sort}"
-    p "rows_per_page #{@rows_per_page}"
-
   end
-
-
-  # def set_rows
-  #   scope_search
-  # end
 
 
   def search
     session[:search] = nil
-    p "hello there"
     scope_search
   end
 
