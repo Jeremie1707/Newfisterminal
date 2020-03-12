@@ -5,7 +5,11 @@
     <p><%=@load_in.t1_customer.name%></p>
     <p><%=@load_in.total_weight%></p>
   </div>
-  <div class="col-md-4 modal-detail loadin-arrival"><h6>Arrival date:</h6><p><%=@load_in.arrival_date.strftime("%d/%m/%Y %H:%M")%></p>
+  <div class="col-md-4 modal-detail loadin-arrival"><h6>Arrival date:</h6>
+    <% if @load_in.arrival_date %>
+    <p><%=@load_in.arrival_date.strftime("%d/%m/%Y %H:%M")%></p>
+    <% else %>
+    <p><%=@load_in.arrival_date%></p>
   </div>
   <div class="col-md-4 modal-detail status"><h6>Status:</h6>
     <p><%=@load_in.status%></p>

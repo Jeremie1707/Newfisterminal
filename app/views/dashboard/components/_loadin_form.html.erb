@@ -1,7 +1,9 @@
-<% flash[:error].each do |error| %>
-    <% error.each do |key, value| %>
-    <p class="error"><%= "#{key} - #{value[0]}" %></p>
-    <% end %>
+<% if flash[:error] %>
+  <% flash[:error].each do |error| %>
+      <% error.each do |key, value| %>
+      <p class="error"><%= "#{key} - #{value[0]}" %></p>
+      <% end %>
+  <% end %>
 <% end %>
 
 
