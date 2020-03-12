@@ -3,7 +3,7 @@ class OutAssignment < ApplicationRecord
   validates :reference, uniqueness: true
   has_many :assignments, dependent: :destroy
   belongs_to :load_out
-  belongs_to :recipient
+  belongs_to :recipient, optional: true
 
   private
   def set_reference
