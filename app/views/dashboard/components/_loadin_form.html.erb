@@ -1,6 +1,13 @@
-<% flash.each do |name, msg| %>
-<%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% if flash[:error] %>
+  <% flash[:error].each do |error| %>
+      <% error.each do |key, value| %>
+      <p class="error"><%= "#{key} - #{value[0]}" %></p>
+      <% end %>
+  <% end %>
 <% end %>
+
+
+
 <%= simple_form_for [@load_in] do |f| %>
 
 <%= f.association :t1_customer, label: "Select customer", input: T1Customer.all %>

@@ -8,23 +8,44 @@ class LoadInsController < ApplicationController
   def create
 
     @load_in = LoadIn.new(strong_params)
+    flash[:error] = []
     respond_to do |format|
       if @load_in.save
-        format.html { redirect_to dashboard_index_path, notice: 'Load In was successfully created.' }
+        if @load_in.type_of_service == "TRUCK TO TRUCK"
+          if create_load_out_and_out_assignment(params)
+          format.html { redirect_to dashboard_index_path, notice: 'Load In was successfully created.' }
+          else
+            flash[:error] << @load_out.errors
+            format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the LoadOut. " }
+            format.json { render json: @load_out.errors, status: :unprocessable_entity }
+          end
+        end
       else
-        flash[:error] = @load_in.errors
-        puts  "hello flash"
-        p flash[:error]
+        flash[:error] << @load_in.errors
         format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the Load In. " }
         format.json { render json: @load_in.errors, status: :unprocessable_entity }
-
-        #redirect_to controller: 'dashboard', action: 'index', status: params['load_in']['status'] #dashboard_index_path, alert: params, params: params
-        # puts "hello createte"
-        # puts @load_in.t1_customer_id
-        # redirect_to dashboard_index_path(@load_in)
-        # puts @load_in.t1_customer_id
-
       end
+    end
+  end
+
+  def create_load_out_and_out_assignment(params = {})
+    @load_out = LoadOut.new(t1_customer_id: params[:load_in][:t1_customer_id], type_of_service: params[:load_in][:type_of_service],note: params[:load_in][:note])
+    if @load_out.save!
+      @out_assignment = OutAssignment.new(load_out_id: @load_out.id, lot_nr: params[:load_in][:in_assignments_attributes][0][:lot_nr], other_ref: params[:load_in][:in_assignments_attributes][0][:other_ref])
+      if @out_assignment.save
+        @assignment = Assignment.new(in_assignment_id: @load_in.in_assignment_ids.first, out_assignment_id: @out_assignment.id)
+          if @assignment.save
+             flash[:notice] = 'Assignment was successfully created.'
+          else
+            flash[:error] << @assignment.errors
+          end
+        flash[:notice] << 'Out Assignment was successfully created.'
+      else
+        flash[:error] << @out_assignment.errors
+      end
+      flash[:notice] <<'Load Out was successfully created.'
+    else
+      flash[:error] << @load_out.errors
     end
   end
 
@@ -42,7 +63,6 @@ class LoadInsController < ApplicationController
       if @load_in.save!
         format.html { redirect_to dashboard_index_path, success: 'Load In was successfully updated.' }
         format.js
-        # format.json { render json: @load_in, status: :updated, location: @load_in }
       else
         format.html { render action: "update" }
         format.json { render json: @load_in.errors, status: :unprocessable_entity }
