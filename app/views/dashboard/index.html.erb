@@ -36,6 +36,43 @@
       </div>
     </div>
   </div>
+  <div class="load_outs-container d-flex flex-row">
+    <div class="load_outs-form-container col-md-2">
+      <div class="card mb-4">
+        <div class="card-body">
+          <%= render 'dashboard/OUT/components/load_out_form' %>
+        </div>
+
+      </div>
+    </div>
+    <div class="load_outs-table-container col-md-10">
+      <div class="search-and-number-rows-container d-flex flex-row align-items-center">
+        <div id="select-load_out-rows" class="select-load_out-rows mr-1 p-1">
+          <%= render 'dashboard/OUT/components/select_load_out_rows' %>
+        </div>
+        <div id="search-box" class="search-box mb-1">
+          <%= render 'dashboard/OUT/components/search_box' %>
+          <%#= submit_tag "Go", class: "btn btn-primary" %>
+
+        </div>
+        <a href="#" id="btnPrintTable" class=" ml-2 mb-1">
+          <i class="fas fa-print" style="font-size: 1.5rem"></i>
+        </a>
+      </div>
+      <table class="table printTable" id="load-out-table">
+        <thead id="load_out-table-head">
+
+            <%= render 'dashboard/OUT/components/load_outs_table_head' %>
+        </thead>
+        <tbody id='load_out-list'>
+          <%= render 'dashboard/OUT/components/load_outs_rows' %>
+        </tbody>
+      </table>
+      <div id="load_out-nav" class="nav d-flex flex-column ">
+        <%= render 'dashboard/OUT/components/nav_pagination' %>
+      </div>
+    </div>
+  </div>
 </div>
 
 

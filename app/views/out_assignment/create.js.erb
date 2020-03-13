@@ -1,0 +1,15 @@
+replaceElement('.modal-out-assignment-list', "<%= j render 'dashboard/OUT/components/OUT_assignment_modal/detail_load_out_out_assignment_rows' %>");
+replaceElement(('#<%= dom_id(@load_out) %>'), "<%= j render 'dashboard/OUT/components/load_out_modal/detail_load_out_global' %>");
+replaceElement(('#load_out_row_single-<%=(@load_out.id)%>'), "<%= j render 'dashboard/OUT/components/load_out_row_single' %>");
+
+document.querySelector('.out-assignment-form-create').remove();
+
+var insertHere = document.querySelectorAll('#accordeon-<%=(@load_out.id)%>');
+if (insertHere[1].classList.contains('show')) {
+  insertHere[0].insertAdjacentHTML('afterend','<tr class="out-assignment-rows .out_assignment_row_single-<%= @out_assignment.id %> collapse show" id="accordeon-<%= @load_out.id %>"><td></td><td><%= @out_assignment.lot_nr %></td><td><%= @out_assignment.number_of_boxe %></td><td><%= @out_assignment.number_of_pallet %></td><td><%= @out_assignment.net_weight %></td><td ><%= @out_assignment.incoming_order_ref %></td><td><%= @out_assignment.other_ref %></td><td><%= @out_assignment.reference %></td><td></td></tr>');
+}
+else {
+  insertHere[0].insertAdjacentHTML('afterend','<tr class="out-assignment-rows .out_assignment_row_single-<%= @out_assignment.id %> collapse" id="accordeon-<%= @load_out.id %>"><td></td><td></td><td><%= @out_assignment.lot_nr %></td><td><%= @out_assignment.number_of_boxe %></td><td><%= @out_assignment.number_of_pallet %></td><td><%= @out_assignment.net_weight %></td><td ><%= @out_assignment.incoming_order_ref %></td><td><%= @out_assignment.other_ref %></td><td><%= @out_assignment.reference %></td><td></td></tr>');
+};
+
+

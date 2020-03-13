@@ -1,0 +1,57 @@
+<% @load_outs.each do |load_out| %>
+
+<tr id="load_out_row_single-<%= load_out.id %>">
+  <td class="load_out-list-div clickable" id="load_outs_rows-<%= load_out.id %>" data-toggle="collapse" data-target="#accordeon-<%= load_out.id %>"><i class="far fa-plus-square"></i></td>
+
+
+  <td><%= load_out.truck_nr %></td>
+  <td><%= load_out.trailer_nr %></td>
+  <td><%= load_out.total_weight %></td>
+  <!--   <td><%#= load_out.in_assignment.packer %></td> -->
+  <td><%= load_out.status %></td>
+  <td><%= load_out.type_of_service %></td>
+  <td><%= load_out.t1_customer.name %></td>
+  <%if load_out.arrival_date != nil %>
+  <td><%= load_out.arrival_date.strftime("%d/%m/%Y %H:%M") %></td>
+  <%else%>
+  <td><%= load_out.arrival_date %></td>
+  <%end%>
+  <td><%= load_out.reference  %></td>
+
+
+  <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_load_out_path(load_out: load_out), method: :post, remote: true %></td>
+</tr>
+<% if !load_out.out_assignments.nil? %>
+<tr class="out-assignment-title collapse" id="accordeon-<%= load_out.id %>">
+  <th></th>
+  <th>Packer</th>
+  <th>Lot Nr</th>
+  <th>Boxes</th>
+  <th>Pallet</th>
+  <th>Net weight</th>
+  <th>Incoming Order Ref.</th>
+  <th>Other Reference</th>
+  <th>Ref</th>
+  <th></th>
+</tr>
+
+  <% loadin.in_assignments.each do |assignment| %>
+  <tr class="out-assignment-rows out_assignment_row_single-<%= assignment.id %> collapse" id="accordeon-<%= load_out.id %>">
+    <td></td>
+    <td><%= assignment.packer %></td>
+    <td><%= assignment.lot_nr %></td>
+    <td><%= assignment.number_of_boxe %></td>
+    <td><%= assignment.number_of_pallet %></td>
+    <td><%= assignment.net_weight %></td>
+    <td ><%= assignment.incoming_order_ref %></td>
+    <td><%= assignment.other_ref %></td>
+    <td><%= assignment.reference %></td>
+    <td></td>
+  </tr>
+  <% end %>
+
+<% end %>
+<!-- </tr> -->
+<% end %>
+
+

@@ -1,0 +1,20 @@
+<tr id="load_out_row_single-<%= @load_out.id %>">
+  <td class="load_out-list-div clickable" id="load_outs_rows-<%= @load_out.id %>" data-toggle="collapse" data-target="#accordeon-<%= @load_out.id %>"><i class="far fa-plus-square"></i></td>
+
+
+  <td><%= @load_out.truck_nr %></td>
+  <td><%= @load_out.trailer_nr %></td>
+  <td><%= @load_out.total_weight %></td>
+  <td><%= @load_out.status %></td>
+  <td><%= @load_out.type_of_service %></td>
+  <td><%= @load_out.t1_customer.name %></td>
+  <%if @load_out.arrival_date != nil %>
+  <td><%= @load_out.arrival_date.strftime("%d/%m/%Y %H:%M") %></td>
+  <%else%>
+  <td><%= @load_out.arrival_date %></td>
+  <%end%>
+  <td><%= @load_out.reference  %></td>
+
+
+  <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_load_out_path(load_out: @load_out), method: :post, remote: true %></td>
+</tr>

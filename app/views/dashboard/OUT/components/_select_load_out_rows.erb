@@ -1,0 +1,14 @@
+
+<div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    List
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <%= link_to '5', scope_search_load_out_path(page: @page, sort: @sort, load_out_rows: 5,query: @query), method: :post, remote: true, class:"dropdown-item" %>
+    <%= link_to '10', scope_search_load_out_path(page: @page, sort: @sort, load_out_rows: 10,query: @query), method: :post, remote: true, class:"dropdown-item" %>
+    <%= link_to '15', scope_search_load_out_path(page: @page, sort: @sort, load_out_rows: 15,query: @query), method: :post, remote: true , class:"dropdown-item"%>
+    <%= link_to '20', scope_search_load_out_path(page: @page, sort: @sort, load_out_rows: 20,query: @query), method: :post, remote: true, class:"dropdown-item" %>
+  </div>
+</div>
+
