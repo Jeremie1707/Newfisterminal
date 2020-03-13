@@ -1,6 +1,4 @@
 class DashboardController < ApplicationController
-  # DEFAULT_ROWS_PER_PAGE = 5
-  # DEFAULT_SORT = 'id DESC'
 
   def index
     if params[:load_in].nil? || params.values.all? { |x| x.nil? }
@@ -10,31 +8,30 @@ class DashboardController < ApplicationController
       ) )
     end
     @in_assignment = InAssignment.new
-    session[:search] = nil
+
     @packers = Packer.pluck(:packer_nr).uniq.sort
 
-
-    scope_search
+    scope_search_load_in
   end
 
-  def scope_search
-
-    @search = ScopeSearch.new(params, session)
-    @load_ins = @search.load_ins
-    @page = @search.page
-    @sort = @search.sort
-    @rows_per_page = @search.rows_per_page
-    @total_pages = @search.total_pages
-    @query = @search.query
+  # Load In and In assignement
+  def scope_search_load_in
+    @scope_search = ScopeSearchLoadIn.new(params)
+    @load_ins = @scope_search.get_load
+    @page = @scope_search.page
+    @sort = @scope_search.sort
+    @rows_per_page = @scope_search.rows_per_page
+    @total_pages = @scope_search.total_pages
+    @query = @scope_search.query
+    @total_load_ins = @scope_search.total_load_ins
   end
 
 
-  def search
-    session[:search] = nil
-    scope_search
+  def search_load_in
+    scope_search_load_in
   end
 
-  def set_modal
+  def set_modal_load_in
     @load_in = LoadIn.find(params[:load_in])
     @in_assignment = InAssignment.new
   end
@@ -54,5 +51,5 @@ class DashboardController < ApplicationController
     params.permit(:packer, :lot_nr, :incoming_order_ref, :other_ref, :boxe_number, :pallet_number, :load_in_id)
   end
 
-
+  # Load Out and Out assignement
 end

@@ -3,7 +3,7 @@
     <div class="loadins-form-container col-md-2">
       <div class="card mb-4">
         <div class="card-body">
-          <%= render 'dashboard/components/loadin_form' %>
+          <%= render 'dashboard/IN/components/loadin_form' %>
         </div>
 
       </div>
@@ -11,10 +11,10 @@
     <div class="loadins-table-container col-md-10">
       <div class="search-and-number-rows-container d-flex flex-row align-items-center">
         <div id="select-loadin-rows" class="select-loadin-rows mr-1 p-1">
-          <%= render 'dashboard/components/select_loadin_rows' %>
+          <%= render 'dashboard/IN/components/select_loadin_rows' %>
         </div>
         <div id="search-box" class="search-box mb-1">
-          <%= render 'dashboard/components/search_box' %>
+          <%= render 'dashboard/IN/components/search_box' %>
           <%#= submit_tag "Go", class: "btn btn-primary" %>
 
         </div>
@@ -25,14 +25,14 @@
       <table class="table printTable" id="load-in-table">
         <thead id="loadin-table-head">
 
-            <%= render 'dashboard/components/load_ins_table_head' %>
+            <%= render 'dashboard/IN/components/load_ins_table_head' %>
         </thead>
         <tbody id='loadin-list'>
-          <%= render 'dashboard/components/load_ins_rows' %>
+          <%= render 'dashboard/IN/components/load_ins_rows' %>
         </tbody>
       </table>
       <div id="loadin-nav" class="nav d-flex flex-column ">
-        <%= render 'dashboard/components/nav_pagination' %>
+        <%= render 'dashboard/IN/components/nav_pagination' %>
       </div>
     </div>
   </div>

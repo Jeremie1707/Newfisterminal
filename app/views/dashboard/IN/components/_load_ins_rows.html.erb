@@ -19,7 +19,7 @@
   <td><%= loadin.reference  %></td>
 
 
-  <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_path(load_in: loadin), method: :post, remote: true %></td>
+  <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_load_in_path(load_in: loadin), method: :post, remote: true %></td>
 </tr>
 <% if !loadin.in_assignments.nil? %>
 <tr class="in-assignment-title collapse" id="accordeon-<%= loadin.id %>">

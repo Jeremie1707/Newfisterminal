@@ -19,6 +19,8 @@ class LoadInsController < ApplicationController
             format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the LoadOut. " }
             format.json { render json: @load_out.errors, status: :unprocessable_entity }
           end
+        else
+          format.html { redirect_to dashboard_index_path, notice: 'Load In was successfully created.' }
         end
       else
         flash[:error] << @load_in.errors
