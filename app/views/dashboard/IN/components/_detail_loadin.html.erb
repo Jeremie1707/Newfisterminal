@@ -18,7 +18,7 @@
       </div>
       <div class="modal-body" id="printModal" >
         <%= content_tag :div, class: 'divLoadin', id: dom_id(@load_in) do %>
-         <%= render 'dashboard/components/load_in_modal/detail_loadin_global' %>
+         <%= render 'dashboard/IN/components/load_in_modal/detail_loadin_global' %>
         <% end %>
        <div>
         <%=link_to '<i class="far fa-plus-square mr-1"></i>Add an Assignment'.html_safe, create_modal_in_assignment_path(load_in: @load_in), method: :post, remote: true%>
@@ -40,7 +40,7 @@
           </tr>
         </thead>
         <tbody class="modal-in-assignment-list">
-          <%= render 'dashboard/components/in_assignment_modal/detail_loadin_in_assignment_rows' %>
+          <%= render 'dashboard/IN/components/in_assignment_modal/detail_loadin_in_assignment_rows' %>
         </tbody>
       </table>
 

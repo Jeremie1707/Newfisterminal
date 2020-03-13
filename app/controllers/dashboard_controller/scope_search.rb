@@ -1,36 +1,47 @@
 class DashboardController
   class ScopeSearch
 
-    attr_accessor  :page, :sort, :rows_per_page, :load_ins, :total_pages, :query
+    attr_accessor  :page, :sort, :rows_per_page, :total_pages,:total_loads,:loads, :query
 
-    def initialize(parameters = {}, session = {})
+    def initialize(parameters = {})
       @page = parameters[:page] || 1
       @rows_per_page = parameters[:loadin_rows] || 5
       @sort = parameters [:sort] || 'id DESC'
       @query = parameters[:query] || ''
-      @session_search = session[:search] || ''
-      @scope = parameters[:scope] || LoadIn.all.order(@sort)
-
-      get_load_ins
-      @load_ins
+      # @scope = parameters[:scope] || LoadIn.all.order(@sort)
 
     end
 
-    private
-    def get_load_ins
-        @index = (@page.to_i - 1) * @rows_per_page.to_i
-        if @session_search.blank? && @query.blank?
-          @load_ins = @scope[@index..@index + @rows_per_page.to_i - 1]
-        elsif !@query.blank?
-          @scope = LoadIn.order(@sort).global_search(@query)
-          @load_ins = @scope[@index..@index + @rows_per_page.to_i - 1]
-          @session_search = @query
-        else #Serarch term present in session
-          @load_ins = @load_ins_all[@index..@index + @rows_per_page.to_i - 1]
+    def get_load
+      pagination
+        if @query.blank?
+          @loads = scope[@range_index]
+        else !@query.blank?
+          @scope = query_scope
+          @loads = scope[@range_index]
         end
-        @total_load_ins = @scope.size
-        @total_pages = (@total_load_ins.to_f / @rows_per_page.to_f).ceil
-        @search = @session_search
+        @total_loads = scope.size
+        @total_pages = (@total_loads.to_f / @rows_per_page.to_f).ceil
+        @loads
+    end
+
+    private
+
+    def scope
+      self.class.scope
+    end
+
+    def query_scope
+      self.class.query_scope
+    end
+
+
+
+    def pagination
+      page = @page.to_i
+      rows_per_page = @rows_per_page.to_i
+      @index = (page - 1) * rows_per_page
+      @range_index = @index..@index + rows_per_page - 1
     end
   end
 end

@@ -1,6 +1,6 @@
-replaceElement('.modal-in-assignment-list', "<%= j render 'dashboard/components/in_assignment_modal/detail_loadin_in_assignment_rows' %>");
-replaceElement(('#<%= dom_id(@load_in) %>'), "<%= j render 'dashboard/components/load_in_modal/detail_loadin_global' %>");
-replaceElement(('#load_in_row_single-<%=(@load_in.id)%>'), "<%= j render 'dashboard/components/load_in_row_single' %>");
+replaceElement('.modal-in-assignment-list', "<%= j render 'dashboard/IN/components/in_assignment_modal/detail_loadin_in_assignment_rows' %>");
+replaceElement(('#<%= dom_id(@load_in) %>'), "<%= j render 'dashboard/IN/components/load_in_modal/detail_loadin_global' %>");
+replaceElement(('#load_in_row_single-<%=(@load_in.id)%>'), "<%= j render 'dashboard/IN/components/load_in_row_single' %>");
 document.querySelectorAll('#accordeon-<%=(@load_in.id)%>').forEach((node) => { node.remove();});
 var loadin = document.querySelector('#load_in_row_single-<%=(@load_in.id)%>');
-loadin.insertAdjacentHTML('afterend',"<%= j render 'dashboard/components/in_assignments_rows' %>" );
+loadin.insertAdjacentHTML('afterend',"<%= j render 'dashboard/IN/components/in_assignments_rows' %>" );
