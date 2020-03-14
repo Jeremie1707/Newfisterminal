@@ -4,11 +4,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-        <div id="LoadIn-delete-button">
-          <%= button_to 'delete Load In', load_in_path(id: @load_in), method: :delete, data: {confirm: "Are you sure you want to delete this Load In?"}, class:'btn btn-outline-danger'%>
+        <div id="load_out-delete-button">
+          <%= button_to 'delete Load Out', load_out_path(id: @load_out), method: :delete, data: {confirm: "Are you sure you want to delete this Load Out?"}, class:'btn btn-outline-danger'%>
         </div>
-        <div id="LoadIn-update-button">
-          <%= button_to 'update Load In', edit_load_in_path(id: @load_in),method: :get, remote: true, class:'btn btn-outline-success ml-2'%>
+        <div id="load_out-update-button">
+          <%= button_to 'update Load Out', edit_load_out_path(id: @load_out),method: :get, remote: true, class:'btn btn-outline-success ml-2'%>
         </div>
         <button id="btnPrint" type="button" class="btn btn-outline-primary ml-2">Print</button>
 
@@ -17,15 +17,15 @@
         </button>
       </div>
       <div class="modal-body" id="printModal" >
-        <%= content_tag :div, class: 'divLoadin', id: dom_id(@load_in) do %>
-         <%= render 'dashboard/IN/components/load_in_modal/detail_loadin_global' %>
+        <%= content_tag :div, class: 'div-load_out', id: dom_id(@load_out) do %>
+         <%= render 'dashboard/OUT/components/load_out_modal/detail_load_out_global' %>
         <% end %>
        <div>
-        <%=link_to '<i class="far fa-plus-square mr-1"></i>Add an Assignment'.html_safe, create_modal_in_assignment_path(load_in: @load_in), method: :post, remote: true%>
+        <%=link_to '<i class="far fa-plus-square mr-1"></i>Add an Assignment'.html_safe, create_modal_out_assignment_path(load_out: @load_out), method: :post, remote: true%>
       </div>
 
 
-      <table class="table table-bordered modal-in-assignment">
+      <table class="table table-bordered modal-out-assignment">
         <thead>
           <tr>
             <th>Index</th>
@@ -39,8 +39,8 @@
             <th>other Ref.</th>
           </tr>
         </thead>
-        <tbody class="modal-in-assignment-list">
-          <%= render 'dashboard/IN/components/in_assignment_modal/detail_loadin_in_assignment_rows' %>
+        <tbody class="modal-out-assignment-list">
+          <%= render 'dashboard/OUT/components/out_assignment_modal/detail_load_out_out_assignment_rows' %>
         </tbody>
       </table>
 

@@ -18,6 +18,7 @@ class DashboardController < ApplicationController
       ) )
     end
     @out_assignment = OutAssignment.new
+    scope_search_load_out
   end
 
   # Load In and In assignement
@@ -30,6 +31,7 @@ class DashboardController < ApplicationController
     @total_pages = @scope_search.total_pages
     @query = @scope_search.query
     @total_load_ins = @scope_search.total_load_ins
+
   end
 
 

@@ -5,7 +5,7 @@ class DashboardController
 
     def initialize(parameters = {})
       @page = parameters[:page] || 1
-      @rows_per_page = parameters[:loadin_rows] || 5
+      @rows_per_page = parameters[:rows_per_page] || 10
       @sort = parameters [:sort] || 'id DESC'
       @query = parameters[:query] || ''
       # @scope = parameters[:scope] || LoadIn.all.order(@sort)

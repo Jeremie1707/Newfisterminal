@@ -11,10 +11,10 @@
   <td><%= load_out.status %></td>
   <td><%= load_out.type_of_service %></td>
   <td><%= load_out.t1_customer.name %></td>
-  <%if load_out.arrival_date != nil %>
-  <td><%= load_out.arrival_date.strftime("%d/%m/%Y %H:%M") %></td>
+  <%if load_out.departure_date != nil %>
+  <td><%= load_out.departure_date.strftime("%d/%m/%Y %H:%M") %></td>
   <%else%>
-  <td><%= load_out.arrival_date %></td>
+  <td><%= load_out.departure_date %></td>
   <%end%>
   <td><%= load_out.reference  %></td>
 
@@ -35,10 +35,10 @@
   <th></th>
 </tr>
 
-  <% loadin.in_assignments.each do |assignment| %>
+  <% load_out.out_assignments.each do |assignment| %>
   <tr class="out-assignment-rows out_assignment_row_single-<%= assignment.id %> collapse" id="accordeon-<%= load_out.id %>">
     <td></td>
-    <td><%= assignment.packer %></td>
+   <!--  <td><%#=assignment.packer %></td> -->
     <td><%= assignment.lot_nr %></td>
     <td><%= assignment.number_of_boxe %></td>
     <td><%= assignment.number_of_pallet %></td>

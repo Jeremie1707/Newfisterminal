@@ -1,17 +1,17 @@
 <div class="dashboard-container mt-2">
-  <div class="loadins-container d-flex flex-row">
-    <div class="loadins-form-container col-md-2">
+  <div class="load_ins-container d-flex flex-row">
+    <div class="load_ins-form-container col-md-2">
       <div class="card mb-4">
         <div class="card-body">
-          <%= render 'dashboard/IN/components/loadin_form' %>
+          <%= render 'dashboard/IN/components/load_in_form' %>
         </div>
 
       </div>
     </div>
-    <div class="loadins-table-container col-md-10">
+    <div class="load_ins-table-container col-md-10">
       <div class="search-and-number-rows-container d-flex flex-row align-items-center">
-        <div id="select-loadin-rows" class="select-loadin-rows mr-1 p-1">
-          <%= render 'dashboard/IN/components/select_loadin_rows' %>
+        <div id="select-load_in-rows" class="select-load_in-rows mr-1 p-1">
+          <%= render 'dashboard/IN/components/select_load_in_rows' %>
         </div>
         <div id="search-box" class="search-box mb-1">
           <%= render 'dashboard/IN/components/search_box' %>
@@ -23,15 +23,15 @@
         </a>
       </div>
       <table class="table printTable" id="load-in-table">
-        <thead id="loadin-table-head">
+        <thead id="load_in-table-head">
 
             <%= render 'dashboard/IN/components/load_ins_table_head' %>
         </thead>
-        <tbody id='loadin-list'>
+        <tbody id='load_in-list'>
           <%= render 'dashboard/IN/components/load_ins_rows' %>
         </tbody>
       </table>
-      <div id="loadin-nav" class="nav d-flex flex-column ">
+      <div id="load_in-nav" class="nav d-flex flex-column ">
         <%= render 'dashboard/IN/components/nav_pagination' %>
       </div>
     </div>

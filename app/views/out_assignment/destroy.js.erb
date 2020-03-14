@@ -2,6 +2,6 @@ replaceElement('.modal-out-assignment-list', "<%= j render 'dashboard/OUT/compon
 replaceElement(('#<%= dom_id(@load_out) %>'), "<%= j render 'dashboard/OUT/components/load_out_modal/detail_load_out_global' %>");
 replaceElement(('#load_out_row_single-<%=(@load_out.id)%>'), "<%= j render 'dashboard/OUT/components/load_out_row_single' %>");
 document.querySelectorAll('#accordeon-<%=(@load_out.id)%>').forEach((node) => { node.remove();});
-var load_out = document.querySelector('#load_out_row_single-<%=(@load_out.id)%>');
-load_out.insertAdjacentHTML('afterend',"<%= j render 'dashboard/OUT/components/out_assignments_rows' %>" );
+var loadout = document.querySelector('#load_out_row_single-<%=(@load_out.id)%>');
+loadout.insertAdjacentHTML('afterend',"<%= j render 'dashboard/OUT/components/out_assignments_rows' %>" );
 

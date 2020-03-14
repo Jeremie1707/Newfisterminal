@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_07_145050) do
+ActiveRecord::Schema.define(version: 2020_03_14_085705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_145050) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "note"
+    t.integer "total_weight"
     t.index ["t1_customer_id"], name: "index_load_outs_on_t1_customer_id"
   end
 
@@ -83,6 +84,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_145050) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order_index"
+    t.string "incoming_order_ref"
     t.index ["load_out_id"], name: "index_out_assignments_on_load_out_id"
     t.index ["recipient_id"], name: "index_out_assignments_on_recipient_id"
   end
