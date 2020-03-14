@@ -24,7 +24,6 @@
 <% if !load_out.out_assignments.nil? %>
 <tr class="out-assignment-title collapse" id="accordeon-<%= load_out.id %>">
   <th></th>
-  <th>Packer</th>
   <th>Lot Nr</th>
   <th>Boxes</th>
   <th>Pallet</th>
@@ -38,7 +37,6 @@
   <% load_out.out_assignments.each do |assignment| %>
   <tr class="out-assignment-rows out_assignment_row_single-<%= assignment.id %> collapse" id="accordeon-<%= load_out.id %>">
     <td></td>
-   <!--  <td><%#=assignment.packer %></td> -->
     <td><%= assignment.lot_nr %></td>
     <td><%= assignment.number_of_boxe %></td>
     <td><%= assignment.number_of_pallet %></td>
