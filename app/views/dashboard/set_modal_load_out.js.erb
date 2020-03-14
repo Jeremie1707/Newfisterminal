@@ -1,0 +1,10 @@
+if (document.getElementById('my-modal') != null) {
+  document.getElementById('my-modal').remove();
+  document.querySelector('body').insertAdjacentHTML('beforeend','<%= j render partial: "dashboard/OUT/components/detail_load_out" %>');
+}
+else {
+  document.querySelector('body').insertAdjacentHTML('beforeend','<%= j render partial: "dashboard/OUT/components/detail_load_out" %>');
+}
+
+showModal();
+

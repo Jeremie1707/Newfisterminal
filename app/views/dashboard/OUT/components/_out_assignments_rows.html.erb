@@ -1,0 +1,28 @@
+
+<% if !@load_out.out_assignments.nil? %>
+<tr class="out-assignment-title collapse" id="accordeon-<%= @load_out.id %>">
+  <th></th>
+  <th>Lot Nr</th>
+  <th>Boxes</th>
+  <th>Pallet</th>
+  <th>Net weight</th>
+  <th>Incoming Order Ref.</th>
+  <th>Other Reference</th>
+  <th>Ref</th>
+  <th></th>
+</tr>
+
+<% @load_out.out_assignments.each do |assignment| %>
+<tr class="out-assignment-rows out-assignment_row_single-<%= assignment.id %> collapse show" id="accordeon-<%= @load_out.id %>">
+  <td></td>
+  <td><%= assignment.lot_nr %></td>
+  <td><%= assignment.number_of_boxe %></td>
+  <td><%= assignment.number_of_pallet %></td>
+  <td><%= assignment.net_weight %></td>
+  <td ><%= assignment.incoming_order_ref %></td>
+  <td><%= assignment.other_ref %></td>
+  <td><%= assignment.reference %></td>
+  <td></td>
+</tr>
+<% end %>
+<% end %>

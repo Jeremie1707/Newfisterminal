@@ -62,7 +62,7 @@ before_action :set_out_assignment, only: [:edit, :update, :destroy]
 
   private
   def strong_params
-    params.require(:out_assignment).permit(:order_index, :packer, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :net_weight, :load_out_id)
+    params.require(:out_assignment).permit(:order_index, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :net_weight,:cost, :div_cost, :load_out_id)
   end
 
   def set_out_assignment

@@ -1,28 +1,28 @@
-<% @load_ins.each do |loadin| %>
+<% @load_ins.each do |load_in| %>
 
-<tr id="load_in_row_single-<%= loadin.id %>">
-  <td class="load-in-list-div clickable" id="load_ins_rows-<%= loadin.id %>" data-toggle="collapse" data-target="#accordeon-<%= loadin.id %>"><i class="far fa-plus-square"></i></td>
+<tr id="load_in_row_single-<%= load_in.id %>">
+  <td class="load-in-list-div clickable" id="load_ins_rows-<%= load_in.id %>" data-toggle="collapse" data-target="#accordeon-<%= load_in.id %>"><i class="far fa-plus-square"></i></td>
 
 
-  <td><%= loadin.truck_nr %></td>
-  <td><%= loadin.trailer_nr %></td>
-  <td><%= loadin.total_weight %></td>
-  <!--   <td><%#= loadin.in_assignment.packer %></td> -->
-  <td><%= loadin.status %></td>
-  <td><%= loadin.type_of_service %></td>
-  <td><%= loadin.t1_customer.name %></td>
-  <%if loadin.arrival_date != nil %>
-  <td><%= loadin.arrival_date.strftime("%d/%m/%Y %H:%M") %></td>
+  <td><%= load_in.truck_nr %></td>
+  <td><%= load_in.trailer_nr %></td>
+  <td><%= load_in.total_weight %></td>
+  <!--   <td><%#= load_in.in_assignment.packer %></td> -->
+  <td><%= load_in.status %></td>
+  <td><%= load_in.type_of_service %></td>
+  <td><%= load_in.t1_customer.name %></td>
+  <%if load_in.arrival_date != nil %>
+  <td><%= load_in.arrival_date.strftime("%d/%m/%Y %H:%M") %></td>
   <%else%>
-  <td><%= loadin.arrival_date %></td>
+  <td><%= load_in.arrival_date %></td>
   <%end%>
-  <td><%= loadin.reference  %></td>
+  <td><%= load_in.reference  %></td>
 
 
-  <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_load_in_path(load_in: loadin), method: :post, remote: true %></td>
+  <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_load_in_path(load_in: load_in), method: :post, remote: true %></td>
 </tr>
-<% if !loadin.in_assignments.nil? %>
-<tr class="in-assignment-title collapse" id="accordeon-<%= loadin.id %>">
+<% if !load_in.in_assignments.nil? %>
+<tr class="in-assignment-title collapse" id="accordeon-<%= load_in.id %>">
   <th></th>
   <th>Packer</th>
   <th>Lot Nr</th>
@@ -35,8 +35,8 @@
   <th></th>
 </tr>
 
-  <% loadin.in_assignments.each do |assignment| %>
-  <tr class="in-assignment-rows in_assignment_row_single-<%= assignment.id %> collapse" id="accordeon-<%= loadin.id %>">
+  <% load_in.in_assignments.each do |assignment| %>
+  <tr class="in-assignment-rows in_assignment_row_single-<%= assignment.id %> collapse" id="accordeon-<%= load_in.id %>">
     <td></td>
     <td><%= assignment.packer %></td>
     <td><%= assignment.lot_nr %></td>

@@ -4,10 +4,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-        <div id="LoadIn-delete-button">
+        <div id="load_in-delete-button">
           <%= button_to 'delete Load In', load_in_path(id: @load_in), method: :delete, data: {confirm: "Are you sure you want to delete this Load In?"}, class:'btn btn-outline-danger'%>
         </div>
-        <div id="LoadIn-update-button">
+        <div id="load_in-update-button">
           <%= button_to 'update Load In', edit_load_in_path(id: @load_in),method: :get, remote: true, class:'btn btn-outline-success ml-2'%>
         </div>
         <button id="btnPrint" type="button" class="btn btn-outline-primary ml-2">Print</button>
@@ -17,8 +17,8 @@
         </button>
       </div>
       <div class="modal-body" id="printModal" >
-        <%= content_tag :div, class: 'divLoadin', id: dom_id(@load_in) do %>
-         <%= render 'dashboard/IN/components/load_in_modal/detail_loadin_global' %>
+        <%= content_tag :div, class: 'div-load_in', id: dom_id(@load_in) do %>
+         <%= render 'dashboard/IN/components/load_in_modal/detail_load_in_global' %>
         <% end %>
        <div>
         <%=link_to '<i class="far fa-plus-square mr-1"></i>Add an Assignment'.html_safe, create_modal_in_assignment_path(load_in: @load_in), method: :post, remote: true%>
@@ -40,7 +40,7 @@
           </tr>
         </thead>
         <tbody class="modal-in-assignment-list">
-          <%= render 'dashboard/IN/components/in_assignment_modal/detail_loadin_in_assignment_rows' %>
+          <%= render 'dashboard/IN/components/in_assignment_modal/detail_load_in_in_assignment_rows' %>
         </tbody>
       </table>
 

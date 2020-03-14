@@ -1,4 +1,7 @@
-.loadins-form-container {
+
+// Load In
+
+.load_ins-form-container, .load_outs-form-container {
   min-width: 240px;
   .form-group {
     margin-bottom: 0.5rem;
@@ -17,7 +20,7 @@
 }
 
 
-.new_load_in .form-control {
+.new_load_in .form-control, .new_load_out .form-control {
   font-size: 0.8rem;
   line-height: 1;
     .form-group {
@@ -25,7 +28,7 @@
     }
 }
 
-.new_load_in {
+.new_load_in, .new_load_out {
   font-size: 0.8rem;
   line-height: 1;
     #load_in_note {

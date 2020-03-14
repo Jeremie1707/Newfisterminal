@@ -1,0 +1,25 @@
+<div>
+  <p><%= "There is a total of #{@total_load_outs} Load Out" %></p>
+</div>
+<div>
+  <button class="btn btn-outline-secondary"><%= link_to 'First', scope_search_load_out_path(page: 1, sort: @sort, rows_per_page: @rows_per_page, query: @query), method: :post, remote: true %>
+  </button>
+  <button class="actual-page-number btn btn-outline-secondary"><%= link_to "#{@page.to_i} /#{@total_pages}", scope_search_load_out_path(page: 1) %>
+  </button>
+  <% if @page.to_i <= 1 %>
+  <%=''%>
+  <% else %>
+  <button class="btn btn-outline-secondary"><%= link_to 'Previous', scope_search_load_out_path(page: @page.to_i - 1, sort: @sort, rows_per_page: @rows_per_page, query: @query), method: :post, remote: true %>
+  </button>
+  <% end %>
+  <% if @page.to_i == @total_pages %>
+  <%=''%>
+  <% else %>
+  <button class="btn btn-outline-secondary"><%= link_to 'Next', scope_search_load_out_path(page: @page.to_i + 1, sort: @sort, rows_per_page: @rows_per_page, query: @query), method: :post, remote: true %>
+  </button>
+  <% end %>
+  <button class="btn btn-outline-secondary"><%= link_to 'Last', scope_search_load_out_path(page: @total_pages, sort: @sort, rows_per_page: @rows_per_page, query: @query), method: :post, remote: true %>
+  </button>
+</div>
+
+

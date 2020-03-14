@@ -1,0 +1,37 @@
+<% if flash[:error] %>
+  <% flash[:error].each do |error| %>
+      <% error.each do |key, value| %>
+      <p class="error"><%= "#{key} - #{value[0]}" %></p>
+      <% end %>
+  <% end %>
+<% end %>
+
+
+
+<%= simple_form_for [@load_out] do |f| %>
+
+<%= f.association :t1_customer, label: "Select customer", input: T1Customer.all %>
+<%= f.input :status, label: "Status", as: :radio_buttons, collection: ["DELIVERED", "NOT DELIVERED"], wrapper: :vertical_collection_inline %>
+<%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["TRUCK TO TRUCK", "TRUCK TERMINAL TRUCK", "PICKING"], wrapper: :vertical_collection_inline %>
+<%= f.input :departure_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "departure date?" %>
+<%= f.input :note, label: false,as: :text, placeholder: "add a note"%>
+
+<div class="d-flex justify-content-between">
+  <div class="mr-1">
+    <%= f.input :truck_nr, label: false, placeholder: "Truck_nr"%>
+  </div>
+  <div>
+    <%= f.input :trailer_nr, label: false, placeholder: "Trailer_nr"%>
+  </div>
+</div>
+
+
+<label class="string required" for="load_out_out_assignments_attributes_lot_nr"></label>
+<input class="form-control" label = "false" type="text" placeholder="Lot number" name="load_out[out_assignments_attributes][][lot_nr]">
+<label class="form-group string required" for="load_out_out_assignments_attributes_incoming_order_ref"></label>
+<input class="form-control" label = "false" type="text" placeholder="Incoming order Ref." name="load_out[out_assignments_attributes][][incoming_order_ref]">
+<label class=" form-group string required" for="load_out_out_assignments_attributes_other_ref"></label>
+
+<%= f.button :submit, "Add", class: 'btn btn-success w-100' %>
+
+<% end %>

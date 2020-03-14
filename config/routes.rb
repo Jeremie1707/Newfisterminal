@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   #Load Out
   resources :load_outs, only: [:new, :create, :edit, :update, :destroy]
-  resources :in_assignments, only: [:new, :create, :update, :destroy]
+  resources :out_assignments, only: [:new, :create, :update, :destroy]
   post '/scope_search_load_out/', to: 'dashboard#scope_search_load_out', as: 'scope_search_load_out'
   post '/search_load_out/', to: 'dashboard#search_load_out', as: 'search_load_out'
   post '/set_modal_load_out/:load_out', to: 'dashboard#set_modal_load_out', as: 'set_modal_load_out'

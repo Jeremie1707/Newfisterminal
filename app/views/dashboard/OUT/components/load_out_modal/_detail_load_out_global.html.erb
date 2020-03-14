@@ -1,0 +1,36 @@
+
+<div class="row">
+  <div class="col-md-4 modal-detail load_out-company" >
+    <h6>Company name:</h6>
+    <p><%=@load_out.t1_customer.name%></p>
+    <p><%=@load_out.total_weight%></p>
+  </div>
+  <div class="col-md-4 modal-detail load_out-arrival"><h6>Arrival date:</h6>
+    <% if @load_out.departure_date %>
+    <p><%=@load_out.departure_date.strftime("%d/%m/%Y %H:%M")%></p>
+    <% else %>
+    <p><%=@load_out.departure_date%></p>
+     <% end %>
+  </div>
+  <div class="col-md-4 modal-detail status"><h6>Status:</h6>
+    <p><%=@load_out.status%></p>
+  </div>
+</div>
+<div class="row mb-2">
+  <div class="col-md-2 modal-detail reference">
+    <h6>Reference:</h6>
+    <p><%=@load_out.reference%></p>
+  </div>
+  <div class="col-md-2 modal-detail truck">
+    <h6>Truck Number:</h6>
+    <p><%=@load_out.truck_nr%></p>
+    <h6>Trailer Number:</h6>
+    <p><%=@load_out.trailer_nr%></p>
+  </div>
+  <div class="col-md-8 modal-detail note">
+    <h6>Note:</h6>
+    <p><%=@load_out.note%></p>
+  </div>
+</div>
+
+

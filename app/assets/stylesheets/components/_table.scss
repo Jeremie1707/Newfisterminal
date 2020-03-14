@@ -1,11 +1,11 @@
-.in-assignment-rows {
+.in-assignment-rows, .out-assignment-rows, {
   background-color: $light;
   line-height: 1;
   font-style: italic;
   font-size: 0.8rem;
 }
 
-.in-assignment-title {
+.in-assignment-title, .out-assignment-title {
   background-color: $light;
   line-height: 0.8;
   font-style: italic;
@@ -21,7 +21,7 @@ font-family: "Open Sans";
 
 }
 
-#loadin-table-head{
+#load_in-table-head, #load_out-table-head{
   tr {
     th {
      border-bottom: 0 !important;
