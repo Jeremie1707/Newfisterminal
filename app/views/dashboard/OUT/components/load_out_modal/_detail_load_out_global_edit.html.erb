@@ -7,8 +7,8 @@
       </div>
     </div>
     <div class="col-md-4 modal-detail load_out-arrival">
-      <h6>Arrival date:</h6>
-      <%= form.input :departure_date, as: :datetime, label: false, placeholder: "arrival date?" %>
+      <h6>Departure date:</h6>
+      <%= form.input :departure_date, as: :datetime, label: false, placeholder: "departure date?" %>
     </div>
     <div class="col-md-4 modal-detail status">
       <%= form.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
