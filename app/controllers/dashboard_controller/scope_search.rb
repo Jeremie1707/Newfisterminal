@@ -3,11 +3,14 @@ class DashboardController
 
     attr_accessor  :page, :sort, :rows_per_page, :total_pages,:total_loads,:loads, :query
 
-    def initialize(parameters = {})
+
+    def initialize(parameters = {}, current_user)
       @page = parameters[:page] || 1
       @rows_per_page = parameters[:rows_per_page] || 10
       @sort = parameters [:sort] || 'id DESC'
       @query = parameters[:query] || ''
+      @user = current_user
+
       # @scope = parameters[:scope] || LoadIn.all.order(@sort)
 
     end

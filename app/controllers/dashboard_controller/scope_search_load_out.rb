@@ -3,9 +3,13 @@ class DashboardController
   class ScopeSearchLoadOut < ScopeSearch
     attr_reader :load_outs, :total_load_outs
 
-    def initialize(parameters = {})
-      super(parameters)
-      @scope = parameters[:scope] || LoadOut.all.order(@sort)
+    def initialize(parameters = {}, current_user)
+      super(parameters, current_user)
+      if @user.admin == true
+        @scope = parameters[:scope] || LoadOut.all.order(@sort)
+      else
+        @scope = parameters[:scope] || LoadOut.where("t1_customer_id = ?", @user.t1_customer_id).order(@sort)
+      end
     end
 
     def scope
@@ -13,7 +17,11 @@ class DashboardController
     end
 
     def query_scope
-     LoadOut.order(@sort).global_search(@query)
+     if @user.admin == true
+        LoadOut.order(@sort).global_search(@query)
+      else
+        LoadOut.where("t1_customer_id = ?", @user.t1_customer_id).order(@sort).order(@sort).global_search(@query)
+      end
     end
 
     def get_load

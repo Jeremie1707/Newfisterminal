@@ -23,7 +23,7 @@ class DashboardController < ApplicationController
 
   # Load In and In assignement
   def scope_search_load_in
-    @scope_search = ScopeSearchLoadIn.new(params)
+    @scope_search = ScopeSearchLoadIn.new(params, current_user)
     @load_ins = @scope_search.get_load
     @page = @scope_search.page
     @sort = @scope_search.sort
@@ -56,7 +56,7 @@ class DashboardController < ApplicationController
 
   # Load Out and Out assignement
   def scope_search_load_out
-    @scope_search = ScopeSearchLoadOut.new(params)
+    @scope_search = ScopeSearchLoadOut.new(params, current_user)
     @load_outs = @scope_search.get_load
     @page = @scope_search.page
     @sort = @scope_search.sort
