@@ -1,19 +1,14 @@
-<% if flash[:error] %>
-  <% flash[:error].each do |error| %>
-      <% error.each do |key, value| %>
-      <p class="error"><%= "#{key} - #{value[0]}" %></p>
-      <% end %>
-  <% end %>
-<% end %>
-
-<%= simple_form_for [@load_in] do |f| %>
+<%= simple_form_for [@load_in], :remote => true  do |f| %>
  <% if current_user.admin == true %>
     <%= f.association :t1_customer, label: "Select customer",collection: T1Customer.where.not("id = ?", current_user.t1_customer_id) %>
 <% else %>
   <%= f.association :t1_customer, label: "Select customer", collection: T1Customer.where("id = ?", current_user.t1_customer_id), selected: 1 %>
 <% end %>
-<%= f.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
-<%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["TRUCK TO TRUCK", "TRUCK TERMINAL TRUCK", "PICKING"], wrapper: :vertical_collection_inline %>
+<% if flash[:error_load_in].present?  && flash[:error_load_in][0]["t1_customer_id"].present?  %>
+  <div class="invalid-message"><%= flash[:error_load_in][0]["t1_customer_id"][0] %></div>
+<% end %>
+<%= f.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline, checked: "OUT" %>
+<%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["TRUCK TO TRUCK", "TRUCK TERMINAL TRUCK", "PICKING"], wrapper: :vertical_collection_inline, checked: "TRUCK TO TRUCK" %>
 <%= f.input :arrival_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "arrival date?" %>
 <%= f.input :note, label: false,as: :text, placeholder: "add a note"%>
 
@@ -29,13 +24,23 @@
 
 <label class="form-group string required" for="load_in_in_assignments_attributes_packer" id="packers-list" data-packers="<%= @packers.to_json %>" ></label>
 <input class="form-control" label ="false" type="text" placeholder="Packer number" id="packer-form" name="load_in[in_assignments_attributes][][packer]" >
+<% if flash[:error_load_in].present?  && flash[:error_load_in][0]["in_assignments.packer"].present?  %>
+  <div class="invalid-message"><%= flash[:error_load_in][0]["in_assignments.packer"][0] %></div>
+<% end %>
 <label class="string required" for="load_in_in_assignments_attributes_lot_nr"></label>
 <input class="form-control" label = "false" type="text" placeholder="Lot number" name="load_in[in_assignments_attributes][][lot_nr]">
+<% if flash[:error_load_in].present?  && flash[:error_load_in][0]["in_assignments.lot_nr"].present?  %>
+  <div class="invalid-message"><%= flash[:error_load_in][0]["in_assignments.lot_nr"][0] %></div>
+<% end %>
 <label class="form-group string required" for="load_in_in_assignments_attributes_incoming_order_ref"></label>
 <input class="form-control" label = "false" type="text" placeholder="Incoming order Ref." name="load_in[in_assignments_attributes][][incoming_order_ref]">
+<% if flash[:error_load_in].present?  && flash[:error_load_in][0]["in_assignments.incoming_order_ref"].present?  %>
+  <div class="invalid-message"><%= flash[:error_load_in][0]["in_assignments.incoming_order_ref"][0] %></div>
+<% end %>
 <label class=" form-group string required" for="load_in_in_assignments_attributes_other_ref"></label>
 
 
-<%= f.button :submit, "Add", class: 'btn btn-success w-100' %>
+<%= f.button :submit, "Add", class: 'btn btn-success w-100'%>
+ <%#= f.submit "Search", class: "btn btn-primary" %>
 
 <% end %>

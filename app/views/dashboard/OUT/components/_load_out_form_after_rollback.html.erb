@@ -1,13 +1,10 @@
 
-<%= simple_form_for [@load_out], :remote => true  do |f| %>
+<%= simple_form_for [@load_out] do |f| %>
 
 <% if current_user.admin == true %>
     <%= f.association :t1_customer, label: "Select customer",collection: T1Customer.where.not(id: current_user.t1_customer_id) %>
 <% else %>
   <%= f.association :t1_customer, label: "Select customer", collection: T1Customer.where(id: current_user.t1_customer_id), selected: 1 %>
-<% end %>
-<% if flash[:error_load_out].present? && flash[:error_load_out][0]["t1_customer_id"].present?  %>
-  <div class="invalid-message"><%= flash[:error_load_out][0]["t1_customer_id"][0] %></div>
 <% end %>
 <%= f.input :status, label: "Status", as: :radio_buttons, collection: ["DELIVERED", "NOT DELIVERED"], wrapper: :vertical_collection_inline %>
 <%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["TRUCK TO TRUCK", "TRUCK TERMINAL TRUCK", "PICKING"], wrapper: :vertical_collection_inline %>
@@ -23,18 +20,21 @@
   </div>
 </div>
 
+
 <label class="string required" for="load_out_out_assignments_attributes_lot_nr"></label>
 <input class="form-control" label = "false" type="text" placeholder="Lot number" name="load_out[out_assignments_attributes][][lot_nr]">
-<% if flash[:error_load_out].present? && flash[:error_load_out][0]["out_assignments.lot_nr"].present?  %>
-  <div class="invalid-message"><%= flash[:error_load_out][0]["out_assignments.lot_nr"][0] %></div>
-<% end %>
+<% if @load_out.errors["out_assignments.lot_nr"].present? %>
+  <div class="invalid-message"><%="#{@load_out.errors["out_assignments.lot_nr"][0]}"%></div>
+  <% end %>
 <label class="form-group string required" for="load_out_out_assignments_attributes_incoming_order_ref"></label>
 <input class="form-control" label = "false" type="text" placeholder="Incoming order Ref." name="load_out[out_assignments_attributes][][incoming_order_ref]">
-<% if flash[:error_load_out].present? && flash[:error_load_out][0]["out_assignments.incoming_order_ref"].present?  %>
-  <div class="invalid-message"><%= flash[:error_load_out][0]["out_assignments.incoming_order_ref"][0] %></div>
-<% end %>
+<% if @load_out.errors["out_assignments.incoming_order_ref"].present? %>
+  <div class="invalid-message"><%="#{@load_out.errors["out_assignments.incoming_order_ref"][0]}"%></div>
+  <% end %>
 <label class=" form-group string required" for="load_out_out_assignments_attributes_other_ref"></label>
+
 
 <%= f.button :submit, "Add", class: 'btn btn-warning w-100' %>
 
 <% end %>
+
