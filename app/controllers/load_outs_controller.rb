@@ -10,7 +10,7 @@ class LoadOutsController < ApplicationController
     flash[:load_out_error] = []
     respond_to do |format|
       if @load_out.save
-        set_reference
+        set_reference(@load_out)
         flash[:notice] = "Load Out was successfully created."
         format.html { redirect_to dashboard_index_path, notice: 'Load Out was successfully created.' }
         format.js {render js: "window.location='#{dashboard_index_path}'"}
@@ -66,15 +66,25 @@ class LoadOutsController < ApplicationController
   )
   end
 
-  def set_reference
-    if LoadOut.last.id.nil?
-      @load_out.reference = "10001-LO"
-      @load_out.save
+  def set_reference_load(load_input)
+    p "hello load input class #{load_input}"
+    if load_input.class.last.id.nil?
+      if load_input.class == LoadIn
+        load_input.reference = "10001-LI"
+      else
+        load_input.reference = "10001-LO"
+      end
     else
-      @load_out.reference = (@load_out.id.to_i + 10001).to_s + "-LO"
-      @load_out.save
+      if load_input.class == LoadIn
+        "hello load in"
+      load_input.reference = (load_input.id.to_i + 10001).to_s + "-LI"
+      else
+        load_input.reference = (load_input.id.to_i + 10001).to_s + "-LO"
+      end
     end
+    load_input.save
   end
+
 end
 
 

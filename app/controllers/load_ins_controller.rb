@@ -11,7 +11,7 @@ class LoadInsController < ApplicationController
     flash[:error_load_in] = []
     respond_to do |format|
       if @load_in.save!
-        set_reference
+        set_reference_load(@load_in)
         if @load_in.type_of_service == "TRUCK TO TRUCK"
           if create_load_out_and_out_assignment(params)
             flash[:notice] = "Load In and Load Out were successfully created."
@@ -39,9 +39,11 @@ class LoadInsController < ApplicationController
 
 
   def create_load_out_and_out_assignment(params = {})
+    p "hey create load-out"
     LoadOut.transaction do
       @load_out = LoadOut.new(t1_customer_id: params[:load_in][:t1_customer_id], type_of_service: params[:load_in][:type_of_service],note: params[:load_in][:note])
       @load_out.save
+      set_reference_load(@load_out)
 
       @out_assignment = OutAssignment.new(load_out_id: @load_out.id, lot_nr: params[:load_in][:in_assignments_attributes][0][:lot_nr], other_ref: params[:load_in][:in_assignments_attributes][0][:other_ref])
        @out_assignment.save
@@ -100,14 +102,21 @@ class LoadInsController < ApplicationController
   )
   end
 
-  def set_reference
-    if LoadIn.last.id.nil?
-      @load_in.reference = "10001-LI"
-      @load_in.save
+ def set_reference_load(load_input)
+    if load_input.class.last.id.nil?
+      if load_input.class == LoadIn
+        load_input.reference = "10001-LI"
+      else
+        load_input.reference = "10001-LO"
+      end
     else
-      @load_in.reference = (@load_in.id.to_i + 10001).to_s + "-LI"
-      @load_in.save
+      if load_input.class == LoadIn
+      load_input.reference = (load_input.id.to_i + 10001).to_s + "-LI"
+      else
+        load_input.reference = (load_input.id.to_i + 10001).to_s + "-LO"
+      end
     end
+    load_input.save
   end
 end
 

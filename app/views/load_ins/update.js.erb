@@ -1,4 +1,5 @@
 replaceElement(('#<%= dom_id(@load_in) %>'), "<%= j render 'dashboard/IN/components/load_in_modal/detail_load_in_global' %>");
 replaceElement(('#load_in_row_single-<%=(@load_in.id)%>'), "<%= j render 'dashboard/IN/components/load_in_row_single' %>");
+replaceElement(('#load_out_row_single-<%=(@load_out.id)%>'), "<%= j render 'dashboard/OUT/components/load_out_row_single' %>");
 
 document.querySelectorAll('#accordeon-<%=(@load_in.id)%>').forEach((node) => { node.classList.add("show");});
