@@ -18,7 +18,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
         format.js
         # format.json { render json: @in_assignment, status: :created, location: @in_assignment }
       else
-        # redirect_to dashboard_index_path, alert: @load_in.errors
+        format.html { redirect_to dashboard_index_path, alert: @load_in.errors}
       end
     end
   end
@@ -33,14 +33,35 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
       if @in_assignment.save
         @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
         @load_in.save!
-        format.html { redirect_to dashboard_index_path, notice: 'Assignment was successfully updated.' }
-        format.js
+        @assignment = Assignment.find_by(in_assignment_id: @in_assignment)
+        if @assignment.present?
+          if update_out_assignment(@assignment)
+            flash[:notice] = "Assignment In and Assignment Out were successfully updated."
+            format.html { redirect_to dashboard_index_path, notice: 'Assignment was successfully updated.' }
+            format.js
         # format.json { render json: @in_assignment, status: :updated, location: @in_assignment }
+          else
+            format.html { render action: "update", :alert => "There were errors in updating the Assignment " }
+            format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
+          end
+        else
+          flash[:notice] = "Assignment In was successfully updated."
+          format.html { redirect_to dashboard_index_path, notice: 'Assignment In was successfully updated.' }
+          format.js
+        end
       else
         format.html { render action: "update" }
         format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def update_out_assignment(assignment)
+    @out_assignment = OutAssignment.find(assignment.out_assignment_id)
+    @out_assignment.update_attributes(lot_nr: params[:in_assignment][:lot_nr], other_ref: params[:in_assignment][:other_ref],incoming_order_ref: params[:in_assignment][:incoming_order_ref],number_of_boxe: params[:in_assignment][:number_of_boxe],number_of_pallet: params[:in_assignment][:number_of_pallet], net_weight: params[:in_assignment][:net_weight])
+    @load_out = LoadOut.find(@out_assignment.load_out_id)
+    @load_out.total_weight = @load_out.out_assignments.sum(:net_weight)
+    @load_out.save!
   end
 
   def destroy

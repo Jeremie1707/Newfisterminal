@@ -1,5 +1,5 @@
 class LoadIn < ApplicationRecord
-  before_create :set_reference, :formating_truck_nr, :formating_trailer_nr
+  before_create :formating_truck_nr, :formating_trailer_nr
   validates :reference, uniqueness: true
   include PgSearch::Model
   belongs_to :t1_customer
@@ -17,13 +17,6 @@ class LoadIn < ApplicationRecord
 
   private
 
-  def set_reference
-    if LoadIn.last.nil?
-      self.reference = "10001-LI"
-    else
-      self.reference = (LoadIn.last.id.to_i + 10001).to_s + "-LI"
-    end
-  end
 
   def formating_truck_nr
     self.truck_nr = self.truck_nr.upcase.gsub(/\s+|\W+|_/, "").split(/(?<=\D)(?=\d)|(?<=\d)(?=\D)/).join(" ")

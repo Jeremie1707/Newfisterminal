@@ -10,6 +10,7 @@ class LoadOutsController < ApplicationController
     flash[:load_out_error] = []
     respond_to do |format|
       if @load_out.save
+        set_reference
         flash[:notice] = "Load Out was successfully created."
         format.html { redirect_to dashboard_index_path, notice: 'Load Out was successfully created.' }
         format.js {render js: "window.location='#{dashboard_index_path}'"}
@@ -63,6 +64,16 @@ class LoadOutsController < ApplicationController
     params.require(:load_out).permit(
     :t1_customer_id, :status, :departure_date, :truck_nr, :trailer_nr, :type_of_service,:note, :out_assignments_attributes => [ :lot_nr, :incoming_order_ref, :other_ref,:cost, :div_cost]
   )
+  end
+
+  def set_reference
+    if LoadOut.last.id.nil?
+      @load_out.reference = "10001-LO"
+      @load_out.save
+    else
+      @load_out.reference = (@load_out.id.to_i + 10001).to_s + "-LO"
+      @load_out.save
+    end
   end
 end
 

@@ -10,10 +10,11 @@ class LoadInsController < ApplicationController
     @load_in = LoadIn.new(strong_params)
     flash[:error_load_in] = []
     respond_to do |format|
-      if @load_in.save
+      if @load_in.save!
+        set_reference
         if @load_in.type_of_service == "TRUCK TO TRUCK"
           if create_load_out_and_out_assignment(params)
-          flash[:notice] = "Load In and Load Out were successfully created."
+            flash[:notice] = "Load In and Load Out were successfully created."
           format.html { redirect_to dashboard_index_path}
           format.js {render js: "window.location='#{dashboard_index_path}'"}
           else
@@ -97,6 +98,16 @@ class LoadInsController < ApplicationController
     params.require(:load_in).permit(
     :t1_customer_id, :status, :arrival_date, :truck_nr, :trailer_nr, :type_of_service,:note, :in_assignments_attributes => [ :packer, :lot_nr, :incoming_order_ref, :other_ref]
   )
+  end
+
+  def set_reference
+    if LoadIn.last.id.nil?
+      @load_in.reference = "10001-LI"
+      @load_in.save
+    else
+      @load_in.reference = (@load_in.id.to_i + 10001).to_s + "-LI"
+      @load_in.save
+    end
   end
 end
 
