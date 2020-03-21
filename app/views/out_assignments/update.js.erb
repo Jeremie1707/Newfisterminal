@@ -1,15 +1,28 @@
+
 replaceElement('.modal-out-assignment-list', "<%= j render 'dashboard/OUT/components/out_assignment_modal/detail_load_out_out_assignment_rows' %>");
 replaceElement(('#<%= dom_id(@load_out) %>'), "<%= j render 'dashboard/OUT/components/load_out_modal/detail_load_out_global' %>");
 replaceElement(('#load_out_row_single-<%=(@load_out.id)%>'), "<%= j render 'dashboard/OUT/components/load_out_row_single' %>");
-replaceElement(('#load_in_row_single-<%=(@load_in.id)%>'), "<%= j render 'dashboard/IN/components/load_in_row_single' %>");
 
-document.querySelectorAll('#accordeon-<%=(@load_out.id)%>').forEach((node) => { node.remove();});
+document.querySelectorAll('#accordeon-load_out-<%=(@load_out.id)%>').forEach((node) => { node.remove();});
+var loadout = document.querySelector('#load_out_row_single-<%=(@load_out.id)%>');
+loadout.insertAdjacentHTML('afterend',"<%= j render 'dashboard/OUT/components/out_assignments_rows' %>" );
+document.querySelectorAll('#accordeon-load_out-<%=(@load_out.id)%>').forEach((node) => { node.classList.add("show");});
 
-var loadin = document.querySelector('#load_out_row_single-<%=(@load_out.id)%>');
-loadin.insertAdjacentHTML('afterend',"<%= j render 'dashboard/OUT/components/out_assignments_rows' %>" );
-document.querySelectorAll('#accordeon-<%=(@load_out.id)%>').forEach((node) => { node.classList.add("show");});
+
+var loadinVariable = '<%=(@load_in)%>'
+if ( loadinVariable != '' ) {
+replaceElement(('#load_in_row_single-<% if @load_in %><%=(@load_in.id)%><% end %>'), "<% if @load_in %><%= j render 'dashboard/IN/components/load_in_row_single' %><% end %>");
+document.querySelectorAll('#accordeon-load_in-<% if @load_in %><%=(@load_in.id)%><% end %>').forEach((node) => { node.remove();});
+var loadin = document.querySelector('#load_in_row_single-<% if @load_in %><%=(@load_in.id)%><% end %>');
+loadin.insertAdjacentHTML('afterend',"<% if @load_in %><%= j render 'dashboard/IN/components/in_assignments_rows' %><% end %>" );
+  document.querySelectorAll('#accordeon-load_in-<% if @load_in %><%=(@load_in.id)%><% end %>').forEach((node) => { node.classList.add("show");});
+};
+
+
+
 
 
 document.querySelector('.out-assignment-form-edit').remove();
+
 
 

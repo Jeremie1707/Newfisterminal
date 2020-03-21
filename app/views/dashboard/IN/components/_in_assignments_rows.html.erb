@@ -1,6 +1,6 @@
 
 <% if !@load_in.in_assignments.nil? %>
-<tr class="in-assignment-title collapse" id="accordeon-<%= @load_in.id %>">
+<tr class="in-assignment-title collapse show" id="accordeon-load_in-<%= @load_in.id %>">
   <th></th>
   <th>Packer</th>
   <th>Lot Nr</th>
@@ -14,7 +14,7 @@
 </tr>
 
 <% @load_in.in_assignments.each do |assignment| %>
-<tr class="in-assignment-rows in_assignment_row_single-<%= assignment.id %> collapse show" id="accordeon-<%= @load_in.id %>">
+<tr class="in-assignment-rows in_assignment_row_single-<%= assignment.id %> collapse show" id="accordeon-load_in-<%= @load_in.id %>">
   <td></td>
   <td><%= assignment.packer %></td>
   <td><%= assignment.lot_nr %></td>

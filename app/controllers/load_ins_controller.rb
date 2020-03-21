@@ -39,7 +39,6 @@ class LoadInsController < ApplicationController
 
 
   def create_load_out_and_out_assignment(params = {})
-    p "hey create load-out"
     LoadOut.transaction do
       @load_out = LoadOut.new(t1_customer_id: params[:load_in][:t1_customer_id], type_of_service: params[:load_in][:type_of_service],note: params[:load_in][:note])
       @load_out.save

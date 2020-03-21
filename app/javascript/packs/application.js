@@ -12,8 +12,8 @@ import flatpickr from "flatpickr";
 import 'flatpickr/dist/flatpickr.min.css';
 import { initFlatpickr } from '../plugins/flatpickr';
 import { autoSearch } from '../components/autoSearch';
-import { packerAutocompleteSearch} from '../plugins/autocomplete';
-import { inAssignmentClickCloseCreate, inAssignmentClickCloseEdit, loadinClickClose } from '../components/modalForm';
+import { packerAutocompleteSearch, packerModalAutocompleteSearch} from '../plugins/autocomplete';
+import { inAssignmentClickCloseCreate, inAssignmentClickCloseEdit, loadinClickClose, outAssignmentClickCloseCreate, outAssignmentClickCloseEdit, loadoutClickClose } from '../components/modalForm';
 import { printArea, printElement } from '../packs/print';
 import { printTable} from '../packs/printTable';
 
@@ -25,6 +25,9 @@ initFlatpickr();
 window.inAssignmentClickCloseCreate = inAssignmentClickCloseCreate ;
 window.inAssignmentClickCloseEdit = inAssignmentClickCloseEdit ;
 window.loadinClickClose = loadinClickClose ;
+window.outAssignmentClickCloseCreate = outAssignmentClickCloseCreate ;
+window.outAssignmentClickCloseEdit = outAssignmentClickCloseEdit ;
+window.loadoutClickClose = loadoutClickClose ;
 window.printArea = printArea;
 window.printTable = printTable;
 window.replaceElement = replaceElement;
@@ -33,6 +36,7 @@ window.destroyModal = destroyModal;
 window.printElement = printElement;
 // autoSearch();
 packerAutocompleteSearch();
+packerModalAutocompleteSearch();
 printTable();
 
 

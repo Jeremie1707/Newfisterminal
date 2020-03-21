@@ -16,9 +16,11 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
         @load_in.save
         format.html { redirect_to dashboard_index_path, success: 'Assignment was successfully created.' }
         format.js
-        # format.json { render json: @in_assignment, status: :created, location: @in_assignment }
+
       else
         format.html { redirect_to dashboard_index_path, alert: @load_in.errors}
+        format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -32,7 +34,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
     respond_to do |format|
       if @in_assignment.save
         @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
-        @load_in.save!
+        @load_in.save
         @assignment = Assignment.find_by(in_assignment_id: @in_assignment)
         if @assignment.present?
           if update_out_assignment(@assignment)

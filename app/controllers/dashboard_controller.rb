@@ -47,6 +47,7 @@ class DashboardController < ApplicationController
   def create_modal_in_assignment
     @in_assignment = InAssignment.new(in_assignment_params)
     @load_in = LoadIn.find(params[:load_in])
+    @packers = Packer.pluck(:packer_nr).uniq.sort
   end
 
   def edit_modal_in_assignment
