@@ -52,6 +52,7 @@ class DashboardController < ApplicationController
 
   def edit_modal_in_assignment
     @in_assignment = InAssignment.find(params[:id])
+    @packers = Packer.pluck(:packer_nr).uniq.sort
   end
 
 

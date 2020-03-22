@@ -24,6 +24,8 @@ const packerAutocompleteSearch = function() {
 };
 
 const packerModalAutocompleteSearch = function() {
+  console.log("hello packer autocomplete");
+
   const search = JSON.parse(document.getElementById('packers-list-modal').dataset.packers)
   console.log(search);
   const searchInput = document.getElementById('packer-form-modal');

@@ -10,16 +10,16 @@ class LoadOutsController < ApplicationController
     flash[:load_out_error] = []
     respond_to do |format|
       if @load_out.save
-        set_reference(@load_out)
+        set_reference_load(@load_out)
         flash[:notice] = "Load Out was successfully created."
         format.html { redirect_to dashboard_index_path, notice: 'Load Out was successfully created.' }
         format.js {render js: "window.location='#{dashboard_index_path}'"}
       else
         flash[:notice] = "There were errors in creating the Load Out."
         flash[:load_out_error] << @load_out.errors
-            format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the LoadOut. " }
-            format.json { render json: @load_out.errors, status: :unprocessable_entity }
-            format.js
+        format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the LoadOut. " }
+        format.json { render json: @load_out.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

@@ -9,7 +9,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
   def create
     @in_assignment = InAssignment.new(strong_params)
     @in_assignment.load_in = @load_in
-
+    @packers = Packer.pluck(:packer_nr).uniq.sort
     respond_to do |format|
       if @in_assignment.save
         @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
@@ -18,9 +18,9 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
         format.js
 
       else
-        format.html { redirect_to dashboard_index_path, alert: @load_in.errors}
+        format.html { redirect_to dashboard_index_path, alert: @in_assignment.errors}
         format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
-
+        format.js { render :action => 'new' }
       end
     end
   end

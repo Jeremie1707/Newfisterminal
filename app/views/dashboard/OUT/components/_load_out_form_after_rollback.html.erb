@@ -1,5 +1,5 @@
 
-<%= simple_form_for [@load_out] do |f| %>
+<%= simple_form_for [@load_out], :remote => true do |f| %>
 
 <% if current_user.admin == true %>
     <%= f.association :t1_customer, label: "Select customer",collection: T1Customer.where.not(id: current_user.t1_customer_id) %>

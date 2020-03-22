@@ -34,9 +34,10 @@ window.replaceElement = replaceElement;
 window.showModal = showModal;
 window.destroyModal = destroyModal;
 window.printElement = printElement;
-// autoSearch();
+window.packerModalAutocompleteSearch = packerModalAutocompleteSearch;
+window.packerAutocompleteSearch = packerAutocompleteSearch;
+autoSearch();
 packerAutocompleteSearch();
-packerModalAutocompleteSearch();
 printTable();
 
 

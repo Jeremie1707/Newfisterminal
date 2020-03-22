@@ -1,15 +1,15 @@
 <div>
-  <% p @packers %>
-
   <%= simple_form_for([@in_assignment], html: {class: "form-inline modal-form create in-assignment-form-create"}, remote: true) do |form| %>
+  <% if @in_assignment.errors.any? %>
+    <% @in_assignment.errors.full_messages.each do |message| %>
+      <li class="invalid-message"><%= message %></li>
+    <% end %>
+  <% end %>
   <%# byebug %>
   <div class="form-group col-md-12">
     <%= form.input :order_index, as: :string, label: false, placeholder: "index" %>
   <label class="form-group string required" for="in_assignments_attributes_packer" id="packers-list-modal" data-packers="<%= @packers.to_json %>" ></label>
-  <input class="form-control" label ="false" type="text" placeholder="Packer number" id="packer-form" name="in_assignment[packer]" >
-    <% if @in_assignment.errors["packer"].present? %>
-      <div class="invalid-message"><%="#{@in_assignment.errors["packer"][0]}"%></div>
-    <% end %>
+  <input class="form-control form-group" label ="false" type="text" placeholder="Packer number" id="packer-form-modal" name="in_assignment[packer]" >
     <%= form.input :lot_nr, as: :string, label: false, placeholder: "Lot" %>
     <%= form.input :incoming_order_ref, as: :string, label: false, placeholder: "Incoming order" %>
     <%= form.input :number_of_boxe, as: :string, label: false, placeholder: "Boxes" %>

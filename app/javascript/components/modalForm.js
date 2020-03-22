@@ -6,7 +6,6 @@ const inAssignmentClickCloseCreate = () => {
 }
 const inAssignmentClickCloseEdit = () => {
   document.getElementById('in-assignment-form-edit-close').querySelector('button').addEventListener('click', (event) => {
-    console.log(event);
     event.preventDefault();
     event.toElement.form.style.display = 'none';
   });
@@ -27,7 +26,6 @@ const outAssignmentClickCloseCreate = () => {
 }
 const outAssignmentClickCloseEdit = () => {
   document.getElementById('out-assignment-form-edit-close').querySelector('button').addEventListener('click', (event) => {
-    console.log(event);
     event.preventDefault();
     event.toElement.form.style.display = 'none';
   });

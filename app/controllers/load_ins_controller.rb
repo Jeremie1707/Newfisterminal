@@ -6,11 +6,13 @@ class LoadInsController < ApplicationController
   end
 
   def create
-
+    @packers = Packer.pluck(:packer_nr).uniq.sort
     @load_in = LoadIn.new(strong_params)
+
     flash[:error_load_in] = []
     respond_to do |format|
-      if @load_in.save!
+      if @load_in.save
+        p @load_in
         set_reference_load(@load_in)
         if @load_in.type_of_service == "TRUCK TO TRUCK"
           if create_load_out_and_out_assignment(params)
@@ -29,6 +31,7 @@ class LoadInsController < ApplicationController
           format.js {render js: "window.location='#{dashboard_index_path}'"}
         end
       else
+        p "hello error"
         flash[:error_load_in] << @load_in.errors
         format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the Load In. " }
         format.json { render json: @load_in.errors, status: :unprocessable_entity }
@@ -70,7 +73,7 @@ class LoadInsController < ApplicationController
     @load_in = LoadIn.find(params[:id])
     @load_in.update_attributes(strong_params)
     respond_to do |format|
-      if @load_in.save!
+      if @load_in.save
         format.html { redirect_to dashboard_index_path, success: 'Load In was successfully updated.' }
         format.js
       else
