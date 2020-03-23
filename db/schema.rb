@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_15_143832) do
+ActiveRecord::Schema.define(version: 2020_03_23_132814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "street_nr"
+    t.string "postcode"
+    t.string "city"
+    t.string "country"
+    t.string "phone_nr"
+    t.string "addressable_type"
+    t.bigint "addressable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
+  end
 
   create_table "assignments", force: :cascade do |t|
     t.bigint "in_assignment_id"
@@ -89,19 +103,6 @@ ActiveRecord::Schema.define(version: 2020_03_15_143832) do
     t.index ["recipient_id"], name: "index_out_assignments_on_recipient_id"
   end
 
-  create_table "packer_addresses", force: :cascade do |t|
-    t.string "street"
-    t.string "street_nr"
-    t.string "postcode"
-    t.string "city"
-    t.string "country"
-    t.string "phone_nr"
-    t.bigint "packer_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["packer_id"], name: "index_packer_addresses_on_packer_id"
-  end
-
   create_table "packers", force: :cascade do |t|
     t.string "packer_nr"
     t.string "name"
@@ -109,37 +110,11 @@ ActiveRecord::Schema.define(version: 2020_03_15_143832) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "recipient_addresses", force: :cascade do |t|
-    t.string "street"
-    t.string "street_nr"
-    t.string "postcode"
-    t.string "city"
-    t.string "country"
-    t.string "phone_nr"
-    t.bigint "recipient_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recipient_id"], name: "index_recipient_addresses_on_recipient_id"
-  end
-
   create_table "recipients", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "t1_customer_addresses", force: :cascade do |t|
-    t.string "street"
-    t.string "street_nr"
-    t.string "postcode"
-    t.string "city"
-    t.string "country"
-    t.string "phone_nr"
-    t.bigint "t1_customer_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["t1_customer_id"], name: "index_t1_customer_addresses_on_t1_customer_id"
   end
 
   create_table "t1_customers", force: :cascade do |t|
@@ -170,8 +145,5 @@ ActiveRecord::Schema.define(version: 2020_03_15_143832) do
   add_foreign_key "load_outs", "t1_customers"
   add_foreign_key "out_assignments", "load_outs"
   add_foreign_key "out_assignments", "recipients"
-  add_foreign_key "packer_addresses", "packers"
-  add_foreign_key "recipient_addresses", "recipients"
-  add_foreign_key "t1_customer_addresses", "t1_customers"
   add_foreign_key "users", "t1_customers"
 end

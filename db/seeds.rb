@@ -17,15 +17,15 @@ puts "Recipient = #{Recipient.count}"
 puts "OutAssignment = #{OutAssignment.count}"
 puts '---------- deleting all records ----------'
 User.destroy_all
-T1CustomerAddress.destroy_all
+# T1CustomerAddress.destroy_all
 T1Customer.destroy_all
 
 LoadIn.destroy_all
-PackerAddress.destroy_all
+# PackerAddress.destroy_all
 Packer.destroy_all
 InAssignment.destroy_all
 LoadIn.destroy_all
-RecipientAddress.destroy_all
+# RecipientAddress.destroy_all
 Recipient.destroy_all
 
 
@@ -63,26 +63,7 @@ puts "---------- seeding ----------"
 
 
 t1_customer1 = T1Customer.create(name: 'Terminal1')
-t1_customer2 = T1Customer.create(name: 'N&K')
-t1_customer3 = T1Customer.create(name: 'CERMAQ')
-t1_customer4 = T1Customer.create(name: 'INTERCARGO')
-t1_customer5 = T1Customer.create(name: 'POLAR QUALITY')
-puts "T1 Customer  = #{T1Customer.count}"
-user = User.create(email: 'test@test.as', password: 'test123',t1_customer_id: t1_customer1.id, admin: true)
-user2 = User.create(email: 't1_customer2@test.as', password: 'test123',t1_customer_id: t1_customer2.id)
-user3 = User.create(email: 't1_customer3@test.as', password: 'test123',t1_customer_id: t1_customer3.id)
-user4 = User.create(email: 't1_customer4@test.as', password: 'test123',t1_customer_id: t1_customer4.id)
-user5 = User.create(email: 't1_customer5@test.as', password: 'test123',t1_customer_id: t1_customer5.id)
-puts "User count  = #{User.count}"
-
-
-
-puts "---------- creating T1 Customer Address ----------"
-
-counter = 0
-
-5.times do
-  attributes = {
+t1_customer1_address_attributes = {
 
     street: Faker::Address.street_name,
     street_nr: (rand(1..20)).to_s,
@@ -90,14 +71,70 @@ counter = 0
     city: Faker::Address.city,
     country: Faker::Address.country,
     phone_nr: Faker::PhoneNumber.phone_number,
-    t1_customer_id: counter + 1
 
   }
+  t1_customer1.build_address(t1_customer1_address_attributes).save!
 
-  T1CustomerAddress.create(attributes)
-  counter += 1
-  puts counter
-end
+t1_customer2 = T1Customer.create(name: 'N&K')
+t1_customer2_address_attributes = {
+
+    street: Faker::Address.street_name,
+    street_nr: (rand(1..20)).to_s,
+    postcode: Faker::Address.zip_code,
+    city: Faker::Address.city,
+    country: Faker::Address.country,
+    phone_nr: Faker::PhoneNumber.phone_number,
+
+  }
+  t1_customer2.build_address(t1_customer2_address_attributes).save!
+
+t1_customer3 = T1Customer.create(name: 'CERMAQ')
+t1_customer3_address_attributes = {
+
+    street: Faker::Address.street_name,
+    street_nr: (rand(1..20)).to_s,
+    postcode: Faker::Address.zip_code,
+    city: Faker::Address.city,
+    country: Faker::Address.country,
+    phone_nr: Faker::PhoneNumber.phone_number,
+
+  }
+t1_customer3.build_address(t1_customer3_address_attributes).save!
+
+t1_customer4 = T1Customer.create(name: 'INTERCARGO')
+t1_customer4_address_attributes = {
+
+    street: Faker::Address.street_name,
+    street_nr: (rand(1..20)).to_s,
+    postcode: Faker::Address.zip_code,
+    city: Faker::Address.city,
+    country: Faker::Address.country,
+    phone_nr: Faker::PhoneNumber.phone_number,
+
+  }
+t1_customer4.build_address(t1_customer4_address_attributes).save!
+
+t1_customer5 = T1Customer.create(name: 'POLAR QUALITY')
+t1_customer5_address_attributes = {
+
+    street: Faker::Address.street_name,
+    street_nr: (rand(1..20)).to_s,
+    postcode: Faker::Address.zip_code,
+    city: Faker::Address.city,
+    country: Faker::Address.country,
+    phone_nr: Faker::PhoneNumber.phone_number,
+
+  }
+t1_customer5.build_address(t1_customer5_address_attributes).save!
+puts "T1 Customer  = #{T1Customer.count}"
+
+user = User.create(email: 'test@test.as', password: 'test123',t1_customer_id: t1_customer1.id, admin: true)
+user2 = User.create(email: 't1_customer2@test.as', password: 'test123',t1_customer_id: t1_customer2.id)
+user3 = User.create(email: 't1_customer3@test.as', password: 'test123',t1_customer_id: t1_customer3.id)
+user4 = User.create(email: 't1_customer4@test.as', password: 'test123',t1_customer_id: t1_customer4.id)
+user5 = User.create(email: 't1_customer5@test.as', password: 'test123',t1_customer_id: t1_customer5.id)
+puts "User count  = #{User.count}"
+
 
 puts "---------- creating Loadins ----------"
 counter = 0
@@ -131,16 +168,6 @@ counter = 0
 
   }
 
-  Packer.create(packer_attributes)
-  counter += 1
-  puts counter
-end
-
-
-puts "---------- creating Packers Address ----------"
-counter = 0
-
-5.times do
   packer_address_attributes = {
 
     street: Faker::Address.street_name,
@@ -149,11 +176,11 @@ counter = 0
     city: Faker::Address.city,
     country: Faker::Address.country,
     phone_nr: Faker::PhoneNumber.phone_number,
-    packer_id: counter + 1
 
   }
 
-  PackerAddress.create(packer_address_attributes)
+  packer = Packer.create(packer_attributes)
+  packer.build_address(packer_address_attributes).save!
   counter += 1
   puts counter
 end
@@ -170,16 +197,6 @@ counter = 0
 
   }
 
-  Recipient.create(recipient_attributes)
-  counter += 1
-  puts counter
-end
-
-
-puts "---------- creating Recipients Address ----------"
-counter = 0
-
-5.times do
   recipient_address_attributes = {
 
     street: Faker::Address.street_name,
@@ -188,15 +205,16 @@ counter = 0
     city: Faker::Address.city,
     country: Faker::Address.country,
     phone_nr: Faker::PhoneNumber.phone_number,
-    recipient_id: counter + 1
 
   }
 
-  RecipientAddress.create(recipient_address_attributes)
+  recipient_created = Recipient.create(recipient_attributes)
+  recipient_created.build_address(recipient_address_attributes).save!
   counter += 1
   puts counter
-
 end
+
+
 
 puts "---------- creating IN Assignments ----------"
 counter = 0

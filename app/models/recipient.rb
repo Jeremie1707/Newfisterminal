@@ -1,4 +1,4 @@
 class Recipient < ApplicationRecord
-  has_one :recipient_address
   has_many :out_assignments
+  has_one :address, as: :addressable
 end
