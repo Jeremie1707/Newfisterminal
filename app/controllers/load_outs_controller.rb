@@ -68,25 +68,6 @@ class LoadOutsController < ApplicationController
   )
   end
 
-  # def set_reference_load(load_input)
-  #   p "hello load input class #{load_input}"
-  #   if load_input.class.last.id.nil?
-  #     if load_input.class == LoadIn
-  #       load_input.reference = "10001-LI"
-  #     else
-  #       load_input.reference = "10001-LO"
-  #     end
-  #   else
-  #     if load_input.class == LoadIn
-  #       "hello load in"
-  #     load_input.reference = (load_input.id.to_i + 10001).to_s + "-LI"
-  #     else
-  #       load_input.reference = (load_input.id.to_i + 10001).to_s + "-LO"
-  #     end
-  #   end
-  #   load_input.save
-  # end
-
 end
 
 

@@ -1,9 +1,15 @@
 <div >
   <%= simple_form_for([@in_assignment], html: {class: "form-inline modal-form in-assignment-form-edit"}, remote: true) do |form| %>
+   <% if @in_assignment.errors.any? %>
+    <% @in_assignment.errors.full_messages.each do |message| %>
+      <li class="invalid-message"><%= message %></li>
+    <% end %>
+  <% end %>
   <div class="form-group col-md-12">
     <!-- <div class="row "> -->
       <%= form.input :order_index, as: :string, label: false, placeholder: "Index" %>
-      <%= form.input :packer, as: :string, label: false, placeholder: "Packer" %>
+      <label class="form-group string required" for="in_assignments_attributes_packer" id="packers-list-modal" data-packers="<%= @packers.to_json %>" ></label>
+      <input class="form-control form-group" label ="false" type="text" placeholder="Packer number" id="packer-form-modal" name="in_assignment[packer]" value = "<%= @in_assignment.packer%>" >
       <%= form.input :lot_nr, as: :string, label: false, placeholder: "Lot" %>
       <%= form.input :incoming_order_ref, as: :string, label: false, placeholder: "Incoming order" %>
       <%= form.input :number_of_boxe, as: :string, label: false, placeholder: "Boxes" %>

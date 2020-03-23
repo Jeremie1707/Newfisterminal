@@ -1,0 +1,15 @@
+if (document.querySelector('.in-assignment-form-edit') != null) {
+  document.querySelector('.in-assignment-form-edit').remove();
+  document.querySelector('.modal-body >table').insertAdjacentHTML('beforebegin','<%= j render partial: "dashboard/IN/components/in_assignment_modal/in_assignment_modal_edit" %>');
+  packerModalAutocompleteSearch();
+}
+
+else {
+  document.querySelector('.modal-body >table').insertAdjacentHTML('beforebegin','<%= j render partial: "dashboard/IN/components/in_assignment_modal/in_assignment_modal_edit"%>');
+  packerModalAutocompleteSearch();
+};
+
+inAssignmentClickCloseEdit();
+
+
+

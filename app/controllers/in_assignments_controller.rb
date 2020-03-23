@@ -32,6 +32,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
   def update
     @in_assignment.update_attributes(strong_params)
     @load_in = LoadIn.find(@in_assignment.load_in_id)
+    @packers = Packer.pluck(:packer_nr).uniq.sort
     respond_to do |format|
       if @in_assignment.save
         @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
@@ -45,8 +46,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
         # format.json { render json: @in_assignment, status: :updated, location: @in_assignment }
           else
             format.html { render action: "update", :alert => "There were errors in updating the Assignment " }
-            format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
-            format.js { render :action => 'new' }
+            format.js { render :action => 'edit' }
           end
         else
           flash[:notice] = "Assignment In was successfully updated."
@@ -55,8 +55,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
         end
       else
         format.html { render action: "update" }
-        format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
-        format.js { render :action => 'new' }
+        format.js { render :action => 'edit' }
       end
     end
   end
@@ -81,7 +80,6 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
       format.js
     else
         format.html { render action: "new" }
-        format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
         format.js { render :action => 'new' }
       end
     end

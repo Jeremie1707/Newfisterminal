@@ -6,6 +6,6 @@ class OutAssignment < ApplicationRecord
 
   def set_reference
     self.reference = (self.id.to_i).to_s + "-OUTA"
-    self.save!
+    self.save
   end
 end

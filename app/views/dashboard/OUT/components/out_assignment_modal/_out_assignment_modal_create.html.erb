@@ -1,5 +1,10 @@
 <div>
   <%= simple_form_for([@out_assignment], html: {class: "form-inline modal-form create out-assignment-form-create"}, remote: true) do |form| %>
+  <% if @out_assignment.errors.any? %>
+    <% @out_assignment.errors.full_messages.each do |message| %>
+      <li class="invalid-message"><%= message %></li>
+    <% end %>
+  <% end %>
   <%# byebug %>
   <div class="form-group col-md-12">
     <%= form.input :order_index, as: :string, label: false, placeholder: "index" %>

@@ -17,9 +17,9 @@ before_action :set_out_assignment, only: [:edit, :update, :destroy]
         @load_out.save
         format.html { redirect_to dashboard_index_path, success: 'Assignment was successfully created.' }
         format.js
-        # format.json { render json: @out_assignment, status: :created, location: @out_assignment }
       else
-        # redirect_to dashboard_index_path, alert: @load_out.errors
+        format.html { redirect_to dashboard_index_path, alert: @in_assignment.errors}
+        format.js { render :action => 'new' }
       end
     end
   end
@@ -40,10 +40,9 @@ before_action :set_out_assignment, only: [:edit, :update, :destroy]
             flash[:notice] = "Assignment In and Assignment Out were successfully updated."
             format.html { redirect_to dashboard_index_path, notice: 'Assignment was successfully updated.' }
             format.js
-        # format.json { render json: @out_assignment, status: :updated, location: @out_assignment }
           else
             format.html { render action: "update", :alert => "There were errors in updating the Assignment " }
-            format.json { render json: @out_assignment.errors, status: :unprocessable_entity }
+            format.js { render :action => 'edit'}
           end
         else
           flash[:notice] = "Assignment In was successfully updated."
@@ -52,7 +51,7 @@ before_action :set_out_assignment, only: [:edit, :update, :destroy]
         end
       else
         format.html { render action: "update" }
-        format.json { render json: @out_assignment.errors, status: :unprocessable_entity }
+        format.js { render :action => 'edit' }
       end
     end
   end
@@ -77,7 +76,7 @@ before_action :set_out_assignment, only: [:edit, :update, :destroy]
       format.js
     else
         format.html { render action: "new" }
-        format.json { render json: @out_assignment.errors, status: :unprocessable_entity }
+        format.js { render action: "new" }
       end
     end
   end
@@ -94,5 +93,6 @@ before_action :set_out_assignment, only: [:edit, :update, :destroy]
   def set_load_out
     @load_out = LoadOut.find(params[:out_assignment][:load_out_id])
   end
+
 end
 

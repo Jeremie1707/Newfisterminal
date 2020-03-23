@@ -23,7 +23,6 @@ class LoadInsController < ApplicationController
           else
             flash[:error_load_in]
             format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the LoadOut. " }
-            format.json { render json: @load_out.errors, status: :unprocessable_entity }
             format.js
           end
         else
@@ -35,7 +34,6 @@ class LoadInsController < ApplicationController
         p "hello error"
         flash[:error_load_in] << @load_in.errors
         format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the Load In. " }
-        format.json { render json: @load_in.errors, status: :unprocessable_entity }
         format.js
       end
     end
@@ -80,7 +78,6 @@ class LoadInsController < ApplicationController
         format.js
       else
         format.html { render action: "update" }
-        format.json { render json: @load_in.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -93,7 +90,6 @@ class LoadInsController < ApplicationController
       format.html { redirect_to dashboard_index_path, success: 'Load In was successfully deleted.' }
     else
         format.html { render action: "new" }
-        format.json { render json: @load_in.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -106,21 +102,5 @@ class LoadInsController < ApplicationController
   )
   end
 
-#  def set_reference_load(load_input)
-#     if load_input.class.last.id.nil?
-#       if load_input.class == LoadIn
-#         load_input.reference = "1-LI"
-#       else
-#         load_input.reference = "1-LO"
-#       end
-#     else
-#       if load_input.class == LoadIn
-#       load_input.reference = (load_input.id.to_i).to_s + "-LI"
-#       else
-#         load_input.reference = (load_input.id.to_i).to_s + "-LO"
-#       end
-#     end
-#     load_input.save
-#   end
 end
 
