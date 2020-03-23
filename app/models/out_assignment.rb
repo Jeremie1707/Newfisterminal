@@ -1,16 +1,11 @@
 class OutAssignment < ApplicationRecord
-  before_create :set_reference
   validates :reference, uniqueness: true
   has_many :assignments, dependent: :destroy
   belongs_to :load_out
   belongs_to :recipient, optional: true
 
-  private
   def set_reference
-    if OutAssignment.last.nil?
-       self.reference = "10001-OUTA"
-    else
-     self.reference = (OutAssignment.last.id.to_i + 10001).to_s + "-OUTA"
-    end
+    self.reference = (self.id.to_i).to_s + "-OUTA"
+    self.save
   end
 end

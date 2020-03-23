@@ -2,12 +2,19 @@ replaceElement('.modal-in-assignment-list', "<%= j render 'dashboard/IN/componen
 replaceElement(('#<%= dom_id(@load_in) %>'), "<%= j render 'dashboard/IN/components/load_in_modal/detail_load_in_global' %>");
 replaceElement(('#load_in_row_single-<%=(@load_in.id)%>'), "<%= j render 'dashboard/IN/components/load_in_row_single' %>");
 
-document.querySelectorAll('#accordeon-<%=(@load_in.id)%>').forEach((node) => { node.remove();});
-
+document.querySelectorAll('#accordeon-load_in-<%=(@load_in.id)%>').forEach((node) => { node.remove();});
 var loadin = document.querySelector('#load_in_row_single-<%=(@load_in.id)%>');
 loadin.insertAdjacentHTML('afterend',"<%= j render 'dashboard/IN/components/in_assignments_rows' %>" );
-document.querySelectorAll('#accordeon-<%=(@load_in.id)%>').forEach((node) => { node.classList.add("show");});
+document.querySelectorAll('#accordeon-load_in-<%=(@load_in.id)%>').forEach((node) => { node.classList.add("show");});
 
+var loadoutVariable = '<%=(@load_out)%>'
+if ( loadoutVariable != '' ) {
+replaceElement(('#load_out_row_single-<% if @load_out %><%=(@load_out.id)%><% end %>'), "<% if @load_out %><%= j render 'dashboard/OUT/components/load_out_row_single' %><% end %>");
+document.querySelectorAll('#accordeon-load_out-<% if @load_out %><%=(@load_out.id)%><% end %>').forEach((node) => { node.remove();});
+var loadout = document.querySelector('#load_out_row_single-<% if @load_out %><%=(@load_out.id)%><% end %>');
+loadout.insertAdjacentHTML('afterend',"<% if @load_out %><%= j render 'dashboard/OUT/components/out_assignments_rows' %><% end %>" );
+  document.querySelectorAll('#accordeon-load_out-<% if @load_out %><%=(@load_out.id)%><% end %>').forEach((node) => { node.classList.add("show");});
+};
 
 document.querySelector('.in-assignment-form-edit').remove();
 

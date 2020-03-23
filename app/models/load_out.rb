@@ -1,5 +1,5 @@
 class LoadOut < ApplicationRecord
-  before_create :set_reference, :formating_truck_nr, :formating_trailer_nr
+  before_create :formating_truck_nr, :formating_trailer_nr
   validates :reference, uniqueness: true
   include PgSearch::Model
   belongs_to :t1_customer
@@ -15,14 +15,12 @@ class LoadOut < ApplicationRecord
         tsearch: { prefix: true }
       }
 
+  def set_reference
+    self.reference = (self.id.to_i).to_s + "-LO"
+    self.save
+  end
+
   private
-    def set_reference
-      if LoadOut.last.nil?
-        self.reference = "50001-LO"
-      else
-       self.reference = (LoadOut.last.id.to_i + 50001).to_s + "-LO"
-      end
-    end
 
   def formating_truck_nr
     if self.truck_nr != nil

@@ -68,7 +68,7 @@ t1_customer3 = T1Customer.create(name: 'CERMAQ')
 t1_customer4 = T1Customer.create(name: 'INTERCARGO')
 t1_customer5 = T1Customer.create(name: 'POLAR QUALITY')
 puts "T1 Customer  = #{T1Customer.count}"
-user = User.create(email: 'test@test.as', password: 'test123',t1_customer_id: t1_customer1.id)
+user = User.create(email: 'test@test.as', password: 'test123',t1_customer_id: t1_customer1.id, admin: true)
 user2 = User.create(email: 't1_customer2@test.as', password: 'test123',t1_customer_id: t1_customer2.id)
 user3 = User.create(email: 't1_customer3@test.as', password: 'test123',t1_customer_id: t1_customer3.id)
 user4 = User.create(email: 't1_customer4@test.as', password: 'test123',t1_customer_id: t1_customer4.id)
@@ -109,7 +109,7 @@ loadin_attributes = {
   truck_nr: truck_nr_in[rand(0..4)],
   trailer_nr: trailer_nr_in[rand(0..4)],
   type_of_service: type_of_service[rand(0..2)],
-  total_weight: 0
+  reference: "#{counter + 1}-LI"
 
   }
 
@@ -211,18 +211,23 @@ in_assignment_attributes = {
   other_ref: "OTHER-#{counter + 1 }",
   number_of_boxe: seed_box = number_of_boxe_in[rand(0..2)],
   number_of_pallet: number_of_pallet_in[rand(0..2)],
-  net_weight: seed_box * 10
+  net_weight: seed_box * 10,
+   reference: "#{counter + 1}-OUTA",
    }
 
 
   assignment = InAssignment.create(in_assignment_attributes)
-  load_in = LoadIn.where(id: assignment.load_in_id)[0]
+  p in_assignment_attributes
+  p assignment
+
+  load_in = LoadIn.find_by(id: assignment.load_in_id)
+  p load_in
+  p " hello In assignment 2 #{assignment.net_weight}"
   load_in.total_weight = assignment.net_weight
-  load_in
   load_in.save!
 
   counter += 1
-  puts counter
+  puts " counter #{counter}"
 end
 
 
@@ -235,8 +240,8 @@ loadout_attributes = {
   status: status_loadout[rand(0..1)],
   departure_date: Time.new(2020, 1, 4),
   truck_nr: truck_nr_out[rand(0..4)],
-  trailer_nr: trailer_nr_out[rand(0..4)]
-
+  trailer_nr: trailer_nr_out[rand(0..4)],
+  reference: "#{counter + 1}-LO"
 }
 
   LoadOut.create(loadout_attributes)
@@ -257,12 +262,17 @@ out_assignment_attributes = {
   number_of_pallet: number_of_pallet_in[rand(0..2)],
   net_weight: net_weight[rand(0..2)],
   cost: cost[rand(0..2)],
-  div_cost: div_cost[rand(0..2)]
+  div_cost: div_cost[rand(0..2)],
+  reference: "#{counter + 1}-OUTA"
 
    }
 
+assignment = OutAssignment.create(out_assignment_attributes)
+  load_out = LoadOut.find_by(id: assignment.load_out_id)
+  p "load_out #{load_out}"
+  load_out.total_weight = assignment.net_weight
+  load_out.save!
 
-  OutAssignment.create!(out_assignment_attributes)
   counter += 1
   puts counter
 end

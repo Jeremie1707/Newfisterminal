@@ -1,7 +1,7 @@
 <% @load_ins.each do |load_in| %>
 
 <tr id="load_in_row_single-<%= load_in.id %>">
-  <td class="load-in-list-div clickable" id="load_ins_rows-<%= load_in.id %>" data-toggle="collapse" data-target="#accordeon-<%= load_in.id %>"><i class="far fa-plus-square"></i></td>
+  <td class="load-in-list-div clickable" id="load_ins_rows-<%= load_in.id %>" data-toggle="collapse" data-target="#accordeon-load_in-<%= load_in.id %>"><i class="far fa-plus-square"></i></td>
 
 
   <td><%= load_in.truck_nr %></td>
@@ -22,7 +22,7 @@
   <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_load_in_path(load_in: load_in), method: :post, remote: true %></td>
 </tr>
 <% if !load_in.in_assignments.nil? %>
-<tr class="in-assignment-title collapse" id="accordeon-<%= load_in.id %>">
+<tr class="in-assignment-title collapse" id="accordeon-load_in-<%= load_in.id %>">
   <th></th>
   <th>Packer</th>
   <th>Lot Nr</th>
@@ -36,7 +36,7 @@
 </tr>
 
   <% load_in.in_assignments.each do |assignment| %>
-  <tr class="in-assignment-rows in_assignment_row_single-<%= assignment.id %> collapse" id="accordeon-<%= load_in.id %>">
+  <tr class="in-assignment-rows in_assignment_row_single-<%= assignment.id %> collapse" id="accordeon-load_in-<%= load_in.id %>">
     <td></td>
     <td><%= assignment.packer %></td>
     <td><%= assignment.lot_nr %></td>
