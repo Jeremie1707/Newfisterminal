@@ -15,6 +15,11 @@ class LoadOut < ApplicationRecord
         tsearch: { prefix: true }
       }
 
+  def set_reference
+    self.reference = (self.id.to_i).to_s + "-LO"
+    self.save
+  end
+
   private
 
   def formating_truck_nr

@@ -12,6 +12,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
     @packers = Packer.pluck(:packer_nr).uniq.sort
     respond_to do |format|
       if @in_assignment.save
+        @in_assignment.set_reference
         @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
         @load_in.save
         format.html { redirect_to dashboard_index_path, success: 'Assignment was successfully created.' }
@@ -45,6 +46,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
           else
             format.html { render action: "update", :alert => "There were errors in updating the Assignment " }
             format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
+            format.js { render :action => 'new' }
           end
         else
           flash[:notice] = "Assignment In was successfully updated."
@@ -54,6 +56,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
       else
         format.html { render action: "update" }
         format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
+        format.js { render :action => 'new' }
       end
     end
   end
@@ -79,6 +82,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
     else
         format.html { render action: "new" }
         format.json { render json: @in_assignment.errors, status: :unprocessable_entity }
+        format.js { render :action => 'new' }
       end
     end
   end

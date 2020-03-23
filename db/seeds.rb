@@ -109,7 +109,7 @@ loadin_attributes = {
   truck_nr: truck_nr_in[rand(0..4)],
   trailer_nr: trailer_nr_in[rand(0..4)],
   type_of_service: type_of_service[rand(0..2)],
-  reference: "#{counter + 1001 }-LI"
+  reference: "#{counter + 1}-LI"
 
   }
 
@@ -211,7 +211,8 @@ in_assignment_attributes = {
   other_ref: "OTHER-#{counter + 1 }",
   number_of_boxe: seed_box = number_of_boxe_in[rand(0..2)],
   number_of_pallet: number_of_pallet_in[rand(0..2)],
-  net_weight: seed_box * 10
+  net_weight: seed_box * 10,
+   reference: "#{counter + 1}-OUTA",
    }
 
 
@@ -240,7 +241,7 @@ loadout_attributes = {
   departure_date: Time.new(2020, 1, 4),
   truck_nr: truck_nr_out[rand(0..4)],
   trailer_nr: trailer_nr_out[rand(0..4)],
-  reference: "#{counter + 1001 }-LO"
+  reference: "#{counter + 1}-LO"
 }
 
   LoadOut.create(loadout_attributes)
@@ -262,7 +263,7 @@ out_assignment_attributes = {
   net_weight: net_weight[rand(0..2)],
   cost: cost[rand(0..2)],
   div_cost: div_cost[rand(0..2)],
-  reference: "#{counter + 1001 }-OUTA"
+  reference: "#{counter + 1}-OUTA"
 
    }
 

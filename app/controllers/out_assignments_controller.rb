@@ -12,6 +12,7 @@ before_action :set_out_assignment, only: [:edit, :update, :destroy]
 
     respond_to do |format|
       if @out_assignment.save
+        @out_assignment.set_reference
         @load_out.total_weight = @load_out.out_assignments.sum(:net_weight)
         @load_out.save
         format.html { redirect_to dashboard_index_path, success: 'Assignment was successfully created.' }
@@ -32,7 +33,7 @@ before_action :set_out_assignment, only: [:edit, :update, :destroy]
     respond_to do |format|
       if @out_assignment.save
         @load_out.total_weight = @load_out.out_assignments.sum(:net_weight)
-        @load_out.save!
+        @load_out.save
         @assignment = Assignment.find_by(out_assignment_id: @out_assignment)
         if @assignment.present?
           if update_in_assignment(@assignment)

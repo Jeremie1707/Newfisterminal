@@ -15,7 +15,13 @@ class LoadIn < ApplicationRecord
         tsearch: { prefix: true }
       }
 
-  private
+def set_reference
+    self.reference = (self.id.to_i).to_s + "-LI"
+    self.save
+end
+
+private
+
 
 
   def formating_truck_nr
