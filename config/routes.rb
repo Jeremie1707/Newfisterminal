@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #Load In
   resources :dashboard, only: [:index]
-  resources :load_ins, only: [:new, :create, :edit, :update, :destroy]
+  resources :load_ins, only: [:new,:show, :create, :edit, :update, :destroy]
   resources :in_assignments, only: [:new, :create, :update, :destroy]
   post '/scope_search_load_in/', to: 'dashboard#scope_search_load_in', as: 'scope_search_load_in'
   post '/search_load_in/', to: 'dashboard#search_load_in', as: 'search_load_in'
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post '/create_modal_in_assignment/:load_in', to: 'dashboard#create_modal_in_assignment', as: 'create_modal_in_assignment'
 
   #Load Out
-  resources :load_outs, only: [:new, :create, :edit, :update, :destroy]
+  resources :load_outs, only: [:new,:show, :create, :edit, :update, :destroy]
   resources :out_assignments, only: [:new, :create, :update, :destroy]
   post '/scope_search_load_out/', to: 'dashboard#scope_search_load_out', as: 'scope_search_load_out'
   post '/search_load_out/', to: 'dashboard#search_load_out', as: 'search_load_out'

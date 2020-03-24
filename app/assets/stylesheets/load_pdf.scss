@@ -1,0 +1,35 @@
+@import "config/fonts";
+@import "config/colors";
+@import "config/bootstrap_variables";
+
+// External libraries
+@import "bootstrap/scss/bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+.pdf {
+  margin: 0rem;
+  padding: 0rem;
+  .pdf-container {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+
+  }
+  .line-bold {
+    border-bottom: solid 2px black;
+  }
+  .line-extra-bold {
+    border-bottom: solid 4px black;
+  }
+
+  p {
+    margin:0;
+  }
+
+  .text-bold {
+    font-weight: bolder;
+  }
+
+}
+

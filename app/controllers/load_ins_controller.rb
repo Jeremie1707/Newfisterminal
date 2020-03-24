@@ -1,5 +1,24 @@
 class LoadInsController < ApplicationController
 
+  def show
+    @load_in = LoadIn.find(params[:id])
+    respond_to do |format|
+     format.html
+      format.pdf do
+        render pdf: "load_ins",   # Excluding ".pdf" extension.
+              template: 'load_ins/show.html.erb',
+              layout: 'pdf',
+              orientation: 'Landscape',
+               margin:  {   top: 0,                     # default 10 (mm)
+                            bottom: 0,
+                            left: 0,
+                            right: 0 }
+
+      end
+    end
+  end
+
+
   def new
     puts "starts loadins controller"
     @load_in = LoadIn.new
