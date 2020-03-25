@@ -5,12 +5,15 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle"></h5>
         <div id="load_out-delete-button">
-          <%= button_to 'delete Load Out', load_out_path(id: @load_out), method: :delete, data: {confirm: "Are you sure you want to delete this Load Out?"}, class:'btn btn-outline-danger'%>
+          <%= button_to 'delete Load Out', load_out_path(id: @load_out, format: :pdf), method: :delete, data: {confirm: "Are you sure you want to delete this Load Out?"}, class:'btn btn-outline-danger'%>
         </div>
         <div id="load_out-update-button">
           <%= button_to 'update Load Out', edit_load_out_path(id: @load_out),method: :get, remote: true, class:'btn btn-outline-success ml-2'%>
         </div>
-        <button id="btnPrint" type="button" class="btn btn-outline-primary ml-2">Print</button>
+         <div id="load_out-print-button">
+          <%= button_to 'Print', load_out_path(@load_out, format: :pdf),method: :get, class:'btn btn-outline-primary ml-2'%>
+        </div>
+        <!-- <button id="btnPrint" type="button" class="btn btn-outline-primary ml-2">Print</button> -->
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -30,6 +33,7 @@
           <tr>
             <th>Index</th>
             <th>Ref</th>
+            <th>Recipient</th>
             <th>Lot</th>
             <th>Incoming Order</th>
             <th>Boxes</th>
@@ -38,6 +42,7 @@
             <th>Cost</th>
             <th>Divers Cost</th>
             <th>other Ref.</th>
+            <th>Note</th>
           </tr>
         </thead>
         <tbody class="modal-out-assignment-list">

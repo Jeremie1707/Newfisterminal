@@ -56,10 +56,22 @@ cost = [15000, 7000, 10000]
 div_cost = [0, 1000, 0]
 
 recipient = ['NEW ENGLAND', 'ATLANTIK', 'FRATELLI', 'COMP', 'PROFISH FOOD']
-
+1.times do
+  recipient_attributes = {
+    name: "UDISP",
+    email: "terminal1@mail.com"
+  }
+  recipient_address_attributes = {
+    street: "Terminal1"
+  }
+  recipient_created = Recipient.create(recipient_attributes)
+  recipient_created.build_address(recipient_address_attributes).save!
+end
 
 
 puts "---------- seeding ----------"
+
+
 
 
 t1_customer1 = T1Customer.create(name: 'Terminal1')
@@ -73,7 +85,7 @@ t1_customer1_address_attributes = {
     phone_nr: Faker::PhoneNumber.phone_number,
 
   }
-  t1_customer1.build_address(t1_customer1_address_attributes).save!
+t1_customer1.build_address(t1_customer1_address_attributes).save!
 
 t1_customer2 = T1Customer.create(name: 'N&K')
 t1_customer2_address_attributes = {
@@ -86,7 +98,7 @@ t1_customer2_address_attributes = {
     phone_nr: Faker::PhoneNumber.phone_number,
 
   }
-  t1_customer2.build_address(t1_customer2_address_attributes).save!
+t1_customer2.build_address(t1_customer2_address_attributes).save!
 
 t1_customer3 = T1Customer.create(name: 'CERMAQ')
 t1_customer3_address_attributes = {
@@ -179,8 +191,8 @@ counter = 0
 
   }
 
-  packer = Packer.create(packer_attributes)
-  packer.build_address(packer_address_attributes).save!
+  packer_creation = Packer.create(packer_attributes)
+  packer_creation.build_address(packer_address_attributes).save!
   counter += 1
   puts counter
 end
@@ -223,14 +235,14 @@ counter = 0
 in_assignment_attributes = {
   load_in_id: counter + 1,
   packer: packer[rand(0..4)],
-  # packer_id: rand(1..5),
+  recipient_id: rand(2..5),
   lot_nr: "LOT-#{counter + 1 }",
   incoming_order_ref: "INCO-#{counter + 1 }",
   other_ref: "OTHER-#{counter + 1 }",
   number_of_boxe: seed_box = number_of_boxe_in[rand(0..2)],
   number_of_pallet: number_of_pallet_in[rand(0..2)],
   net_weight: seed_box * 10,
-   reference: "#{counter + 1}-OUTA",
+   reference: "#{counter + 1}-INA",
    }
 
 
@@ -273,7 +285,7 @@ counter = 0
 1000.times do
 out_assignment_attributes = {
   load_out_id: counter + 1,
-  recipient_id: rand(1..4),
+  recipient_id: rand(2..5),
   lot_nr: "LOT-#{counter + 1 }",
   other_ref: "OTHER-#{counter + 1 }",
   number_of_boxe: number_of_boxe_in[rand(0..2)],

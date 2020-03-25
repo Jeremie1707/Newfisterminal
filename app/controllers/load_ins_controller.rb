@@ -1,5 +1,27 @@
 class LoadInsController < ApplicationController
 
+  def show
+    @load_in = LoadIn.find(params[:id])
+    respond_to do |format|
+     # format.html
+      format.pdf do
+        render pdf: "load_ins",
+              header: { right: '[page] of [topage]' },  # Excluding ".pdf" extension.
+              template: 'load_ins/show.html.erb',
+              layout: 'in_pdf',
+              orientation: 'Landscape',
+              dpi: 75,
+
+               margin:  {   top: 5,                     # default 10 (mm)
+                            bottom: 0,
+                            left: 0,
+                            right: 0 }
+
+      end
+    end
+  end
+
+
   def new
     puts "starts loadins controller"
     @load_in = LoadIn.new
@@ -45,7 +67,7 @@ class LoadInsController < ApplicationController
       @load_out = LoadOut.new(t1_customer_id: params[:load_in][:t1_customer_id], type_of_service: params[:load_in][:type_of_service],note: params[:load_in][:note])
       @load_out.save
 
-      @out_assignment = OutAssignment.new(load_out_id: @load_out.id, lot_nr: params[:load_in][:in_assignments_attributes][0][:lot_nr], other_ref: params[:load_in][:in_assignments_attributes][0][:other_ref])
+      @out_assignment = OutAssignment.new(load_out_id: @load_out.id, lot_nr: params[:load_in][:in_assignments_attributes][0][:lot_nr], recipient_id: params[:load_in][:in_assignments_attributes][0][:recipient_id], other_ref: params[:load_in][:in_assignments_attributes][0][:other_ref])
        @out_assignment.save
 
       @assignment = Assignment.new(in_assignment_id: @load_in.in_assignment_ids.first, out_assignment_id: @out_assignment.id)

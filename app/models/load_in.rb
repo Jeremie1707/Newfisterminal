@@ -21,9 +21,6 @@ def set_reference
 end
 
 private
-
-
-
   def formating_truck_nr
     self.truck_nr = self.truck_nr.upcase.gsub(/\s+|\W+|_/, "").split(/(?<=\D)(?=\d)|(?<=\d)(?=\D)/).join(" ")
   end
@@ -31,4 +28,5 @@ private
   def formating_trailer_nr
     self.trailer_nr = self.trailer_nr.upcase.gsub(/\s+|\W+|_/, "").split(/(?<=\D)(?=\d)|(?<=\d)(?=\D)/).join(" ")
   end
+
 end

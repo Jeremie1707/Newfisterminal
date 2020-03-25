@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_132814) do
+ActiveRecord::Schema.define(version: 2020_03_25_152634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,10 @@ ActiveRecord::Schema.define(version: 2020_03_23_132814) do
     t.string "packer"
     t.integer "order_index"
     t.integer "net_weight"
+    t.bigint "recipient_id"
+    t.text "note"
     t.index ["load_in_id"], name: "index_in_assignments_on_load_in_id"
+    t.index ["recipient_id"], name: "index_in_assignments_on_recipient_id"
   end
 
   create_table "load_ins", force: :cascade do |t|
@@ -99,6 +102,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_132814) do
     t.datetime "updated_at", null: false
     t.integer "order_index"
     t.string "incoming_order_ref"
+    t.text "note"
     t.index ["load_out_id"], name: "index_out_assignments_on_load_out_id"
     t.index ["recipient_id"], name: "index_out_assignments_on_recipient_id"
   end
@@ -141,6 +145,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_132814) do
   add_foreign_key "assignments", "in_assignments"
   add_foreign_key "assignments", "out_assignments"
   add_foreign_key "in_assignments", "load_ins"
+  add_foreign_key "in_assignments", "recipients"
   add_foreign_key "load_ins", "t1_customers"
   add_foreign_key "load_outs", "t1_customers"
   add_foreign_key "out_assignments", "load_outs"

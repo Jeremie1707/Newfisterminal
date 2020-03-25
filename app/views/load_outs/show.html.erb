@@ -1,0 +1,175 @@
+<div class="pdf">
+  <div class="d-flex flex-row justify-content-between bd-highlight">
+    <div class="my-3 ml-3">
+      <div>
+        <h6>DATE AND TIME:</h6>
+        <% if @load_out.departure_date %>
+        <h4><%=@load_out.departure_date.strftime("%A - %d.%m.%Y - %R")%></h4>
+        <% else %>
+        <h4><%=@load_out.departure_date%></h4>
+        <% end %>
+      </div>
+    </div>
+    <div class="my-3">
+      <div>
+        <h4>LOAD OUT:<%=@load_out.reference%></h4>
+      </div>
+    </div>
+    <div class="my-3 mr-3">
+      <div>
+        <h6>CUSTOMER:</h6>
+        <h4><%=@load_out.t1_customer.name%></h4>
+        <h6>Printed at:</h6>
+        <h6><%= Time.now.strftime("%d.%m.%Y - %R") %></h6>
+      </div>
+    </div>
+  </div>
+  <div class="pdf-container">
+    <div class="row mb-2 ml-3">
+      <div class="col-2 " >
+        <h6>TRUCK:</h6>
+      </div>
+      <div class="col-2" >
+        <h6>TRAILER/UNIT:</h6>
+      </div>
+      <div class="col-2" >
+        <h6>PACKERS:</h6>
+      </div>
+    </div>
+    <div class="d-flex line-bold"></div>
+    <div class="row mb-2 ml-3">
+      <div class="col-2" >
+        <h4><%=@load_out.truck_nr%></h4>
+      </div>
+      <div class="col-2" >
+        <h4><%=@load_out.trailer_nr%></h4>
+      </div>
+      <div class="col-4" >
+      <% @load_out.out_assignments.order("order_index ASC").each do |out_assignment| %>
+      <% if out_assignment.assignment %>
+        <% @in_assignment = InAssignment.find_by(id: out_assignment.assignment.in_assignment_id) %>
+        <span style="font-size: 1.5rem;font-weight: bolder;"><%= @in_assignment.packer %></span>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+    <div class="col-2 ml-3" >
+        <p>ASSIGNMENTS:</p>
+      </div>
+    <div class="d-flex line-bold"></div>
+    <div class="row mb-2 ml-3">
+      <div class="col-2" >
+        <p>POSITION:</p>
+      </div>
+      <div class="col-2" >
+         <p>ASSIGNMENT REF:</p>
+      </div>
+      <div class="col-2" >
+         <p>LOAD ADDRESS:</p>
+      </div>
+      <div class="col-2" >
+         <p>RECIPIENT:</p>
+      </div>
+    </div>
+
+    <% @total_number_of_boxe = 0 %>
+    <% @total_number_of_pallet = 0 %>
+    <% @total_net_weight = 0 %>
+    <% @counter = 0 %>
+     <% @load_out.out_assignments.order("order_index ASC").each do |assignment| %>
+      <div class="assignement-detail" style="page-break-inside: avoid;">
+        <div class="d-flex line-bold mt-3"></div>
+        <div class="row text-bold ml-3">
+          <div class="col-2" >
+            <p><%= assignment.order_index %></p>
+          </div>
+          <div class="col-2" >
+            <p><%= assignment.reference %></p>
+          </div>
+          <div class="col-2" >
+          <% if packer = Recipient.find_by(id: 1)%>
+            <p><%="#{packer.address.street_nr} #{packer.address.street}" %></p>
+            <p><%="#{packer.address.postcode} #{packer.address.city}" %></p>
+             <p><%="#{packer.address.country}"%></p>
+          <% end %>
+          </div>
+          <div class="col-2" >
+            <% if recipient = Recipient.find_by(id: assignment.recipient_id)  %>
+            <p ><%= recipient.name %></p>
+            <p><%="#{recipient.address.street_nr} #{recipient.address.street}" %></p>
+            <p><%="#{recipient.address.postcode} #{recipient.address.city}" %></p>
+             <p><%="#{recipient.address.country}"%></p>
+            <% end %>
+          </div>
+        </div>
+         <div class="row ml-3 mt-1">
+          <div class="col-2">
+            <p>REFS:</p>
+            <p class="text-bold"><%= assignment.other_ref %></p>
+          </div>
+          <div class="col-2">
+            <p>BOXES:</p>
+            <p class="text-bold"><%= assignment.number_of_boxe %></p>
+          </div>
+          <div class="col-2">
+            <p>PALLET:</p>
+             <p class="text-bold"><%= assignment.number_of_pallet %></p>
+          </div>
+          <div class="col-2">
+            <p>NET WEIGHT:</p>
+            <p class="text-bold"><%= assignment.net_weight %></p>
+          </div>
+          <div class="col-4">
+            <p>NOTE:</p>
+            <p class="text-bold"><%= assignment.note%></p>
+          </div>
+         </div>
+         <div class="d-flex line-bold mb-3"></div>
+         <% @counter += 1 %>
+          <% if @counter > 1 && @counter % 3 == 0 %>
+        <div style=" page-break-after: always;"></div>
+        <% end %>
+      </div>
+
+      <% if assignment.number_of_boxe == nil %>
+      <% else %>
+        <% @total_number_of_boxe += assignment.number_of_boxe %>
+      <% end %>
+      <% if assignment.number_of_pallet == nil %>
+      <% else %>
+        <% @total_number_of_pallet += assignment.number_of_pallet %>
+      <% end %>
+      <% if assignment.net_weight == nil %>
+      <% else %>
+        <% @total_net_weight += assignment.net_weight %>
+      <% end %>
+    <% end %>
+    <div class="row ml-3">
+      <div class="col-2">
+        <p class="text-bold">Total for this load:</p>
+      </div>
+      <div class="col-2">
+        <p class="text-bold"><%= @total_number_of_boxe %></p>
+      </div>
+      <div class="col-2">
+        <p class="text-bold"><%= @total_number_of_pallet %></p>
+      </div>
+      <div class="col-2">
+        <p class="text-bold"><%= @total_net_weight %></p>
+      </div>
+    </div>
+    <div class="d-flex line-extra-bold "></div>
+    <div class="row mx-3" style="page-break-inside: avoid;">
+      <div class="col-6 mt-3">
+        <p class="mb-3">Seal number:____________________________________________________________________</p>
+        <p class="mb-3">Signature Terminal 1:___________________________________________________________</p>
+        <p class="mb-3"><%="Signature Driver of [#{@load_out.truck_nr}] / [#{@load_out.trailer_nr}]:________________________________________"%></p>
+      </div>
+      <div class="col-6 mt-3">
+        <p>Information about the trip:</p>
+        <p><%=@load_out.note%></p>
+      </div>
+    </div>
+   </div>
+</div>
+

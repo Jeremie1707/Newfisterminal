@@ -5,6 +5,27 @@ class LoadOutsController < ApplicationController
     @load_out = LoadOut.new
   end
 
+  def show
+    @load_out = LoadOut.find(params[:id])
+    respond_to do |format|
+     # format.html
+      format.pdf do
+        render pdf: "load_outs",
+              header: { right: '[page] of [topage]' },  # Excluding ".pdf" extension.
+              template: 'load_outs/show.html.erb',
+              layout: 'out_pdf',
+              orientation: 'Landscape',
+              dpi: 75,
+
+               margin:  {   top: 5,                     # default 10 (mm)
+                            bottom: 0,
+                            left: 0,
+                            right: 0 }
+
+      end
+    end
+  end
+
   def create
     @load_out = LoadOut.new(strong_params)
     flash[:load_out_error] = []

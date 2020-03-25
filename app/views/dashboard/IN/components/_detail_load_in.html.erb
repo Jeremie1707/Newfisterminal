@@ -10,7 +10,10 @@
         <div id="load_in-update-button">
           <%= button_to 'update Load In', edit_load_in_path(id: @load_in),method: :get, remote: true, class:'btn btn-outline-success ml-2'%>
         </div>
-        <button id="btnPrint" type="button" class="btn btn-outline-primary ml-2">Print</button>
+        <div id="load_out-print-button">
+          <%= button_to 'Print', load_in_path(@load_in,format: :pdf),method: :get,  class:'btn btn-outline-primary ml-2'%>
+        </div>
+      <!--   <button id="btnPrint" type="button" class="btn btn-outline-primary ml-2">Print</button> -->
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -31,12 +34,14 @@
             <th>Index</th>
             <th>Ref</th>
             <th>Packer</th>
+            <th>Recipient</th>
             <th>Lot</th>
             <th>Incoming Order</th>
             <th>Boxes</th>
             <th>Pallet</th>
             <th>Net Weight</th>
             <th>other Ref.</th>
+            <th>Note</th>
           </tr>
         </thead>
         <tbody class="modal-in-assignment-list">
