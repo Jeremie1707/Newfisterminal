@@ -62,7 +62,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
 
   def update_out_assignment(assignment)
     @out_assignment = OutAssignment.find(assignment.out_assignment_id)
-    @out_assignment.update_attributes(lot_nr: params[:in_assignment][:lot_nr], other_ref: params[:in_assignment][:other_ref],incoming_order_ref: params[:in_assignment][:incoming_order_ref],number_of_boxe: params[:in_assignment][:number_of_boxe],number_of_pallet: params[:in_assignment][:number_of_pallet], net_weight: params[:in_assignment][:net_weight])
+    @out_assignment.update_attributes(lot_nr: params[:in_assignment][:lot_nr],recipient_id: params[:in_assignment][:recipient_id], other_ref: params[:in_assignment][:other_ref],incoming_order_ref: params[:in_assignment][:incoming_order_ref],number_of_boxe: params[:in_assignment][:number_of_boxe],number_of_pallet: params[:in_assignment][:number_of_pallet], net_weight: params[:in_assignment][:net_weight])
     @load_out = LoadOut.find(@out_assignment.load_out_id)
     @load_out.total_weight = @load_out.out_assignments.sum(:net_weight)
     @load_out.save!
@@ -87,7 +87,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
 
   private
   def strong_params
-    params.require(:in_assignment).permit(:order_index, :packer, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :net_weight, :load_in_id)
+    params.require(:in_assignment).permit(:order_index, :packer, :lot_nr, :recipient_id, :note, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :net_weight, :load_in_id)
   end
 
   def set_in_assignment

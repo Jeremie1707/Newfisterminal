@@ -3,22 +3,22 @@
     <div class="my-3 ml-3">
       <div>
         <h6>DATE AND TIME:</h6>
-        <% if @load_in.arrival_date %>
-        <h4><%=@load_in.arrival_date.strftime("%A - %d.%m.%Y - %R")%></h4>
+        <% if @load_out.departure_date %>
+        <h4><%=@load_out.departure_date.strftime("%A - %d.%m.%Y - %R")%></h4>
         <% else %>
-        <h4><%=@load_in.arrival_date%></h4>
+        <h4><%=@load_out.departure_date%></h4>
         <% end %>
       </div>
     </div>
     <div class="my-3">
       <div>
-        <h4>LOAD IN:<%=@load_in.reference%></h4>
+        <h4>LOAD OUT:<%=@load_out.reference%></h4>
       </div>
     </div>
     <div class="my-3 mr-3">
       <div>
         <h6>CUSTOMER:</h6>
-        <h4><%=@load_in.t1_customer.name%></h4>
+        <h4><%=@load_out.t1_customer.name%></h4>
         <h6>Printed at:</h6>
         <h6><%= Time.now.strftime("%d.%m.%Y - %R") %></h6>
       </div>
@@ -39,14 +39,17 @@
     <div class="d-flex line-bold"></div>
     <div class="row mb-2 ml-3">
       <div class="col-2" >
-        <h4><%=@load_in.truck_nr%></h4>
+        <h4><%=@load_out.truck_nr%></h4>
       </div>
       <div class="col-2" >
-        <h4><%=@load_in.trailer_nr%></h4>
+        <h4><%=@load_out.trailer_nr%></h4>
       </div>
       <div class="col-4" >
-      <% @load_in.in_assignments.order("order_index ASC").each do |assignment| %>
-        <span style="font-size: 1.5rem;font-weight: bolder;"><%= assignment.packer %></span>
+      <% @load_out.out_assignments.order("order_index ASC").each do |out_assignment| %>
+      <% if out_assignment.assignment %>
+        <% @in_assignment = InAssignment.find_by(id: out_assignment.assignment.in_assignment_id) %>
+        <span style="font-size: 1.5rem;font-weight: bolder;"><%= @in_assignment.packer %></span>
+        <% end %>
       <% end %>
       </div>
     </div>
@@ -73,7 +76,7 @@
     <% @total_number_of_pallet = 0 %>
     <% @total_net_weight = 0 %>
     <% @counter = 0 %>
-     <% @load_in.in_assignments.order("order_index ASC").each do |assignment| %>
+     <% @load_out.out_assignments.order("order_index ASC").each do |assignment| %>
       <div class="assignement-detail" style="page-break-inside: avoid;">
         <div class="d-flex line-bold mt-3"></div>
         <div class="row text-bold ml-3">
@@ -84,9 +87,9 @@
             <p><%= assignment.reference %></p>
           </div>
           <div class="col-2" >
-          <% if packer = Packer.find_by(packer_nr: assignment.packer)%>
-            <p><%="#{packer.address.street_nr}, #{packer.address.street}" %></p>
-            <p><%="#{packer.address.postcode}, #{packer.address.city}" %></p>
+          <% if packer = Recipient.find_by(id: 1)%>
+            <p><%="#{packer.address.street_nr} #{packer.address.street}" %></p>
+            <p><%="#{packer.address.postcode} #{packer.address.city}" %></p>
              <p><%="#{packer.address.country}"%></p>
           <% end %>
           </div>
@@ -101,7 +104,7 @@
         </div>
          <div class="row ml-3 mt-1">
           <div class="col-2">
-            <p>MARKED:</p>
+            <p>REFS:</p>
             <p class="text-bold"><%= assignment.other_ref %></p>
           </div>
           <div class="col-2">
@@ -160,12 +163,13 @@
       <div class="col-6 mt-3">
         <p class="mb-3">Seal number:____________________________________________________________________</p>
         <p class="mb-3">Signature Terminal 1:___________________________________________________________</p>
-        <p class="mb-3"><%="Signature Driver of [#{@load_in.truck_nr}] / [#{@load_in.trailer_nr}]:________________________________________"%></p>
+        <p class="mb-3"><%="Signature Driver of [#{@load_out.truck_nr}] / [#{@load_out.trailer_nr}]:________________________________________"%></p>
       </div>
       <div class="col-6 mt-3">
         <p>Information about the trip:</p>
-        <p><%=@load_in.note%></p>
+        <p><%=@load_out.note%></p>
       </div>
     </div>
    </div>
 </div>
+

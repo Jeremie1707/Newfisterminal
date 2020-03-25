@@ -11,7 +11,7 @@
           <%= button_to 'update Load Out', edit_load_out_path(id: @load_out),method: :get, remote: true, class:'btn btn-outline-success ml-2'%>
         </div>
          <div id="load_out-print-button">
-          <%= button_to 'Print', load_out_path(@load_out, format: :pdf), class:'btn btn-outline-success ml-2'%>
+          <%= button_to 'Print', load_out_path(@load_out, format: :pdf),method: :get, class:'btn btn-outline-primary ml-2'%>
         </div>
         <!-- <button id="btnPrint" type="button" class="btn btn-outline-primary ml-2">Print</button> -->
 
@@ -33,6 +33,7 @@
           <tr>
             <th>Index</th>
             <th>Ref</th>
+            <th>Recipient</th>
             <th>Lot</th>
             <th>Incoming Order</th>
             <th>Boxes</th>
@@ -41,6 +42,7 @@
             <th>Cost</th>
             <th>Divers Cost</th>
             <th>other Ref.</th>
+            <th>Note</th>
           </tr>
         </thead>
         <tbody class="modal-out-assignment-list">
