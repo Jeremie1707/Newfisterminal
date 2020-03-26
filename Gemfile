@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 ruby '2.6.3'
 
+
 gem 'bootsnap', require: false
 gem 'devise'
+gem 'activeadmin'
 gem 'faker'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
