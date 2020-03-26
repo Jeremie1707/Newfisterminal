@@ -2,7 +2,7 @@
  <% if current_user.admin == true %>
     <%= f.association :t1_customer, label: "Select customer",collection: T1Customer.where.not("id = ?", current_user.t1_customer_id) %>
 <% else %>
-  <%= f.association :t1_customer, label: "Select customer", collection: T1Customer.where("id = ?", current_user.t1_customer_id), selected: 1 %>
+  <%= f.hidden_field :t1_customer, value: current_user.t1_customer_id%>
 <% end %>
 <% if flash[:error_load_in].present?  && flash[:error_load_in][0]["t1_customer_id"].present?  %>
   <div class="invalid-message"><%= flash[:error_load_in][0]["t1_customer_id"][0] %></div>

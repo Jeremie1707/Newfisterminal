@@ -54,6 +54,7 @@ class LoadInsController < ApplicationController
         end
       else
         p "hello error"
+        p @load_in.errors
         flash[:error_load_in] << @load_in.errors
         format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the Load In. " }
         format.js
@@ -123,6 +124,7 @@ class LoadInsController < ApplicationController
     :t1_customer_id, :status, :arrival_date, :truck_nr, :trailer_nr, :type_of_service,:note, :in_assignments_attributes => [ :packer, :lot_nr, :incoming_order_ref, :other_ref]
   )
   end
+
 
 end
 
