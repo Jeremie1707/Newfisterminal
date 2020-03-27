@@ -335,3 +335,4 @@ puts "Recipient = #{Recipient.count}"
 puts "OutAssignment = #{OutAssignment.count}"
 puts "Assignment = #{Assignment.count}"
 
+User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
