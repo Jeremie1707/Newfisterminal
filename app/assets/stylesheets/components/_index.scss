@@ -3,3 +3,8 @@
 @import "avatar";
 @import "navbar";
 @import "button";
+
+html.turbolinks-progress-bar::before {
+  background-color: red !important;
+  height: 5px !important;
+}

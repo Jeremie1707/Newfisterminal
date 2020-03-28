@@ -15,7 +15,7 @@ import { autoSearch } from '../components/autoSearch';
 import { packerAutocompleteSearch, packerModalAutocompleteSearch} from '../plugins/autocomplete';
 import { inAssignmentClickCloseCreate, inAssignmentClickCloseEdit, loadinClickClose, outAssignmentClickCloseCreate, outAssignmentClickCloseEdit, loadoutClickClose } from '../components/modalForm';
 import { printArea, printElement } from '../packs/print';
-import { printTable} from '../packs/printTable';
+import { printTableFirst, printTableSecond} from '../packs/printTable';
 
 
 initFlatpickr();
@@ -29,7 +29,8 @@ window.outAssignmentClickCloseCreate = outAssignmentClickCloseCreate ;
 window.outAssignmentClickCloseEdit = outAssignmentClickCloseEdit ;
 window.loadoutClickClose = loadoutClickClose ;
 window.printArea = printArea;
-window.printTable = printTable;
+window.printTableFirst = printTableFirst;
+window.printTableSecond = printTableSecond;
 window.replaceElement = replaceElement;
 window.showModal = showModal;
 window.destroyModal = destroyModal;
@@ -38,8 +39,9 @@ window.packerModalAutocompleteSearch = packerModalAutocompleteSearch;
 window.packerAutocompleteSearch = packerAutocompleteSearch;
 autoSearch();
 packerAutocompleteSearch();
-printTable();
+printTableFirst();
+printTableSecond();
 
-
+Turbolinks.ProgressBar.enable();
 
 
