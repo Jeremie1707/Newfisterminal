@@ -5,7 +5,7 @@ replaceElement('.modal-in-assignment-list', "<%= j render 'dashboard/IN/componen
 replaceElement(('#<%= dom_id(@load_in) %>'), "<%= j render 'dashboard/IN/components/load_in_modal/detail_load_in_global' %>");
 replaceElement(('#load_in_row_single-<%=(@load_in.id)%>'), "<%= j render 'dashboard/IN/components/load_in_row_single' %>");
 
-// document.querySelector('.in-assignment-form-create').remove();
+document.querySelector('.in-assignment-form-create').remove();
 
 var insertHere = document.querySelectorAll('#accordeon-load_in-<%=(@load_in.id)%>');
 if (insertHere[1] && insertHere[1].classList.contains('show')) {
