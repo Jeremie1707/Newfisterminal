@@ -9,7 +9,6 @@ ActiveAdmin.register T1Customer do
   address_attributes:[:street, :street_nr, :postcode, :city, :country, :phone_nr]
 
   filter :name, as: :select
-  filter :email
   filter :created_at
   filter :updated_at
 
@@ -19,7 +18,6 @@ ActiveAdmin.register T1Customer do
     f.semantic_errors *f.object.errors.keys
     inputs 'Details' do
     f.input :name
-    f.input :email
     f.has_many( :address, { class: 'has_one' }) do |t1_customer_address|
       t1_customer_address.input :street
       t1_customer_address.input :street_nr
