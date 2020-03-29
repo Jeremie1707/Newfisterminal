@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_155222) do
+ActiveRecord::Schema.define(version: 2020_03_28_133647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_155222) do
     t.datetime "updated_at", null: false
     t.string "packer"
     t.integer "order_index"
-    t.integer "net_weight"
+    t.float "net_weight"
     t.bigint "recipient_id"
     t.text "note"
     t.index ["load_in_id"], name: "index_in_assignments_on_load_in_id"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_155222) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "note"
-    t.integer "total_weight"
+    t.float "total_weight"
     t.index ["t1_customer_id"], name: "index_load_ins_on_t1_customer_id"
   end
 
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_155222) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "note"
-    t.integer "total_weight"
+    t.float "total_weight"
     t.index ["t1_customer_id"], name: "index_load_outs_on_t1_customer_id"
   end
 
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_155222) do
     t.string "other_ref"
     t.integer "number_of_boxe"
     t.integer "number_of_pallet"
-    t.integer "net_weight"
+    t.float "net_weight"
     t.integer "cost"
     t.integer "div_cost"
     t.datetime "created_at", null: false

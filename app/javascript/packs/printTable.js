@@ -1,8 +1,15 @@
-const printTable = () => {
-  document.getElementById("btnPrintTable").addEventListener('click', (event) => {
+const printTableFirst = () => {
+  document.getElementById("btnPrintTableFirst").addEventListener('click', (event) => {
     console.log(event);
     event.preventDefault();
-    printElement(document.querySelector(".printTable"));
+    printElement(document.querySelector(".printTableFirst"));
+  });
+}
+const printTableSecond = () => {
+  document.getElementById("btnPrintTableSecond").addEventListener('click', (event) => {
+    console.log(event);
+    event.preventDefault();
+    printElement(document.querySelector(".printTableSecond"));
   });
 }
 
@@ -22,4 +29,5 @@ function printElement(elem) {
     window.print();
 }
 
-export {printTable}
+export {printTableFirst,printTableSecond }
+
