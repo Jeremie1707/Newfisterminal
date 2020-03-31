@@ -20,14 +20,14 @@ class DashboardController
      if @user.admin == true
         LoadOut.order(@sort).global_search(@query)
       else
-        LoadOut.where("t1_customer_id = ?", @user.t1_customer_id).order(@sort).order(@sort).global_search(@query)
+        LoadOut.where("t1_customer_id = ?", @user.t1_customer_id).order(@sort).global_search(@query)
       end
     end
 
     def get_load
       super
       @total_load_outs =  @total_loads
-      @total_pages = (@total_loads.to_f / @rows_per_page.to_f).ceil
+      @total_load_out_pages = (@total_loads.to_f / @rows_per_page.to_f).ceil
       @load_outs =  @loads
     end
   end

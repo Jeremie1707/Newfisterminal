@@ -7,7 +7,7 @@ class DashboardController
     def initialize(parameters = {}, current_user)
       @page = parameters[:page] || 1
       @rows_per_page = parameters[:rows_per_page] || 10
-      @sort = parameters [:sort] || 'id DESC'
+      @sort = parameters[:sort] || 'id DESC'
       @query = parameters[:query] || ''
       @user = current_user
 

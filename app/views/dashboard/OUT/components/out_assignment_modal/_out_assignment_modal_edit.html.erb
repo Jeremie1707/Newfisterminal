@@ -7,7 +7,7 @@
   <% end %>
   <div class="form-group col-md-12">
     <!-- <div class="row "> -->
-      <%= form.input :order_index, as: :string, label: false, placeholder: "Index" %>
+      <%= form.input :order_index, as: :string, label: false, placeholder: "Position" %>
       <%= form.association :recipient, label: false, input: Recipient.all, selected: [@out_assignment.recipient_id] %>
       <%= form.input :lot_nr, as: :string, label: false, placeholder: "Lot" %>
       <%= form.input :incoming_order_ref, as: :string, label: false, placeholder: "Incoming order" %>

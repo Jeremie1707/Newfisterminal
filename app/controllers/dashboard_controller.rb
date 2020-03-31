@@ -1,24 +1,45 @@
 class DashboardController < ApplicationController
 
   def index
+    @in_assignment = InAssignment.new
+    @out_assignment = OutAssignment.new
+    @packers = Packer.pluck(:packer_nr).uniq.sort
+
     if params[:load_in].nil? || params.values.all? { |x| x.nil? }
       @load_in = LoadIn.new
     else
-      @load_in = LoadIn.new(params[:load_in].permit(:status,:t1_customer_id, :arrival_date, :truck_nr, :trailer_nr,:type_of_service,:note, :in_assignments_attributes => [ :packer, :lot_nr, :incoming_order_ref, :other_ref]
-      ) )
+
+      @load_in = LoadIn.new(params[:load_in].permit(:status,
+                                                    :t1_customer_id,
+                                                    :arrival_date,
+                                                    :truck_nr,
+                                                    :trailer_nr,
+                                                    :type_of_service,
+                                                    :note,
+                                                    :in_assignments_attributes => [ :packer,
+                                                                                    :lot_nr,
+                                                                                    :incoming_order_ref,
+                                                                                    :other_ref]))
     end
-    @in_assignment = InAssignment.new
-    @packers = Packer.pluck(:packer_nr).uniq.sort
-    scope_search_load_in
 
     if params[:load_out].nil? || params.values.all? { |x| x.nil? }
       @load_out = LoadOut.new
     else
-      @load_out = LoadOut.new(params[:load_out].permit(:status,:t1_customer_id, :departure_date, :truck_nr, :trailer_nr,:type_of_service, :note, :out_assignments_attributes => [:lot_nr, :incoming_order_ref, :other_ref]
-      ) )
+      @load_out = LoadOut.new(params[:load_out].permit(:status,
+                                                       :t1_customer_id,
+                                                       :departure_date,
+                                                       :truck_nr,
+                                                       :trailer_nr,
+                                                       :type_of_service,
+                                                       :note,
+                                                       :out_assignments_attributes => [:lot_nr,
+                                                                                       :incoming_order_ref,
+                                                                                       :other_ref]))
     end
-    @out_assignment = OutAssignment.new
-    scope_search_load_out
+
+
+  scope_search_load_in
+  scope_search_load_out
   end
 
   # Load In and In assignement
@@ -28,9 +49,17 @@ class DashboardController < ApplicationController
     @page = @scope_search.page
     @sort = @scope_search.sort
     @rows_per_page = @scope_search.rows_per_page
-    @total_pages = @scope_search.total_pages
+    @total_load_in_pages = @scope_search.total_pages
     @query = @scope_search.query
     @total_load_ins = @scope_search.total_load_ins
+    @start_date = @scope_search.start_date
+    @end_date =  @scope_search.end_date
+    @status = @scope_search.status
+    @t1_customer = @scope_search.t1_customer
+    @truck_nr = @scope_search.truck_nr
+    @trailer_nr = @scope_search.trailer_nr
+    @type_of_service = @scope_search.type_of_service
+    @total_weight = @scope_search.total_weight
 
   end
 
@@ -63,7 +92,7 @@ class DashboardController < ApplicationController
     @page = @scope_search.page
     @sort = @scope_search.sort
     @rows_per_page = @scope_search.rows_per_page
-    @total_pages = @scope_search.total_pages
+    @total_load_out_pages = @scope_search.total_pages
     @query = @scope_search.query
     @total_load_outs = @scope_search.total_load_outs
   end
