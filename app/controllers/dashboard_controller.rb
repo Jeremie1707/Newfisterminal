@@ -60,6 +60,7 @@ class DashboardController < ApplicationController
     @trailer_nr = @scope_search.trailer_nr
     @type_of_service = @scope_search.type_of_service
     @total_weight = @scope_search.total_weight
+    @last_week = @scope_search.last_week
 
   end
 

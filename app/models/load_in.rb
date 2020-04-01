@@ -16,7 +16,8 @@ class LoadIn < ApplicationRecord
       }
   scope :load_in_filter_by_status, -> (status) { where status: status }
   scope :load_in_filter_by_last_week, lambda { where("arrival_date >= ? AND arrival_date <= ?", 1.week.ago, Time.now) }
-  scope :load_in_filter_by_arrival_date, lambda {|start_date, end_date| where("arrival_date >= ? AND arrival_date <= ?", start_date, end_date )}
+  scope :load_in_filter_by_start_date, lambda {|start_date| where("arrival_date >= ? ", start_date )}
+  scope :load_in_filter_by_end_date, lambda {|end_date| where("arrival_date <= ? ", end_date )}
   scope :load_in_filter_by_t1_customer, -> (t1_customer_id) { where t1_customer_id: t1_customer_id }
   scope :load_in_filter_by_truck_nr, -> (truck_nr) { where truck_nr: truck_nr }
   scope :load_in_filter_by_trailer_nr, -> (trailer_nr) { where trailer_nr: trailer_nr }

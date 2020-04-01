@@ -37,11 +37,12 @@ window.destroyModal = destroyModal;
 window.printElement = printElement;
 window.packerModalAutocompleteSearch = packerModalAutocompleteSearch;
 window.packerAutocompleteSearch = packerAutocompleteSearch;
+window.initFlatpickr = initFlatpickr;
 autoSearch();
 packerAutocompleteSearch();
 printTableFirst();
 printTableSecond();
 
-Turbolinks.ProgressBar.enable();
+
 
 
