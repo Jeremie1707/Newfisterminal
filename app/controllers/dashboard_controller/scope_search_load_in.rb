@@ -29,7 +29,7 @@ class DashboardController
 
     def query_scope
       if @user.admin == true
-        @scope.global_search(@query)
+        @scope.global_search(@query).order(@sort)
       else
         @scope.where("t1_customer_id = ?", @user.t1_customer_id).global_search(@query).order(@sort)
       end

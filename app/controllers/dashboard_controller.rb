@@ -96,6 +96,15 @@ class DashboardController < ApplicationController
     @total_load_out_pages = @scope_search.total_pages
     @query = @scope_search.query
     @total_load_outs = @scope_search.total_load_outs
+    @start_date = @scope_search.start_date
+    @end_date =  @scope_search.end_date
+    @status = @scope_search.status
+    @t1_customer = @scope_search.t1_customer
+    @truck_nr = @scope_search.truck_nr
+    @trailer_nr = @scope_search.trailer_nr
+    @type_of_service = @scope_search.type_of_service
+    @total_weight = @scope_search.total_weight
+    @last_week = @scope_search.last_week
   end
 
 

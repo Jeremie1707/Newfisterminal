@@ -1,8 +1,8 @@
- <% link_args = { sort: @sort, rows_per_page: @rows_per_page, query: @query, start_date: @start_date, end_date: @end_date, status: @status, t1_customer: @t1_customer, truck_nr: @truck_nr, trailer_nr: @trailer_nr, type_of_service: @type_of_service,total_weight: @total_weight} %>
+ <% link_args = { sort: @sort, rows_per_page: @rows_per_page, query: @query, start_date: @start_date, end_date: @end_date, status: @status, t1_customer: @t1_customer, truck_nr: @truck_nr, trailer_nr: @trailer_nr, type_of_service: @type_of_service,total_weight: @total_weight, last_week: @last_week} %>
 
 
 <div>
-  <p><%= "There is a total of #{@total_load_ins} Load In" %></p>
+  <p><%= "There is a total of #{@total_load_ins} Incoming trips " %></p>
 </div>
 <div>
    <% link_args[:page] = 1 %>
