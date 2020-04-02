@@ -59,7 +59,14 @@ before_action :set_out_assignment, only: [:edit, :update, :destroy]
 
   def update_in_assignment(assignment)
     @in_assignment = InAssignment.find(assignment.in_assignment_id)
-    @in_assignment.update_attributes(lot_nr: params[:out_assignment][:lot_nr],recipient_id: params[:out_assignment][:recipient_id], other_ref: params[:out_assignment][:other_ref],incoming_order_ref: params[:out_assignment][:incoming_order_ref],number_of_boxe: params[:out_assignment][:number_of_boxe],number_of_pallet: params[:out_assignment][:number_of_pallet], net_weight: params[:out_assignment][:net_weight])
+    @in_assignment.update_attributes(packer: params[:out_assignment][:packer],
+                                     lot_nr: params[:out_assignment][:lot_nr],
+                                     recipient_id: params[:out_assignment][:recipient_id],
+                                     other_ref: params[:out_assignment][:other_ref],
+                                     incoming_order_ref: params[:out_assignment][:incoming_order_ref],
+                                     number_of_boxe: params[:out_assignment][:number_of_boxe],
+                                     number_of_pallet: params[:out_assignment][:number_of_pallet],
+                                     net_weight: params[:out_assignment][:net_weight])
      @load_in = LoadIn.find(@in_assignment.load_in_id)
      @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
       @load_in.save!

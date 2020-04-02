@@ -17,6 +17,9 @@ class DashboardController < ApplicationController
                                                     :type_of_service,
                                                     :note,
                                                     :in_assignments_attributes => [ :packer,
+                                                                                    :number_of_boxe,
+                                                                                    :number_of_pallet,
+                                                                                    :net_weight,
                                                                                     :lot_nr,
                                                                                     :incoming_order_ref,
                                                                                     :other_ref]))
@@ -33,6 +36,9 @@ class DashboardController < ApplicationController
                                                        :type_of_service,
                                                        :note,
                                                        :out_assignments_attributes => [:packer,
+                                                                                       :number_of_boxe,
+                                                                                       :number_of_pallet,
+                                                                                       :net_weight,
                                                                                        :lot_nr,
                                                                                        :incoming_order_ref,
                                                                                        :other_ref]))
@@ -140,10 +146,10 @@ class DashboardController < ApplicationController
   private
 
   def in_assignment_params
-    params.permit(:packer, :lot_nr, :incoming_order_ref, :other_ref, :boxe_number, :pallet_number, :load_in_id)
+    params.permit(:packer, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet,:net_weight, :load_in_id)
   end
 
   def out_assignment_params
-    params.permit(:packer,:lot_nr, :incoming_order_ref, :other_ref, :boxe_number, :pallet_number, :load_out_id)
+    params.permit(:packer,:lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet,:net_weight, :load_out_id)
   end
 end

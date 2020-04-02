@@ -22,6 +22,22 @@
     <%= f.input :trailer_nr, label: false, placeholder: "Trailer_nr"%>
   </div>
 </div>
+<div class="d-flex justify-content-between">
+  <div class="mr-1">
+    <label class="string required" for="load_out_out_assignments_attributes_number_of_boxe"></label>
+    <input class="form-control" label = "false" type="text" placeholder="Boxe nr" name="load_out[out_assignments_attributes][][number_of_boxe]">
+    <% if flash[:error_load_out].present?  && flash[:error_load_out][0]["out_assignments.number_of_boxe"].present?  %>
+    <div class="invalid-message"><%= flash[:error_load_out][0]["out_assignments.number_of_boxe"][0] %></div>
+    <% end %>
+  </div>
+  <div>
+    <label class="string required" for="load_out_out_assignments_attributes_net_weight"></label>
+    <input class="form-control" label = "false" type="text" placeholder="Net weight" name="load_out[out_assignments_attributes][][net_weight]">
+    <% if flash[:error_load_out].present?  && flash[:error_load_out][0]["out_assignments.net_weight"].present?  %>
+    <div class="invalid-message"><%= flash[:error_load_out][0]["out_assignments.net_weight"][0] %></div>
+    <% end %>
+  </div>
+</div>
 <label class="form-group string required" for="load_out_out_assignments_attributes_packer" id="out-packers-list" data-packers="<%= @packers.to_json %>" ></label>
 <input class="form-control" label ="false" type="text" placeholder="Packer number" id="out-packer-form" name="load_out[out_assignments_attributes][][packer]" >
 <% if flash[:error_load_out].present?  && flash[:error_load_out][0]["out_assignments.packer"].present?  %>

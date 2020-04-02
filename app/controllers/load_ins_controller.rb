@@ -21,7 +21,6 @@ class LoadInsController < ApplicationController
     end
   end
 
-
   def new
     puts "starts loadins controller"
     @load_in = LoadIn.new
@@ -36,6 +35,8 @@ class LoadInsController < ApplicationController
         @load_in.set_reference
         @in_assignment = InAssignment.find_by(id: @load_in.in_assignments.first.id)
         @in_assignment.set_reference
+        @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
+        @load_in.save
         if @load_in.type_of_service == "TRUCK TO TRUCK" || @load_in.type_of_service == "TRUCK TERMINAL TRUCK"
           if create_load_out_and_out_assignment(params)
             flash[:notice] = "Load In and Load Out were successfully created."
@@ -63,18 +64,29 @@ class LoadInsController < ApplicationController
 
   def create_load_out_and_out_assignment(params = {})
     LoadOut.transaction do
-      @load_out = LoadOut.new(t1_customer_id: params[:load_in][:t1_customer_id], type_of_service: params[:load_in][:type_of_service],note: params[:load_in][:note])
+      @load_out = LoadOut.new(t1_customer_id: params[:load_in][:t1_customer_id],
+                              type_of_service: params[:load_in][:type_of_service],
+                              note: params[:load_in][:note],
+                              total_weight: params[:load_in][:total_weight],)
       @load_out.save
 
-      @out_assignment = OutAssignment.new(load_out_id: @load_out.id, lot_nr: params[:load_in][:in_assignments_attributes][0][:lot_nr], recipient_id: params[:load_in][:in_assignments_attributes][0][:recipient_id], other_ref: params[:load_in][:in_assignments_attributes][0][:other_ref],packer: params[:load_in][:in_assignments_attributes][0][:packer])
+      @out_assignment = OutAssignment.new(load_out_id: @load_out.id,
+                                          lot_nr: params[:load_in][:in_assignments_attributes][0][:lot_nr],
+                                          recipient_id: params[:load_in][:in_assignments_attributes][0][:recipient_id],
+                                          other_ref: params[:load_in][:in_assignments_attributes][0][:other_ref],
+                                          packer: params[:load_in][:in_assignments_attributes][0][:packer],
+                                          number_of_boxe: params[:load_in][:in_assignments_attributes][0][:number_of_boxe],
+                                          net_weight: params[:load_in][:in_assignments_attributes][0][:net_weight])
        @out_assignment.save
 
-      @assignment = Assignment.new(in_assignment_id: @load_in.in_assignment_ids.first, out_assignment_id: @out_assignment.id)
+       @assignment = Assignment.new(in_assignment_id: @load_in.in_assignment_ids.first, out_assignment_id: @out_assignment.id)
        @assignment.save
 
        if @load_out && @out_assignment && @assignment
         @load_out.set_reference
         @out_assignment.set_reference
+        @load_out.total_weight = @load_out.out_assignments.sum(:net_weight)
+        @load_out.save
         return true
         else
           flash[:error_load_in] << @assignment.errors << @out_assignment.errors << @load_out.errors
@@ -119,7 +131,7 @@ class LoadInsController < ApplicationController
 
   def strong_params
     params.require(:load_in).permit(
-    :t1_customer_id, :status, :arrival_date, :truck_nr, :trailer_nr, :type_of_service,:note, :in_assignments_attributes => [ :packer, :lot_nr, :incoming_order_ref, :other_ref]
+    :t1_customer_id, :status, :arrival_date, :truck_nr, :trailer_nr, :type_of_service,:note, :in_assignments_attributes => [ :packer,:number_of_boxe,:net_weight, :lot_nr, :incoming_order_ref, :other_ref]
   )
   end
 
