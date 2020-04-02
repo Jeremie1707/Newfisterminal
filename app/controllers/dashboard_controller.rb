@@ -32,7 +32,8 @@ class DashboardController < ApplicationController
                                                        :trailer_nr,
                                                        :type_of_service,
                                                        :note,
-                                                       :out_assignments_attributes => [:lot_nr,
+                                                       :out_assignments_attributes => [:packer,
+                                                                                       :lot_nr,
                                                                                        :incoming_order_ref,
                                                                                        :other_ref]))
     end
@@ -126,11 +127,13 @@ class DashboardController < ApplicationController
   end
 
   def create_modal_out_assignment
+    @packers = Packer.pluck(:packer_nr).uniq.sort
     @out_assignment = OutAssignment.new(out_assignment_params)
     @load_out = LoadOut.find(params[:load_out])
   end
 
   def edit_modal_out_assignment
+    @packers = Packer.pluck(:packer_nr).uniq.sort
     @out_assignment = OutAssignment.find(params[:id])
   end
 
@@ -141,6 +144,6 @@ class DashboardController < ApplicationController
   end
 
   def out_assignment_params
-    params.permit(:lot_nr, :incoming_order_ref, :other_ref, :boxe_number, :pallet_number, :load_out_id)
+    params.permit(:packer,:lot_nr, :incoming_order_ref, :other_ref, :boxe_number, :pallet_number, :load_out_id)
   end
 end

@@ -9,7 +9,7 @@ before_action :set_out_assignment, only: [:edit, :update, :destroy]
   def create
     @out_assignment = OutAssignment.new(strong_params)
     @out_assignment.load_out = @load_out
-
+    @packers = Packer.pluck(:packer_nr).uniq.sort
     respond_to do |format|
       if @out_assignment.save
         @out_assignment.set_reference
@@ -30,6 +30,7 @@ before_action :set_out_assignment, only: [:edit, :update, :destroy]
   def update
     @out_assignment.update_attributes(strong_params)
     @load_out = LoadOut.find(@out_assignment.load_out_id)
+    @packers = Packer.pluck(:packer_nr).uniq.sort
     respond_to do |format|
       if @out_assignment.save
         @load_out.total_weight = @load_out.out_assignments.sum(:net_weight)
@@ -83,7 +84,7 @@ before_action :set_out_assignment, only: [:edit, :update, :destroy]
 
   private
   def strong_params
-    params.require(:out_assignment).permit(:order_index, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :net_weight,:cost, :div_cost, :load_out_id, :recipient_id, :note)
+    params.require(:out_assignment).permit(:order_index,:packer, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :net_weight,:cost, :div_cost, :load_out_id, :recipient_id, :note)
   end
 
   def set_out_assignment

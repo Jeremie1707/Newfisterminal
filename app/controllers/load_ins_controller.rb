@@ -30,7 +30,6 @@ class LoadInsController < ApplicationController
   def create
     @packers = Packer.pluck(:packer_nr).uniq.sort
     @load_in = LoadIn.new(strong_params)
-
     flash[:error_load_in] = []
     respond_to do |format|
       if @load_in.save
@@ -67,7 +66,7 @@ class LoadInsController < ApplicationController
       @load_out = LoadOut.new(t1_customer_id: params[:load_in][:t1_customer_id], type_of_service: params[:load_in][:type_of_service],note: params[:load_in][:note])
       @load_out.save
 
-      @out_assignment = OutAssignment.new(load_out_id: @load_out.id, lot_nr: params[:load_in][:in_assignments_attributes][0][:lot_nr], recipient_id: params[:load_in][:in_assignments_attributes][0][:recipient_id], other_ref: params[:load_in][:in_assignments_attributes][0][:other_ref])
+      @out_assignment = OutAssignment.new(load_out_id: @load_out.id, lot_nr: params[:load_in][:in_assignments_attributes][0][:lot_nr], recipient_id: params[:load_in][:in_assignments_attributes][0][:recipient_id], other_ref: params[:load_in][:in_assignments_attributes][0][:other_ref],packer: params[:load_in][:in_assignments_attributes][0][:packer])
        @out_assignment.save
 
       @assignment = Assignment.new(in_assignment_id: @load_in.in_assignment_ids.first, out_assignment_id: @out_assignment.id)

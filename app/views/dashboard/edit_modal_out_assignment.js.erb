@@ -2,10 +2,12 @@ if (document.querySelector('.out-assignment-form-edit') != null) {
   document.querySelector('.out-assignment-form-edit').remove();
   console.log("remove");
   document.querySelector('.modal-body >table').insertAdjacentHTML('beforebegin','<%= j render partial: "dashboard/OUT/components/out_assignment_modal/out_assignment_modal_edit" %>');
+  packerModalAutocompleteSearch();
 }
 
 else {
   document.querySelector('.modal-body >table').insertAdjacentHTML('beforebegin','<%= j render partial: "dashboard/OUT/components/out_assignment_modal/out_assignment_modal_edit" %>');
+  packerModalAutocompleteSearch();
 };
 
 outAssignmentClickCloseEdit();

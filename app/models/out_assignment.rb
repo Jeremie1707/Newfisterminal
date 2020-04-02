@@ -1,6 +1,7 @@
 class OutAssignment < ApplicationRecord
   before_create :set_default
   validates :reference, uniqueness: true
+  validates :packer, allow_blank: true, format: { with: /\A[A-Z]{1,2}-\d{1,5}\z/, message: "please enter the packer number in correct format : 'LETTER(1-2)-numbers' " }
   has_one :assignment, dependent: :destroy
   belongs_to :load_out
   belongs_to :recipient, optional: true

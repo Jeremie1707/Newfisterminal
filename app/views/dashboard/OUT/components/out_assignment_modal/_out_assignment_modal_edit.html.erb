@@ -6,8 +6,9 @@
     <% end %>
   <% end %>
   <div class="form-group col-md-12">
-    <!-- <div class="row "> -->
       <%= form.input :order_index, as: :string, label: false, placeholder: "Position" %>
+      <label class="form-group string required" for="out_assignments_attributes_packer" id="packers-list-modal" data-packers="<%= @packers.to_json %>" ></label>
+      <input class="form-control form-group" label ="false" type="text" placeholder="Packer number" id="packer-form-modal" name="out_assignment[packer]" value = "<%= @out_assignment.packer%>" >
       <%= form.association :recipient, label: false, input: Recipient.all, selected: [@out_assignment.recipient_id] %>
       <%= form.input :lot_nr, as: :string, label: false, placeholder: "Lot" %>
       <%= form.input :incoming_order_ref, as: :string, label: false, placeholder: "Incoming order" %>

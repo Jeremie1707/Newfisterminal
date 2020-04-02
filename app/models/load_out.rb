@@ -8,7 +8,7 @@ class LoadOut < ApplicationRecord
   validates :t1_customer_id, :presence => { :message => "Please Select a Customer" }
 
   pg_search_scope :global_search, against: [:reference, :status, :truck_nr, :trailer_nr, :departure_date, :type_of_service ], associated_against: {
-      out_assignments: [:reference, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet],
+      out_assignments: [:reference, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :packer],
       t1_customer: [:name]
      },
       using: {
