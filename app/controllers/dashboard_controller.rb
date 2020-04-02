@@ -69,6 +69,10 @@ class DashboardController < ApplicationController
     scope_search_load_in
   end
 
+  def clear_search_load_in
+      scope_search_load_in
+  end
+
   def set_modal_load_in
     @load_in = LoadIn.find(params[:load_in])
     @in_assignment = InAssignment.new
@@ -110,6 +114,10 @@ class DashboardController < ApplicationController
 
   def search_load_out
     scope_search_load_out
+  end
+
+  def clear_search_load_out
+      scope_search_load_out
   end
 
   def set_modal_load_out

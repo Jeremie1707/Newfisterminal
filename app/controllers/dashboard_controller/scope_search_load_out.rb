@@ -29,9 +29,9 @@ class DashboardController
 
     def query_scope
      if @user.admin == true
-        LoadOut.global_search(@query).order(@sort)
+        @scope.global_search(@query).order(@sort)
       else
-        LoadOut.where("t1_customer_id = ?", @user.t1_customer_id).global_search(@query).order(@sort)
+        @scope.where("t1_customer_id = ?", @user.t1_customer_id).global_search(@query).order(@sort)
       end
     end
 

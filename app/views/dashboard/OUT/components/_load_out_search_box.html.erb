@@ -1,18 +1,19 @@
-<%= form_with url: search_load_in_path, method: :post do |form| %>
+<%= form_with url: search_load_out_path, method: :post do |form| %>
   <div class="bg-light p-1">
   <form class="form" id="search-query" >
     <div class="form-inline" >
     <%= form.text_field :query, placeholder: "search", class:"form-control ml-2" %>
     <div class="">
     <button class="btn btn-outline-success m-2 my-sm-0" type="submit">Search</button>
-    <a class="m-2" data-toggle="collapse" href="#search_load_in" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-filter"></i></a>
-    <a href="#firstTable" id="btnPrintTableFirst" class=" ml-2 mb-1"><i class="fas fa-print" style="font-size: 1.5rem"></i></a>
+    <%= link_to('Clear', clear_search_load_out_path(sort: @sort, rows_per_page: @rows_per_page, page: @page),method: :post, remote: true, class:'btn btn-outline-secondary') %>
+    <a class="m-2" data-toggle="collapse" href="#search_load_out" role="button" aria-expanded="false" aria-controls="search_load_out"><i class="fas fa-filter"></i></a>
+    <a href="#secondTable" id="btnPrintTableSecond" class=" ml-2 mb-1"><i class="fas fa-print" style="font-size: 1.5rem"></i></a>
     </div>
     </div>
-    <%= check_box_tag(:last_week,true, true, class:'m-2')%>
+    <%= check_box_tag(:last_week,true, false, class:'m-2')%>
     <%= label_tag(:last_week, "last week result only", class:"mt-2 ml-1 text-secondary") %>
-    <div class="collapse" id="search_load_in">
-      <div class="form-group form-inline">
+    <div class="collapse" id="search_load_out">
+      <div class=" form-group form-inline">
         <div><%= form.text_field :truck_nr, placeholder: "truck number", class:"form-control mx-2 mt-2" %></div>
         <div><%= form.text_field :trailer_nr, placeholder: "trailer number", class:"form-control mt-2" %></div>
       </div>

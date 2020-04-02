@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post '/set_modal_load_in/:load_in', to: 'dashboard#set_modal_load_in', as: 'set_modal_load_in'
   post '/edit_modal_in_assignment/:id', to: 'dashboard#edit_modal_in_assignment', as: 'edit_modal_in_assignment'
   post '/create_modal_in_assignment/:load_in', to: 'dashboard#create_modal_in_assignment', as: 'create_modal_in_assignment'
+  post '/clear_search_load_in/', to: 'dashboard#clear_search_load_in', as: 'clear_search_load_in'
 
   #Load Out
   resources :load_outs, only: [:new,:show, :create, :edit, :update, :destroy]
@@ -23,5 +24,7 @@ Rails.application.routes.draw do
   post '/set_modal_load_out/:load_out', to: 'dashboard#set_modal_load_out', as: 'set_modal_load_out'
   post '/edit_modal_out_assignment/:id', to: 'dashboard#edit_modal_out_assignment', as: 'edit_modal_out_assignment'
   post '/create_modal_out_assignment/:load_out', to: 'dashboard#create_modal_out_assignment', as: 'create_modal_out_assignment'
+  post '/clear_search_load_out/', to: 'dashboard#clear_search_load_out', as: 'clear_search_load_out'
+
 end
 
