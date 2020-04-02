@@ -33,6 +33,8 @@ class LoadOutsController < ApplicationController
     respond_to do |format|
       if @load_out.save
        @load_out.set_reference
+       @load_out.total_weight = @load_out.out_assignments.sum(:net_weight)
+       @load_out.save
        @out_assignment = OutAssignment.find_by(id: @load_out.out_assignments.first.id)
        @out_assignment.set_reference
         flash[:notice] = "Load Out was successfully created."
@@ -86,7 +88,7 @@ class LoadOutsController < ApplicationController
 
   def strong_params
     params.require(:load_out).permit(
-    :t1_customer_id, :status, :departure_date, :truck_nr, :trailer_nr, :type_of_service,:note, :out_assignments_attributes => [ :packer, :lot_nr, :incoming_order_ref, :other_ref,:cost, :div_cost]
+    :t1_customer_id, :status, :departure_date, :truck_nr, :trailer_nr, :type_of_service,:note, :out_assignments_attributes => [ :packer, :lot_nr,:number_of_boxe,:number_of_pallet,:net_weight, :incoming_order_ref, :other_ref,:cost, :div_cost]
   )
   end
 
