@@ -1,0 +1,56 @@
+<%= form_with url: search_load_out_path, method: :post do |form| %>
+  <div class="bg-light p-1">
+  <form class="form" id="search-query" >
+    <div class="form-inline" >
+    <%= form.text_field :query, placeholder: "search", class:"form-control ml-2" %>
+    <div class="">
+    <button class="btn btn-outline-success m-2 my-sm-0" type="submit">Search</button>
+    <%= link_to('Clear', clear_search_load_out_path(sort: @sort, rows_per_page: @rows_per_page, page: @page),method: :post, remote: true, class:'btn btn-outline-secondary') %>
+    <a class="m-2" data-toggle="collapse" href="#search_load_out" role="button" aria-expanded="false" aria-controls="search_load_out"><i class="fas fa-filter"></i></a>
+    <a href="#secondTable" id="btnPrintTableSecond" class=" ml-2 mb-1"><i class="fas fa-print" style="font-size: 1.5rem"></i></a>
+    </div>
+    </div>
+    <%= check_box_tag(:last_week,true, false, class:'m-2')%>
+    <%= label_tag(:last_week, "last week result only", class:"mt-2 ml-1 text-secondary") %>
+    <div class="collapse" id="search_load_out">
+      <div class=" form-group form-inline">
+        <div><%= form.text_field :truck_nr, placeholder: "truck number", class:"form-control mx-2 mt-2" %></div>
+        <div><%= form.text_field :trailer_nr, placeholder: "trailer number", class:"form-control mt-2" %></div>
+      </div>
+      <div class=" form-group form-inline">
+        <div><%= form.number_field :total_weight, placeholder: "net weight", class:"form-control mx-2 " %>
+        </div>
+        <div><%= select_tag(:type_of_service, options_for_select([["TRUCK TO TRUCK", "TRUCK TO TRUCK" ],["TRUCK TERMINAL TRUCK", "TRUCK TERMINAL TRUCK"],["PICKING","PICKING"]]),include_blank:"ALL TYPES", class:"form-control ") %>
+        </div>
+      </div>
+       <div class=" form-group form-inline">
+        <div class="form-check form-check-inline"><%= radio_button_tag(:status, "IN",false, class:" mx-2")%><%= label_tag(:status, "IN", class:" ml-1 mr-2") %>
+        <%= radio_button_tag(:status, "OUT",false,class:" mx-2", checked: false) %><%= label_tag(:status, "OUT", class:" ml-1 mr-5") %>
+        </div>
+        <% if current_user.admin == true %>
+        <div><%= select_tag(:t1_customer, options_from_collection_for_select(T1Customer.all, :id, :name),include_blank:"ALL CUSTOMERS", class:"form-control ml-4 ") %>
+        </div>
+        <% else %>
+        <%= hidden_field_tag :t1_customer, value: current_user.t1_customer_id%>
+        <% end %>
+      </div>
+        <div class=" form-group form-inline">
+        <div class="mx-2">
+          <%= form.text_field  :start_date, class:"datepicker", label: false, placeholder: "from" %>
+        </div>
+        <div>
+          <%= form.text_field  :end_date, class:"datepicker", label: false, placeholder: "to" %>
+        </div>
+
+      </div>
+    </div>
+
+  <%#= select_tag(:t1_customer, options_for_select() %>
+
+  <%= hidden_field_tag :sort, @sort %>
+  <%= hidden_field_tag :rows_per_page, @rows_per_page %>
+
+</form>
+</div>
+<% end %>
+

@@ -7,7 +7,7 @@
   <% end %>
   <%# byebug %>
   <div class="form-group col-md-12">
-    <%= form.input :order_index, as: :string, label: false, placeholder: "index" %>
+    <%= form.input :order_index, as: :string, label: false, placeholder: "Position" %>
   <label class="form-group string required" for="in_assignments_attributes_packer" id="packers-list-modal" data-packers="<%= @packers.to_json %>" ></label>
   <input class="form-control form-group" label ="false" type="text" placeholder="Packer number" id="packer-form-modal" name="in_assignment[packer]" >
   <%= form.association :recipient, label: false, input: Recipient.all, selected: [@in_assignment.recipient_id] %>

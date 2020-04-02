@@ -31,7 +31,7 @@
   <div class="invalid-message"><%="#{@load_in.errors["in_assignments.lot_nr"][0]}"%></div>
   <% end %>
 <label class="form-group string required" for="load_in_in_assignments_attributes_incoming_order_ref"></label>
-<input class="form-control" label = "false" type="text" placeholder="Incoming order Ref." name="load_in[in_assignments_attributes][][incoming_order_ref]" value = "<%= @load_in.in_assignments.first.incoming_order_ref%>">
+<input class="form-control" label = "false" type="text" placeholder="Order Ref." name="load_in[in_assignments_attributes][][incoming_order_ref]" value = "<%= @load_in.in_assignments.first.incoming_order_ref%>">
 <% if @load_in.errors["in_assignments.incoming_order_ref"].present? %>
   <div class="invalid-message"><%="#{@load_in.errors["in_assignments.incoming_order_ref"][0]}"%></div>
   <% end %>

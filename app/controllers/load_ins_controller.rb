@@ -37,7 +37,7 @@ class LoadInsController < ApplicationController
         @load_in.set_reference
         @in_assignment = InAssignment.find_by(id: @load_in.in_assignments.first.id)
         @in_assignment.set_reference
-        if @load_in.type_of_service == "TRUCK TO TRUCK"
+        if @load_in.type_of_service == "TRUCK TO TRUCK" || @load_in.type_of_service == "TRUCK TERMINAL TRUCK"
           if create_load_out_and_out_assignment(params)
             flash[:notice] = "Load In and Load Out were successfully created."
           format.html { redirect_to dashboard_index_path}
