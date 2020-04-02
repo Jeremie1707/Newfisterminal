@@ -27,6 +27,7 @@ class LoadOutsController < ApplicationController
   end
 
   def create
+    @packers = Packer.pluck(:packer_nr).uniq.sort
     @load_out = LoadOut.new(strong_params)
     flash[:load_out_error] = []
     respond_to do |format|
@@ -85,7 +86,7 @@ class LoadOutsController < ApplicationController
 
   def strong_params
     params.require(:load_out).permit(
-    :t1_customer_id, :status, :departure_date, :truck_nr, :trailer_nr, :type_of_service,:note, :out_assignments_attributes => [ :lot_nr, :incoming_order_ref, :other_ref,:cost, :div_cost]
+    :t1_customer_id, :status, :departure_date, :truck_nr, :trailer_nr, :type_of_service,:note, :out_assignments_attributes => [ :packer, :lot_nr, :incoming_order_ref, :other_ref,:cost, :div_cost]
   )
   end
 

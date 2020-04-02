@@ -22,7 +22,11 @@
     <%= f.input :trailer_nr, label: false, placeholder: "Trailer_nr"%>
   </div>
 </div>
-
+<label class="form-group string required" for="load_out_out_assignments_attributes_packer" id="out-packers-list" data-packers="<%= @packers.to_json %>" ></label>
+<input class="form-control" label ="false" type="text" placeholder="Packer number" id="out-packer-form" name="load_out[out_assignments_attributes][][packer]" >
+<% if flash[:error_load_out].present?  && flash[:error_load_out][0]["out_assignments.packer"].present?  %>
+  <div class="invalid-message"><%= flash[:error_load_out][0]["out_assignments.packer"][0] %></div>
+<% end %>
 <label class="string required" for="load_out_out_assignments_attributes_lot_nr"></label>
 <input class="form-control" label = "false" type="text" placeholder="Lot number" name="load_out[out_assignments_attributes][][lot_nr]">
 <% if flash[:error_load_out].present? && flash[:error_load_out][0]["out_assignments.lot_nr"].present?  %>

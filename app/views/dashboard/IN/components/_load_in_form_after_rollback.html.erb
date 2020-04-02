@@ -18,8 +18,6 @@
   </div>
 </div>
 
-
-
 <label class="form-group string required" for="load_in_in_assignments_attributes_packer" id="packers-list" data-packers="<%= @packers.to_json %>" ></label>
 <input class="form-control" label ="false" type="text" placeholder="Packer number" id="packer-form" name="load_in[in_assignments_attributes][][packer]" >
  <% if @load_in.errors["in_assignments.packer"].present? %>
