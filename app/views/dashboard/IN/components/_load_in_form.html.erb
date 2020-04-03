@@ -60,10 +60,8 @@
 </div>
 <a class="m-2" data-toggle="collapse" href="#form_out_assignment" role="button" aria-expanded="false" aria-controls="form_out_assignment"><i class="fas fa-plus-circle mr-2 my-2"></i>Add Truck Out infos</a>
 <div class="collapse" id="form_out_assignment">
-
-    <div><%= text_field_tag([:load_out_truck_nr], "", class:'form-group form-control mb-1', placeholder:"truck nr") %></div>
-    <div><%= text_field_tag([:load_out_trailer_nr], "", class:' form-group form-control mb-1',placeholder:"trailer nr")%></div>
-
+  <div><%= text_field_tag([:load_out_truck_nr], "", class:'form-group form-control mb-1', placeholder:"truck nr") %></div>
+  <div><%= text_field_tag([:load_out_trailer_nr], "", class:' form-group form-control mb-1',placeholder:"trailer nr")%></div>
 </div>
 
 <%= f.button :submit, "Add", class: 'btn btn-success btn-sm w-100'%>
