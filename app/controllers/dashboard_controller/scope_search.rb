@@ -48,6 +48,8 @@ class DashboardController
       order_mappings = {
       'truck_nr_asc'  => 'truck_nr ASC',
       'truck_nr_desc' => 'truck_nr DESC',
+      'trip_ref_asc'  => 'trip_ref ASC',
+      'trip_ref_desc' => 'trip_ref DESC',
       'trailer_nr_asc'   => 'trailer_nr ASC',
       'trailer_nr_desc'  => 'trailer_nr DESC',
       'total_weight_asc'   => 'total_weight ASC',

@@ -15,6 +15,7 @@
       <%= form.input :departure_date, as: :datetime, label: false, placeholder: "departure date?" %>
     </div>
     <div class="col-md-4 modal-detail status">
+      <%= form.input :type_of_service, label: "Type of service", collection: ["TRUCK TO TRUCK","TRUCK TERMINAL TRUCK","PICKING"] %>
       <%= form.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
     </div>
   </div>
@@ -29,6 +30,8 @@
       <%= form.input :trailer_nr, label: false, placeholder: "Trailer_nr"%>
     </div>
      <div class="col-md-8 modal-detail note">
+       <h6>Incoming Ref:</h6>
+      <%= form.input :trip_ref, label: false, placeholder: "add details on incoming trip"%>
       <h6>Note:</h6>
       <%= form.input :note, label: false, as: :text, placeholder: "add a Note"%>
     </div>

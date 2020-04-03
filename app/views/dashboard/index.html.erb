@@ -10,25 +10,29 @@
       </div>
     </div>
     <div class="load_ins-table-container col-md-10">
-      <div class="search-and-number-rows-container d-flex flex-row align-items-baseline">
-        <div id="select-load_in-rows" class="select-load_in-rows mr-1 p-1">
-          <%= render 'dashboard/IN/components/select_load_in_rows' %>
-        </div>
-        <div id="load_in_search-box" class="search-box mb-1">
-          <%= render 'dashboard/IN/components/load_in_search_box' %>
-        </div>
-      </div>
-      <table class="table printTableFirst" id="load-in-table">
-        <thead id="load_in-table-head">
-
-            <%= render 'dashboard/IN/components/load_ins_table_head' %>
-        </thead>
-        <tbody id='load_in-list'>
-          <%= render 'dashboard/IN/components/load_ins_rows' %>
-        </tbody>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5>Incoming List</h5>
+          <div class="search-and-number-rows-container d-flex flex-row align-items-baseline">
+            <div id="select-load_in-rows" class="select-load_in-rows mr-1 p-1">
+              <%= render 'dashboard/IN/components/select_load_in_rows' %>
+            </div>
+            <div id="load_in_search-box" class="search-box mb-1">
+              <%= render 'dashboard/IN/components/load_in_search_box' %>
+            </div>
+          </div>
+          <table class="table printTableFirst" id="load-in-table">
+            <thead id="load_in-table-head">
+              <%= render 'dashboard/IN/components/load_ins_table_head' %>
+            </thead>
+            <tbody id='load_in-list'>
+              <%= render 'dashboard/IN/components/load_ins_rows' %>
+            </tbody>
       </table>
       <div id="load_in-nav" class="nav d-flex flex-column ">
         <%= render 'dashboard/IN/components/nav_pagination' %>
+      </div>
+        </div>
       </div>
     </div>
   </div>
@@ -43,25 +47,30 @@
       </div>
     </div>
     <div class="load_outs-table-container col-md-10">
-      <div class="search-and-number-rows-container d-flex flex-row align-items-baseline">
-        <div id="select-load_out-rows" class="select-load_out-rows mr-1 p-1">
-          <%= render 'dashboard/OUT/components/select_load_out_rows' %>
-        </div>
-        <div id="load_out_search-box" class="search-box mb-1">
-          <%= render 'dashboard/OUT/components/load_out_search_box' %>
-        </div>
-      </div>
-      <table class="table printTableSecond" id="load-out-table">
-        <thead id="load_out-table-head">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5>Outgoing List</h5>
+          <div class="search-and-number-rows-container d-flex flex-row align-items-baseline">
+            <div id="select-load_out-rows" class="select-load_out-rows mr-1 p-1">
+              <%= render 'dashboard/OUT/components/select_load_out_rows' %>
+            </div>
+            <div id="load_out_search-box" class="search-box mb-1">
+              <%= render 'dashboard/OUT/components/load_out_search_box' %>
+            </div>
+          </div>
+          <table class="table printTableSecond" id="load-out-table">
+            <thead id="load_out-table-head">
 
-            <%= render 'dashboard/OUT/components/load_outs_table_head' %>
-        </thead>
-        <tbody id='load_out-list'>
-          <%= render 'dashboard/OUT/components/load_outs_rows' %>
-        </tbody>
-      </table>
-      <div id="load_out-nav" class="nav d-flex flex-column ">
-        <%= render 'dashboard/OUT/components/nav_pagination' %>
+                <%= render 'dashboard/OUT/components/load_outs_table_head' %>
+            </thead>
+            <tbody id='load_out-list'>
+              <%= render 'dashboard/OUT/components/load_outs_rows' %>
+            </tbody>
+          </table>
+          <div id="load_out-nav" class="nav d-flex flex-column ">
+            <%= render 'dashboard/OUT/components/nav_pagination' %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

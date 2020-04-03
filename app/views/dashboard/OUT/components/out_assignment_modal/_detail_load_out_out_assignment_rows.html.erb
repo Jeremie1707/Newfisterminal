@@ -16,10 +16,15 @@
   <td><%= assignment.cost %></td>
   <td><%= assignment.div_cost %></td>
   <td><%= assignment.other_ref %></td>
-  <td><%= assignment.note %></td>
+  <!-- <td><%= assignment.note %></td> -->
   <td><%=link_to '<i class="fas fa-pen"></i>'.html_safe, edit_modal_out_assignment_path(id: assignment), method: :post, remote: true %></td>
   <td><%=link_to '<i class="fas fa-trash-alt"></i>'.html_safe, out_assignment_path(id: assignment), method: :delete, remote: true, data: {confirm: "Are you sure you want to delete this Assignment?"}%></td>
 </tr>
+<% if assignment.note.present? %>
+<tr>
+   <td></td><td colspan="11"><strong>Note:  </strong><em><%= assignment.note %><em></td>
+</tr>
+<% end %>
   <% if assignment.number_of_boxe == nil %>
   <% else %>
     <% @total_number_of_boxe += assignment.number_of_boxe %>

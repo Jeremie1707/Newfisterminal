@@ -1,8 +1,9 @@
+<h5><strong>Register</strong> Incoming</h5>
 <%= simple_form_for [@load_in], :remote => true  do |f| %>
 <% if current_user.admin == true %>
-  <%= f.association :t1_customer, label: "Select customer",collection: T1Customer.where.not("id = ?", current_user.t1_customer_id) %>
+<%= f.association :t1_customer, label: "Select customer",collection: T1Customer.where.not("id = ?", current_user.t1_customer_id) %>
 <% else %>
-  <%= f.hidden_field :t1_customer, value: current_user.t1_customer_id%>
+<%= f.hidden_field :t1_customer, value: current_user.t1_customer_id%>
 <% end %>
 <%= f.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline%>
 <%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["TRUCK TO TRUCK", "TRUCK TERMINAL TRUCK", "PICKING"], wrapper: :vertical_collection_inline %>
@@ -17,42 +18,49 @@
     <%= f.input :trailer_nr, label: false, placeholder: "Trailer_nr"%>
   </div>
 </div>
-<div class="d-flex justify-content-between">
-  <div class="mr-1">
-    <label class="string required" for="load_in_in_assignments_attributes_number_of_boxe"></label>
-    <input class="form-control" label = "false" type="text" placeholder="Boxe nr" name="load_in[in_assignments_attributes][][number_of_boxe]">
-    <% if @load_in.errors["in_assignments.number_of_boxe"].present?  %>
-    <div class="invalid-message"><%= @load_in.errors["in_assignments.number_of_boxe"][0] %></div>
-    <% end %>
+<%= f.input :trip_ref, label: false, placeholder: "Outgoing Ref."%>
+<a class="m-2" data-toggle="collapse" href="#form_assignment" role="button" aria-expanded="false" aria-controls="form_assignment"><i class="fas fa-plus-circle mr-2 my-2"></i>Add Assignment infos</a>
+<div class="collapse" id="form_assignment">
+  <div class="d-flex justify-content-between">
+    <div class="mr-1">
+      <label class="string required" for="load_in_in_assignments_attributes_number_of_boxe"></label>
+      <input class="form-control" label = "false" type="text" placeholder="Boxe nr" name="load_in[in_assignments_attributes][][number_of_boxe]" value = "<%= @load_in.in_assignments.first.number_of_boxe%>">
+      <% if @load_in.errors["in_assignments.number_of_boxe"].present?  %>
+      <div class="invalid-message"><%= @load_in.errors["in_assignments.number_of_boxe"][0] %></div>
+      <% end %>
+    </div>
+    <div>
+      <label class="string required" for="load_in_in_assignments_attributes_net_weight"></label>
+      <input class="form-control" label = "false" type="text" placeholder="Net weight" name="load_in[in_assignments_attributes][][net_weight]" value = "<%= @load_in.in_assignments.first.net_weight%>">
+      <% if @load_in.errors["in_assignments.net_weight"].present?  %>
+      <div class="invalid-message"><%= @load_in.errors["in_assignments.net_weight"][0] %></div>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <label class="string required" for="load_in_in_assignments_attributes_net_weight"></label>
-    <input class="form-control" label = "false" type="text" placeholder="Net weight" name="load_in[in_assignments_attributes][][net_weight]">
-    <% if @load_in.errors["in_assignments.net_weight"].present?  %>
-    <div class="invalid-message"><%= @load_in.errors["in_assignments.net_weight"][0] %></div>
-    <% end %>
-  </div>
-</div>
-<label class="form-group string required" for="load_in_in_assignments_attributes_packer" id="packers-list" data-packers="<%= @packers.to_json %>" ></label>
-<input class="form-control" label ="false" type="text" placeholder="Packer number" id="packer-form" name="load_in[in_assignments_attributes][][packer]" >
- <% if @load_in.errors["in_assignments.packer"].present? %>
+  <label class="form-group string required" for="load_in_in_assignments_attributes_packer" id="packers-list" data-packers="<%= @packers.to_json %>" ></label>
+  <input class="form-control" label ="false" type="text" placeholder="Packer number" id="packer-form" name="load_in[in_assignments_attributes][][packer]" value = "<%= @load_in.in_assignments.first.packer%>">
+  <% if @load_in.errors["in_assignments.packer"].present? %>
   <div class="invalid-message"><%="#{@load_in.errors["in_assignments.packer"][0]}"%></div>
   <% end %>
-<label class="string required" for="load_in_in_assignments_attributes_lot_nr"></label>
-<input class="form-control" label = "false" type="text" placeholder="Lot number" name="load_in[in_assignments_attributes][][lot_nr]" value = "<%= @load_in.in_assignments.first.lot_nr%>" >
-<% if @load_in.errors["in_assignments.lot_nr"].present? %>
+  <label class="string required" for="load_in_in_assignments_attributes_lot_nr"></label>
+  <input class="form-control" label = "false" type="text" placeholder="Lot number" name="load_in[in_assignments_attributes][][lot_nr]" value = "<%= @load_in.in_assignments.first.lot_nr%>" >
+  <% if @load_in.errors["in_assignments.lot_nr"].present? %>
   <div class="invalid-message"><%="#{@load_in.errors["in_assignments.lot_nr"][0]}"%></div>
   <% end %>
-<label class="form-group string required" for="load_in_in_assignments_attributes_incoming_order_ref"></label>
-<input class="form-control" label = "false" type="text" placeholder="Order Ref." name="load_in[in_assignments_attributes][][incoming_order_ref]" value = "<%= @load_in.in_assignments.first.incoming_order_ref%>">
-<% if @load_in.errors["in_assignments.incoming_order_ref"].present? %>
+  <label class="form-group string required" for="load_in_in_assignments_attributes_incoming_order_ref"></label>
+  <input class="form-control" label = "false" type="text" placeholder="Order Ref." name="load_in[in_assignments_attributes][][incoming_order_ref]" value = "<%= @load_in.in_assignments.first.incoming_order_ref%>">
+  <% if @load_in.errors["in_assignments.incoming_order_ref"].present? %>
   <div class="invalid-message"><%="#{@load_in.errors["in_assignments.incoming_order_ref"][0]}"%></div>
   <% end %>
-<label class=" form-group string required" for="load_in_in_assignments_attributes_other_ref"></label>
-
-
+  <label class=" form-group string required" for="load_in_in_assignments_attributes_other_ref"></label>
+</div>
+<a class="m-2" data-toggle="collapse" href="#form_out_assignment" role="button" aria-expanded="false" aria-controls="form_out_assignment"><i class="fas fa-plus-circle mr-2 my-2"></i>Add Truck Out infos</a>
+<div class="collapse" id="form_out_assignment">
+  <div><%= text_field_tag([:load_out_truck_nr], "", class:'form-group form-control mb-1', placeholder:"truck nr") %></div>
+  <div><%= text_field_tag([:load_out_trailer_nr], "", class:' form-group form-control mb-1',placeholder:"trailer nr")%></div>
+</div>
 <%= f.button :submit, "Add", class: 'btn btn-success w-100'%>
- <%#= f.submit "Search", class: "btn btn-primary" %>
+<%#= f.submit "Search", class: "btn btn-primary" %>
 
 <% end %>
 

@@ -1,4 +1,4 @@
-
+<h5><strong>Register</strong> Outgoing</h5>
 <%= simple_form_for [@load_out], :remote => true  do |f| %>
 
 <% if current_user.admin == true %>
@@ -16,12 +16,15 @@
 
 <div class="d-flex justify-content-between">
   <div class="mr-1">
-    <%= f.input :truck_nr, label: false, placeholder: "Truck_nr"%>
+    <%= f.input :truck_nr, label: false, placeholder: "Truck nr"%>
   </div>
   <div>
-    <%= f.input :trailer_nr, label: false, placeholder: "Trailer_nr"%>
+    <%= f.input :trailer_nr, label: false, placeholder: "Trailer nr"%>
   </div>
 </div>
+<a class="m-2" data-toggle="collapse" href="#form_out_assignment" role="button" aria-expanded="false" aria-controls="form_out_assignment"><i class="fas fa-plus-circle mr-2 my-2"></i>Add Assignment infos</a>
+<div class="collapse" id="form_out_assignment">
+<%= f.input :trip_ref, label: false, placeholder: "Incoming Ref."%>
 <div class="d-flex justify-content-between">
   <div class="mr-1">
     <label class="string required" for="load_out_out_assignments_attributes_number_of_boxe"></label>
@@ -54,7 +57,8 @@
   <div class="invalid-message"><%= flash[:error_load_out][0]["out_assignments.incoming_order_ref"][0] %></div>
 <% end %>
 <label class=" form-group string required" for="load_out_out_assignments_attributes_other_ref"></label>
+</div>
 
-<%= f.button :submit, "Add", class: 'btn btn-warning w-100' %>
+<%= f.button :submit, "Add", class: 'btn btn-sm btn-warning w-100' %>
 
 <% end %>

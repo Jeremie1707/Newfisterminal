@@ -1,3 +1,4 @@
+<h5><strong>Register</strong> Incoming</h5>
 <%= simple_form_for [@load_in], :remote => true  do |f| %>
 <% if current_user.admin == true %>
   <%= f.association :t1_customer, label: "Select customer",collection: T1Customer.where.not("id = ?", current_user.t1_customer_id) %>
@@ -20,8 +21,10 @@
     <%= f.input :trailer_nr, label: false, placeholder: "Trailer_nr"%>
   </div>
 </div>
-
-<div class="d-flex justify-content-between">
+<%= f.input :trip_ref, label: false, placeholder: "Outgoing Ref."%>
+<a class="m-2" data-toggle="collapse" href="#form_in_assignment" role="button" aria-expanded="false" aria-controls="form_in_assignment"><i class="fas fa-plus-circle mr-2 my-2"></i>Add Assignment infos</a>
+<div class="collapse" id="form_in_assignment">
+  <div class="d-flex justify-content-between">
   <div class="mr-1">
     <label class="string required" for="load_in_in_assignments_attributes_number_of_boxe"></label>
     <input class="form-control" label = "false" type="text" placeholder="Boxe nr" name="load_in[in_assignments_attributes][][number_of_boxe]">
@@ -54,9 +57,14 @@
   <div class="invalid-message"><%= flash[:error_load_in][0]["in_assignments.incoming_order_ref"][0] %></div>
 <% end %>
 <label class=" form-group string required" for="load_in_in_assignments_attributes_other_ref"></label>
+</div>
+<a class="m-2" data-toggle="collapse" href="#form_out_assignment" role="button" aria-expanded="false" aria-controls="form_out_assignment"><i class="fas fa-plus-circle mr-2 my-2"></i>Add Truck Out infos</a>
+<div class="collapse" id="form_out_assignment">
+  <div><%= text_field_tag([:load_out_truck_nr], "", class:'form-group form-control mb-1', placeholder:"truck nr") %></div>
+  <div><%= text_field_tag([:load_out_trailer_nr], "", class:' form-group form-control mb-1',placeholder:"trailer nr")%></div>
+</div>
 
-
-<%= f.button :submit, "Add", class: 'btn btn-success w-100'%>
+<%= f.button :submit, "Add", class: 'btn btn-success btn-sm w-100'%>
  <%#= f.submit "Search", class: "btn btn-primary" %>
 
 <% end %>

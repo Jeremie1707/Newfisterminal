@@ -67,7 +67,9 @@ class LoadInsController < ApplicationController
       @load_out = LoadOut.new(t1_customer_id: params[:load_in][:t1_customer_id],
                               type_of_service: params[:load_in][:type_of_service],
                               note: params[:load_in][:note],
-                              total_weight: params[:load_in][:total_weight],)
+                              total_weight: params[:load_in][:total_weight],
+                              truck_nr: params[:load_out_truck_nr],
+                              trailer_nr: params[:load_out_trailer_nr])
       @load_out.save
 
       @out_assignment = OutAssignment.new(load_out_id: @load_out.id,
@@ -76,6 +78,7 @@ class LoadInsController < ApplicationController
                                           other_ref: params[:load_in][:in_assignments_attributes][0][:other_ref],
                                           packer: params[:load_in][:in_assignments_attributes][0][:packer],
                                           number_of_boxe: params[:load_in][:in_assignments_attributes][0][:number_of_boxe],
+                                          number_of_pallet: params[:load_in][:in_assignments_attributes][0][:number_of_pallet],
                                           net_weight: params[:load_in][:in_assignments_attributes][0][:net_weight])
        @out_assignment.save
 
@@ -131,7 +134,7 @@ class LoadInsController < ApplicationController
 
   def strong_params
     params.require(:load_in).permit(
-    :t1_customer_id, :status, :arrival_date, :truck_nr, :trailer_nr, :type_of_service,:note, :in_assignments_attributes => [ :packer,:number_of_boxe,:net_weight, :lot_nr, :incoming_order_ref, :other_ref]
+    :t1_customer_id, :status, :arrival_date, :truck_nr, :trailer_nr, :type_of_service,:note,:trip_ref, :in_assignments_attributes => [ :packer,:number_of_boxe,:net_weight, :lot_nr, :incoming_order_ref, :other_ref]
   )
   end
 
