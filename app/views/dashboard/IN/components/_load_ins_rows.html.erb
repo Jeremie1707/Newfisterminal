@@ -3,19 +3,23 @@
 <tr id="load_in_row_single-<%= load_in.id %>">
   <td class="load-in-list-div clickable" id="load_ins_rows-<%= load_in.id %>" data-toggle="collapse" data-target="#accordeon-load_in-<%= load_in.id %>"><i class="far fa-plus-square"></i></td>
 
-
+  <!-- <td><%= load_in.t1_customer.name %></td> -->
+  <td><%= load_in.reference  %></td>
   <td><%= load_in.truck_nr %></td>
   <td><%= load_in.trailer_nr %></td>
+  <td><%= load_in.trip_ref %></td>
+  <td><%= load_in.in_assignments.first.packer %></td>
+  <td><%= load_in.in_assignments.sum(:number_of_boxe) %></td>
   <td><%= load_in.total_weight %></td>
   <td><%= load_in.status %></td>
   <td><%= load_in.type_of_service %></td>
-  <td><%= load_in.t1_customer.name %></td>
+
   <%if load_in.arrival_date != nil %>
-  <td><%= load_in.arrival_date.strftime("%d/%m/%Y %H:%M") %></td>
+  <td><%= load_in.arrival_date.strftime("%d/%m/%Y") %></td>
   <%else%>
   <td><%= load_in.arrival_date %></td>
   <%end%>
-  <td><%= load_in.reference  %></td>
+
 
 
   <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_load_in_path(load_in: load_in), method: :post, remote: true %></td>
@@ -23,28 +27,29 @@
 <% if !load_in.in_assignments.nil? %>
 <tr class="in-assignment-title collapse" id="accordeon-load_in-<%= load_in.id %>">
   <th></th>
-  <th>Packer</th>
+  <th colspan="3">In Assignment Number</th>
   <th>Lot Nr</th>
+  <th>Packer</th>
   <th>Boxes</th>
-  <th>Pallet</th>
   <th>Net weight</th>
+  <th>Pallet</th>
   <th>Order Ref.</th>
   <th>Other Ref.</th>
-  <th>In Assignment Number</th>
   <th></th>
 </tr>
 
   <% load_in.in_assignments.each do |assignment| %>
   <tr class="in-assignment-rows in_assignment_row_single-<%= assignment.id %> collapse" id="accordeon-load_in-<%= load_in.id %>">
     <td></td>
-    <td><%= assignment.packer %></td>
+    <td colspan="3"><%= assignment.reference %></td>
     <td><%= assignment.lot_nr %></td>
+    <td><%= assignment.packer %></td>
     <td><%= assignment.number_of_boxe %></td>
-    <td><%= assignment.number_of_pallet %></td>
     <td><%= assignment.net_weight %></td>
+    <td><%= assignment.number_of_pallet %></td>
     <td ><%= assignment.incoming_order_ref %></td>
     <td><%= assignment.other_ref %></td>
-    <td><%= assignment.reference %></td>
+
     <td></td>
   </tr>
   <% end %>

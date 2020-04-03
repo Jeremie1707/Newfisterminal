@@ -2,19 +2,22 @@
   <td class="load_out-list-div clickable" id="load_outs_rows-<%= @load_out.id %>" data-toggle="collapse" data-target="#accordeon-load_out-<%= @load_out.id %>"><i class="far fa-plus-square"></i></td>
 
 
+  <td><%= @load_out.reference  %></td>
   <td><%= @load_out.truck_nr %></td>
   <td><%= @load_out.trailer_nr %></td>
+  <td><%= @load_out.trip_ref %></td>
+  <td><%= @load_out.out_assignments.first.packer %></td>
+  <td><%= @load_out.out_assignments.sum(:number_of_boxe) %></td>
   <td><%= @load_out.total_weight %></td>
   <td><%= @load_out.status %></td>
   <td><%= @load_out.type_of_service %></td>
-  <td><%= @load_out.t1_customer.name %></td>
   <%if @load_out.departure_date != nil %>
-  <td><%= @load_out.departure_date.strftime("%d/%m/%Y %H:%M") %></td>
+  <td><%= @load_out.departure_date.strftime("%d/%m/%Y") %></td>
   <%else%>
   <td><%= @load_out.departure_date %></td>
   <%end%>
-  <td><%= @load_out.reference  %></td>
 
 
   <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_load_out_path(load_out: @load_out), method: :post, remote: true %></td>
 </tr>
+

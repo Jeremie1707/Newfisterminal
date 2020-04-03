@@ -1,32 +1,26 @@
  <% link_args = { sort: @sort, rows_per_page: @rows_per_page, query: @query, start_date: @start_date, end_date: @end_date, status: @status, t1_customer: @t1_customer, truck_nr: @truck_nr, trailer_nr: @trailer_nr, type_of_service: @type_of_service,total_weight: @total_weight, last_week: @last_week} %>
 
-
 <div>
-  <p><%= "There is a total of #{@total_load_outs} Outgoing trips" %></p>
+  <p><%= "There is a total of #{@total_load_outs} Outgoing trips " %></p>
 </div>
 <div>
-   <% link_args[:page] = 1 %>
-  <button class="btn btn-outline-secondary"><%= link_to 'First', scope_search_load_out_path(link_args), method: :post, remote: true %>
-  </button>
-  <button class="actual-page-number btn btn-outline-secondary"><%= link_to "#{@page.to_i} /#{@total_load_out_pages}", scope_search_load_out_path(link_args) %>
-  </button>
+  <% link_args[:page] = 1 %>
+  <%= link_to 'First', scope_search_load_out_path(link_args), method: :post, remote: true, class:"btn btn-sm btn-outline-secondary" %>
+  <%= link_to "#{@page.to_i} /#{@total_load_out_pages}", scope_search_load_out_path(link_args), class:"btn btn-sm btn-outline-secondary" %>
   <% if @page.to_i <= 1 %>
   <%=''%>
   <% else %>
   <% link_args[:page] = @page.to_i - 1 %>
-  <button class="btn btn-outline-secondary"><%= link_to 'Previous', scope_search_load_out_path(link_args), method: :post, remote: true %>
-  </button>
+  <%= link_to '<', scope_search_load_out_path(link_args), method: :post, remote: true, class:"btn btn-sm btn-outline-secondary" %>
   <% end %>
   <% if @page.to_i == @total_load_out_pages %>
   <%=''%>
   <% else %>
   <% link_args[:page] = @page.to_i + 1 %>
-  <button class="btn btn-outline-secondary"><%= link_to 'Next', scope_search_load_out_path(link_args), method: :post, remote: true %>
-  </button>
+ <%= link_to '>', scope_search_load_out_path(link_args), method: :post, remote: true, class:"btn btn-sm btn-outline-secondary" %>
   <% end %>
   <% link_args[:page] = @total_load_out_pages %>
-  <button class="btn btn-outline-secondary"><%= link_to 'Last', scope_search_load_out_path(link_args), method: :post, remote: true %>
-  </button>
+  <%= link_to 'Last', scope_search_load_out_path(link_args), method: :post, remote: true, class:"btn btn-sm btn-outline-secondary" %>
 </div>
 
 

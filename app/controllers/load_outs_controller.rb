@@ -88,7 +88,7 @@ class LoadOutsController < ApplicationController
 
   def strong_params
     params.require(:load_out).permit(
-    :t1_customer_id, :status, :departure_date, :truck_nr, :trailer_nr, :type_of_service,:note, :out_assignments_attributes => [ :packer, :lot_nr,:number_of_boxe,:number_of_pallet,:net_weight, :incoming_order_ref, :other_ref,:cost, :div_cost]
+    :t1_customer_id, :status, :departure_date, :truck_nr, :trailer_nr, :type_of_service,:note, :trip_ref, :out_assignments_attributes => [ :packer, :lot_nr,:number_of_boxe,:number_of_pallet,:net_weight, :incoming_order_ref, :other_ref,:cost, :div_cost]
   )
   end
 

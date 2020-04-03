@@ -13,7 +13,10 @@
     <p><%=@load_in.arrival_date%></p>
      <% end %>
   </div>
-  <div class="col-md-4 modal-detail status"><h6>Status:</h6>
+  <div class="col-md-4 modal-detail status">
+    <h6>Type of Service:</h6>
+    <p><%=@load_in.type_of_service%></p>
+    <h6>Status:</h6>
     <p><%=@load_in.status%></p>
   </div>
 </div>
@@ -29,6 +32,8 @@
     <p><%=@load_in.trailer_nr%></p>
   </div>
   <div class="col-md-8 modal-detail note">
+    <h6>Outgoing Ref.:</h6>
+    <p><%=@load_in.trip_ref%></p>
     <h6>Note:</h6>
     <p><%=@load_in.note%></p>
   </div>

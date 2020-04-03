@@ -2,20 +2,25 @@
 
  <tr>
             <th class="clickable" data-toggle="collapse" data-target=".collapse"><i class="fas fa-plus-circle"></i></th>
+            <!-- <th>Customer</th> -->
+            <% link_args[:sort] = "reference_desc"%>
+            <th>Trip Number<%= link_to  "⬆︎", scope_search_load_in_path(link_args), method: :post, remote: true %><% link_args[:sort] = "reference_asc"%><%= link_to  "⬇︎", scope_search_load_in_path(link_args), method: :post, remote: true %></th>
               <% link_args[:sort] = "truck_nr_desc" %>
             <th>Truck<%= link_to "⬆︎", scope_search_load_in_path(link_args), method: :post, remote: true %><% link_args[:sort] = "truck_nr_asc" %><%= link_to  "⬇︎", scope_search_load_in_path(link_args), method: :post,remote: true %></th>
               <% link_args[:sort] = "trailer_nr_desc" %>
             <th>Trailer<%= link_to  "⬆︎", scope_search_load_in_path(link_args), method: :post,remote: true %><% link_args[:sort] = "trailer_nr_asc" %><%= link_to  "⬇︎", scope_search_load_in_path(link_args), method: :post, remote: true %></th>
+             <% link_args[:sort] = "trip_ref_desc" %>
+            <th>Out Ref.<%= link_to  "⬆︎", scope_search_load_in_path(link_args), method: :post,remote: true %><% link_args[:sort] = "trip_ref_asc" %><%= link_to  "⬇︎", scope_search_load_in_path(link_args), method: :post, remote: true %></th>
+            <th>Packer</th>
+            <th>Boxes</th>
               <% link_args[:sort] = "total_weight_desc"%>
             <th>Net Weight<%= link_to  "⬆︎", scope_search_load_in_path(link_args), method: :post, remote: true %><% link_args[:sort] = "total_weight_asc"%><%= link_to  "⬇︎", scope_search_load_in_path(link_args), method: :post, remote: true %></th>
-
               <% link_args[:sort] = "status_desc"%>
             <th>Status<%= link_to  "⬆︎", scope_search_load_in_path(link_args), method: :post,remote: true %><% link_args[:sort] = "status_asc"%><%= link_to  "⬇︎", scope_search_load_in_path(link_args), method: :post,remote: true %></th>
             <% link_args[:sort] = "type_of_service_desc"%>
             <th>Type<%= link_to  "⬆︎", scope_search_load_in_path(link_args), method: :post,remote: true %><% link_args[:sort] = "type_of_service_asc"%><%= link_to  "⬇︎", scope_search_load_in_path(link_args), method: :post,remote: true %></th>
-            <th><%=  "Customer" %></th>
+
             <% link_args[:sort] = "arrival_date_desc"%>
             <th>Arrival date<%= link_to  "⬆︎", scope_search_load_in_path(link_args), method: :post,remote: true %><% link_args[:sort] = "arrival_date_asc"%><%= link_to  "⬇︎", scope_search_load_in_path(link_args), method: :post,remote: true %></th>
-            <% link_args[:sort] = "reference_desc"%>
-            <th>Trip Number<%= link_to  "⬆︎", scope_search_load_in_path(link_args), method: :post, remote: true %><% link_args[:sort] = "reference_asc"%><%= link_to  "⬇︎", scope_search_load_in_path(link_args), method: :post, remote: true %></th>
+
           </tr>
