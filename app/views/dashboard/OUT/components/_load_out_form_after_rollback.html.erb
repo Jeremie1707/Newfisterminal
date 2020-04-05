@@ -6,8 +6,8 @@
 <% else %>
 <%= f.hidden_field :t1_customer, value: current_user.t1_customer_id%>
 <% end %>
-<%= f.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
-<%= f.input :type_of_service, label: false, placeholder: "Type of service", as: :radio_buttons,  collection: ["TRUCK TO TRUCK", "TRUCK TERMINAL TRUCK", "PICKING"], wrapper: :vertical_collection_inline %>
+<%= f.input :status,label: "Status:",as: :radio_buttons, collection: LoadOut.statuses.keys.map { |w| [w.humanize.upcase, w] }, checked: :in%>
+<%= f.input :type_of_service,label: "Type of service:",as: :radio_buttons, collection: LoadOut.type_of_services.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline, checked: :truck_to_truck %>
 <%= f.input :departure_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "departure date?" %>
 <%= f.input :note, label: false,as: :text, placeholder: "add a note"%>
 

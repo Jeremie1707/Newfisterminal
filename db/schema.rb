@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_03_062717) do
+ActiveRecord::Schema.define(version: 2020_04_04_121506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,11 +74,11 @@ ActiveRecord::Schema.define(version: 2020_04_03_062717) do
   create_table "load_ins", force: :cascade do |t|
     t.string "reference"
     t.bigint "t1_customer_id"
-    t.string "status"
+    t.integer "status"
     t.datetime "arrival_date"
     t.string "truck_nr"
     t.string "trailer_nr"
-    t.string "type_of_service"
+    t.integer "type_of_service"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "note"
@@ -90,11 +90,11 @@ ActiveRecord::Schema.define(version: 2020_04_03_062717) do
   create_table "load_outs", force: :cascade do |t|
     t.string "reference"
     t.bigint "t1_customer_id"
-    t.string "status"
+    t.integer "status"
     t.datetime "departure_date"
     t.string "truck_nr"
     t.string "trailer_nr"
-    t.string "type_of_service"
+    t.integer "type_of_service"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "note"

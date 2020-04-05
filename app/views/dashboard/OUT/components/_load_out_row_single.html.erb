@@ -9,8 +9,8 @@
   <td><%= @load_out.out_assignments.first.packer %></td>
   <td><%= @load_out.out_assignments.sum(:number_of_boxe) %></td>
   <td><%= @load_out.total_weight %></td>
-  <td><%= @load_out.status %></td>
-  <td><%= @load_out.type_of_service %></td>
+  <td><%= @load_out.status.humanize.upcase  %></td>
+  <td><%= @load_out.type_of_service.humanize.upcase  %></td>
   <%if @load_out.departure_date != nil %>
   <td><%= @load_out.departure_date.strftime("%d/%m/%Y") %></td>
   <%else%>
