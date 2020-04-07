@@ -1,3 +1,4 @@
+<h6><strong>Outgoing Trip Details: </strong></h6>
 <%= simple_form_for([@load_out],remote: true) do |form| %>
   <div class="row">
     <div class="col-md-4 modal-detail load_out-company" >
@@ -6,7 +7,7 @@
       <% if current_user.admin == true %>
         <%= form.association :t1_customer, label: "Select customer",collection: T1Customer.where.not("id = ?", current_user.t1_customer_id) %>
       <% else %>
-      <p><%=@load_out.t1_customer.name%></p>
+      <p><%=@load_out.t1_customer&.name%></p>
       <% end %>
       </div>
     </div>
@@ -15,8 +16,8 @@
       <%= form.input :departure_date, as: :datetime, label: false, placeholder: "departure date?" %>
     </div>
     <div class="col-md-4 modal-detail status">
-      <%= form.input :type_of_service, label: "Type of service", collection: ["TRUCK TO TRUCK","TRUCK TERMINAL TRUCK","PICKING"] %>
-      <%= form.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
+      <%= form.input :type_of_service,label: "Type of service:",as: :radio_buttons, collection: LoadOut.type_of_services.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline%>
+      <%= form.input :status,label: "Status:",as: :radio_buttons, collection: LoadOut.statuses.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline%>
     </div>
   </div>
   <div class="row mb-2">
@@ -38,7 +39,7 @@
   </div>
   <div class="row ">
     <div class="col-md-3 d-flex flex-row">
-      <%= form.button :submit, value:"update Load In", class:"btn btn-success mb-2"%>
+      <%= form.button :submit, value:"update Load Out", class:"btn btn-success mb-2"%>
       <div id="load_out-form-edit-close">
            <button type="button" class="btn btn-outline-secondary ml-1 ">Close</button>
         </div>

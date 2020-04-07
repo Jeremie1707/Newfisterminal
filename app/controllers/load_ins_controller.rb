@@ -6,14 +6,25 @@ class LoadInsController < ApplicationController
      # format.html
       format.pdf do
         render pdf: "load_ins",
-              header: { right: '[page] of [topage]' },  # Excluding ".pdf" extension.
+              header: {
+                        html:{ template: 'load_ins/header.html.erb',
+                              layout:'in_pdf',
+                              orientation: 'Landscape',
+                              dpi: 75,
+                              margin:  {   top: 0,                     # default 10 (mm)
+                                            bottom: 0,
+                                            left: 0,
+                                            right: 0 },
+                              }
+                              },
+              footer: {right: '[page] of [topage]'}, # Excluding ".pdf" extension.
               template: 'load_ins/show.html.erb',
               layout: 'in_pdf',
               orientation: 'Landscape',
               dpi: 75,
 
-               margin:  {   top: 5,                     # default 10 (mm)
-                            bottom: 0,
+               margin:  {   top: 40,                     # default 10 (mm)
+                            bottom: 5,
                             left: 0,
                             right: 0 }
 
@@ -37,7 +48,7 @@ class LoadInsController < ApplicationController
         @in_assignment.set_reference
         @load_in.total_weight = @load_in.in_assignments.sum(:net_weight)
         @load_in.save
-        if @load_in.type_of_service == "TRUCK TO TRUCK" || @load_in.type_of_service == "TRUCK TERMINAL TRUCK"
+        if @load_in.truck_to_truck? || @load_in.truck_terminal_truck?
           if create_load_out_and_out_assignment(params)
             flash[:notice] = "Load In and Load Out were successfully created."
           format.html { redirect_to dashboard_index_path}

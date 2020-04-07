@@ -7,7 +7,7 @@
   <th scope="row"><%= assignment.order_index %></th>
    <td><%= assignment.reference %></td>
   <td><%= assignment.packer %></td>
-  <td><%= assignment.recipient.name %></td>
+  <td><%= assignment.recipient&.name %></td>
   <td><%= assignment.lot_nr %></td>
   <td><%= assignment.incoming_order_ref %></td>
   <td><%= assignment.number_of_boxe %></td>

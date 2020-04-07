@@ -1,4 +1,6 @@
 class LoadOut < ApplicationRecord
+  enum status: { out: 0, in: 1, done: 2 }
+  enum type_of_service: { truck_to_truck: 0, truck_terminal_truck: 1, picking: 2 }
   before_create :formating_truck_nr, :formating_trailer_nr
   validates :reference, uniqueness: true
   include PgSearch::Model

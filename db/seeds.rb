@@ -153,11 +153,11 @@ counter = 0
 1000.times do
 loadin_attributes = {
   t1_customer_id: rand(2..5),
-  status: status_loadin[rand(0..1)],
+  status: rand(0..2),
   arrival_date: Time.new(2020, 1, 3),
   truck_nr: truck_nr_in[rand(0..4)],
   trailer_nr: trailer_nr_in[rand(0..4)],
-  type_of_service: type_of_service[rand(0..2)],
+  type_of_service: rand(0..2),
   reference: "#{counter + 1}-LI"
 
   }
@@ -267,9 +267,10 @@ counter = 0
 1000.times do
 loadout_attributes = {
   t1_customer_id: rand(2..5),
-  status: status_loadout[rand(0..1)],
+  status: rand(0..2),
   departure_date: Time.new(2020, 1, 4),
   truck_nr: truck_nr_out[rand(0..4)],
+  type_of_service: rand(0..2),
   trailer_nr: trailer_nr_out[rand(0..4)],
   reference: "#{counter + 1}-LO"
 }

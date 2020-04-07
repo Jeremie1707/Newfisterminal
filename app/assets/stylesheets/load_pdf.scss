@@ -14,7 +14,6 @@
     margin: 0;
     padding: 0;
     max-width: none;
-
   }
   .line-bold {
     border-bottom: solid 2px black;
@@ -22,14 +21,42 @@
   .line-extra-bold {
     border-bottom: solid 4px black;
   }
-
   p {
     margin:0;
+
   }
+  .title {
+      font-weight:lighter;
+      font-size: 0.9rem;
+      margin:0;
+    }
 
   .text-bold {
     font-weight: bolder;
   }
-
 }
 
+.pdf-header {
+  font-family: "Open Sans";
+  margin: 0rem;
+  padding: 0rem;
+  h4 {
+    font-weight: 600;
+    margin:0;
+  }
+  h6 {
+    font-weight: 300;
+    margin:0;
+  }
+  p {
+    font-weight:lighter;
+    font-size: 0.9rem;
+    margin:0;
+  }
+  .line-bold {
+    border-bottom: solid 2px black;
+  }
+  .line-extra-bold {
+    border-bottom: solid 4px black;
+  }
+}
