@@ -1,8 +1,8 @@
-
+<h6><strong>Incoming Trip Details: </strong></h6>
 <div class="row">
   <div class="col-md-4 modal-detail load_in-company" >
     <h6>Company name:</h6>
-    <p><%=@load_in.t1_customer.name%></p>
+    <p><%=@load_in.t1_customer&.name%></p>
     <h6>Total Net Weight of the load:</h6>
     <p><%=@load_in.total_weight%></p>
   </div>
@@ -15,9 +15,9 @@
   </div>
   <div class="col-md-4 modal-detail status">
     <h6>Type of Service:</h6>
-    <p><%=@load_in.type_of_service%></p>
+    <p><%=@load_in.type_of_service.humanize.upcase%></p>
     <h6>Status:</h6>
-    <p><%=@load_in.status%></p>
+    <p><%=@load_in.status.humanize.upcase%></p>
   </div>
 </div>
 <div class="row mb-2">

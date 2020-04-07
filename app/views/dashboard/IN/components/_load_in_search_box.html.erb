@@ -43,13 +43,8 @@
 
       </div>
     </div>
-
-  <%#= select_tag(:t1_customer, options_for_select() %>
-
-  <%= hidden_field_tag :sort, @sort %>
-  <%= hidden_field_tag :rows_per_page, @rows_per_page %>
-
+  <%= form.hidden_field :sort, value: @sort %>
+  <%= form.hidden_field :rows_per_page, value: @rows_per_page %>
 </form>
 </div>
 <% end %>
-

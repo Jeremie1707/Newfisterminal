@@ -13,12 +13,8 @@
   <td><%= load_in.total_weight %></td>
   <td><%= load_in.status.humanize.upcase  %></td>
   <td><%= load_in.type_of_service.humanize.upcase  %></td>
+  <td><%= load_in.arrival_date&.strftime("%d/%m/%Y") %></td>
 
-  <%if load_in.arrival_date != nil %>
-  <td><%= load_in.arrival_date.strftime("%d/%m/%Y") %></td>
-  <%else%>
-  <td><%= load_in.arrival_date %></td>
-  <%end%>
 
 
 

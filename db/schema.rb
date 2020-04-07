@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_04_04_121506) do
   create_table "load_ins", force: :cascade do |t|
     t.string "reference"
     t.bigint "t1_customer_id"
-    t.integer "status"
+    t.integer "status", default: 0, null: false
     t.datetime "arrival_date"
     t.string "truck_nr"
     t.string "trailer_nr"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2020_04_04_121506) do
   create_table "load_outs", force: :cascade do |t|
     t.string "reference"
     t.bigint "t1_customer_id"
-    t.integer "status"
+    t.integer "status", default: 1, null: false
     t.datetime "departure_date"
     t.string "truck_nr"
     t.string "trailer_nr"

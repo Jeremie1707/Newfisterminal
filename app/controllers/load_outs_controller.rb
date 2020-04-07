@@ -11,14 +11,25 @@ class LoadOutsController < ApplicationController
      # format.html
       format.pdf do
         render pdf: "load_outs",
-              header: { right: '[page] of [topage]' },  # Excluding ".pdf" extension.
+              header: {
+                        html:{ template: 'load_outs/header.html.erb',
+                              layout:'out_pdf',
+                              orientation: 'Landscape',
+                              dpi: 75,
+                              margin:  {   top: 0,                     # default 10 (mm)
+                                            bottom: 0,
+                                            left: 0,
+                                            right: 0 },
+                              }
+                              },
+              footer: {right: '[page] of [topage]'}, # Excluding ".pdf" extension.
               template: 'load_outs/show.html.erb',
               layout: 'out_pdf',
               orientation: 'Landscape',
               dpi: 75,
 
-               margin:  {   top: 5,                     # default 10 (mm)
-                            bottom: 0,
+               margin:  {   top: 40,                     # default 10 (mm)
+                            bottom: 5,
                             left: 0,
                             right: 0 }
 

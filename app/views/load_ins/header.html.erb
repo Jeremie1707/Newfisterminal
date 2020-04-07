@@ -1,0 +1,66 @@
+<div>
+  <div class="pdf-header">
+    <div class="header">
+      <div class="d-flex flex-row">
+        <div class="ml-3 col-4">
+          <p>DATE AND TIME:</p>
+          <h4><%=@load_in.arrival_date&.strftime("%A - %d.%m.%Y - %R")%></h4>
+        </div>
+        <div class="col-4">
+          <h4>INCOMING TRIP: <%=@load_in.reference%></h4>
+        </div>
+        <div class="col-4">
+          <p>CUSTOMER:</p>
+          <h4><%=@load_in.t1_customer&.name%></h4>
+          <p>Printed at: <%= Time.now.strftime("%d.%m.%Y - %R") %>
+        </div>
+      </div>
+
+      <div class="row ml-3">
+        <div class="col-2 " >
+          <p>TRUCK:</p>
+        </div>
+        <div class="col-2" >
+          <p>TRAILER/UNIT:</p>
+        </div>
+        <div class="col-2" >
+          <p>PACKERS:</p>
+        </div>
+      </div>
+      <div class="d-flex line-bold"></div>
+      <div class="row ml-3 mb-2">
+        <div class="col-2" >
+          <h4><%=@load_in.truck_nr%></h4>
+        </div>
+        <div class="col-2" >
+          <h4><%=@load_in.trailer_nr%></h4>
+        </div>
+        <div class="col-4" >
+          <% @packer_list = [] %>
+          <% @load_in.in_assignments.order("order_index ASC").each do |assignment| %>
+          <% @packer_list << assignment.packer %>
+          <% end %>
+          <span><h4><%= @packer_list.uniq.join(" / ") %></h4></span>
+        </div>
+      </div>
+      <div class="col-2 ml-3" >
+        <p>ASSIGNMENTS:</p>
+      </div>
+      <div class="d-flex line-bold"></div>
+      <div class="row ml-3">
+        <div class="col-2" >
+          <p>POSITION:</p>
+        </div>
+        <div class="col-2" >
+         <p>ASSIGNMENT REF:</p>
+       </div>
+       <div class="col-2" >
+         <p>LOAD ADDRESS:</p>
+       </div>
+       <div class="col-2" >
+         <p>RECIPIENT:</p>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>

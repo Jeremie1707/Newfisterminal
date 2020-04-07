@@ -11,7 +11,7 @@
           <%= button_to 'update Load Out', edit_load_out_path(id: @load_out),method: :get, remote: true, class:'btn btn-outline-success ml-2'%>
         </div>
          <div id="load_out-print-button">
-          <%= button_to 'Print', load_out_path(@load_out, format: :pdf),method: :get, class:'btn btn-outline-primary ml-2'%>
+          <%= link_to 'Print', load_out_path(@load_out, format: :pdf), target: "_blank",method: :get, class:'btn btn-outline-primary ml-2'%>
         </div>
         <!-- <button id="btnPrint" type="button" class="btn btn-outline-primary ml-2">Print</button> -->
 
@@ -24,6 +24,7 @@
          <%= render 'dashboard/OUT/components/load_out_modal/detail_load_out_global' %>
         <% end %>
        <div>
+        <h6><strong>Assignments Details: </strong></h6>
         <%=link_to '<i class="far fa-plus-square mr-1"></i>Add an Assignment'.html_safe, create_modal_out_assignment_path(load_out: @load_out), method: :post, remote: true%>
       </div>
 

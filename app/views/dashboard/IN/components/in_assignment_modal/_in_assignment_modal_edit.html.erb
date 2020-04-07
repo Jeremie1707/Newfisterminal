@@ -9,7 +9,7 @@
       <%= form.input :order_index, as: :string, label: false, placeholder: "Position" %>
       <label class="form-group string required" for="in_assignments_attributes_packer" id="packers-list-modal" data-packers="<%= @packers.to_json %>" ></label>
       <input class="form-control form-group" label ="false" type="text" placeholder="Packer number" id="packer-form-modal" name="in_assignment[packer]" value = "<%= @in_assignment.packer%>" >
-      <%= form.association :recipient, label: false, input: Recipient.all, selected: [@in_assignment.recipient_id] %>
+       <%= form.association :recipient, label: false, input: Recipient.all, include_blank: true, prompt: "Select a Recipient" %>
       <%= form.input :lot_nr, as: :string, label: false, placeholder: "Lot" %>
       <%= form.input :incoming_order_ref, as: :string, label: false, placeholder: "Incoming order" %>
        <%= form.button :submit, value:"update", class:"btn btn-success"%></td>

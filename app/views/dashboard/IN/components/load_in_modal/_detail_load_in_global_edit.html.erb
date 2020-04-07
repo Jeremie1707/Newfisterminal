@@ -1,3 +1,4 @@
+<h6><strong>Incoming Trip Details: </strong></h6>
 <%= simple_form_for([@load_in],remote: true) do |form| %>
   <div class="row">
     <div class="col-md-4 modal-detail load_in-company" >
@@ -15,8 +16,8 @@
       <%= form.input :arrival_date, as: :datetime, label: false, placeholder: "arrival date?" %>
     </div>
     <div class="col-md-4 modal-detail status">
-      <%= form.input :type_of_service, label: "Type of service", collection: ["TRUCK TO TRUCK","TRUCK TERMINAL TRUCK","PICKING"] %>
-      <%= form.input :status, label: "Status", as: :radio_buttons, collection: ["IN", "OUT"], wrapper: :vertical_collection_inline %>
+      <%= form.input :type_of_service,label: "Type of service:",as: :radio_buttons, collection: LoadOut.type_of_services.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline%>
+      <%= form.input :status,label: "Status:",as: :radio_buttons, collection: LoadOut.statuses.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline%>
     </div>
   </div>
   <div class="row mb-2">
