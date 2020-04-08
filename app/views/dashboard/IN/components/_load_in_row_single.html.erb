@@ -8,7 +8,7 @@
   <td><%= @load_in.in_assignments.first.packer %></td>
   <td><%= @load_in.in_assignments.sum(:number_of_boxe) %></td>
   <td><%= @load_in.total_weight %></td>
-    <td><span class="decorate-<%= load_in.status%>"><%= @load_in.status.humanize.upcase  %></span></td>
+    <td><span class="decorate-<%= @load_in.status%>"><%= @load_in.status.humanize.upcase  %></span></td>
   <td><%= @load_in.type_of_service.humanize.upcase  %></td>
   <td><%= @load_in.arrival_date&.strftime("%d/%m/%Y") %></td>
   <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_load_in_path(load_in: @load_in), method: :post, remote: true %></td>

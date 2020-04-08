@@ -10,7 +10,7 @@ class LoadIn < ApplicationRecord
   validates :t1_customer_id, :presence => { :message => "Please Select a Customer" }
 
   pg_search_scope :global_search, against: [:reference, :status, :truck_nr, :trailer_nr,:total_weight, :arrival_date, :type_of_service, :total_weight, :trip_ref], associated_against: {
-      in_assignments: [:reference, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :packer],
+      in_assignments: [:reference, :lot_nr, :incoming_order_ref,:incoming_transport_ref, :other_ref, :number_of_boxe, :number_of_pallet, :packer],
       t1_customer: [:name]
      },
       using: {

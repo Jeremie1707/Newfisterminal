@@ -5,10 +5,10 @@
 <% else %>
   <%= f.hidden_field :t1_customer, value: current_user.t1_customer_id%>
 <% end %>
-<% if flash[:error_load_in].present?  && flash[:error_load_in][0]["t1_customer_id"].present?  %>
+<%if flash[:error_load_in].present?  && flash[:error_load_in][0]["t1_customer_id"].present?  %>
   <div class="invalid-message"><%= flash[:error_load_in][0]["t1_customer_id"][0] %></div>
 <% end %>
-<%= f.input :status,label: "Status:",as: :radio_buttons, collection: LoadIn.statuses.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline, checked: :out%>
+<%= f.input :status,label: "Status:",as: :radio_buttons, collection: LoadIn.statuses.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline, checked: :out, class:"novalidate"%>
 <%= f.input :type_of_service,label: "Type of service:",as: :radio_buttons, collection: LoadIn.type_of_services.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline, checked: :truck_to_truck %>
 <%= f.input :arrival_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "arrival date?" %>
 <%= f.input :note, label: false,as: :text, placeholder: "add a note"%>
@@ -55,6 +55,11 @@
 <input class="form-control" label = "false" type="text" placeholder="Order Ref." name="load_in[in_assignments_attributes][][incoming_order_ref]">
 <% if flash[:error_load_in].present?  && flash[:error_load_in][0]["in_assignments.incoming_order_ref"].present?  %>
   <div class="invalid-message"><%= flash[:error_load_in][0]["in_assignments.incoming_order_ref"][0] %></div>
+<% end %>
+<label class="form-group string required" for="load_in_in_assignments_attributes_incoming_transport_ref"></label>
+<input class="form-control" label = "false" type="text" placeholder="Inco. Transport Ref." name="load_in[in_assignments_attributes][][incoming_transport_ref]">
+<% if flash[:error_load_in].present?  && flash[:error_load_in][0]["in_assignments.incoming_transport_ref"].present?  %>
+  <div class="invalid-message"><%= flash[:error_load_in][0]["in_assignments.incoming_transport_ref"][0] %></div>
 <% end %>
 <label class=" form-group string required" for="load_in_in_assignments_attributes_other_ref"></label>
 </div>

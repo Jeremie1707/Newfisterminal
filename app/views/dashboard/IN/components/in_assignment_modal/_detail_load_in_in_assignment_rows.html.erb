@@ -5,14 +5,15 @@
 <tr>
 
   <th scope="row"><%= assignment.order_index %></th>
-   <td><%= assignment.reference %></td>
+  <td><%= assignment.reference %></td>
   <td><%= assignment.packer %></td>
   <td><%= assignment.recipient&.name %></td>
   <td><%= assignment.lot_nr %></td>
-  <td><%= assignment.incoming_order_ref %></td>
   <td><%= assignment.number_of_boxe %></td>
   <td><%= assignment.number_of_pallet %></td>
   <td><%= assignment.net_weight %></td>
+  <td><%= assignment.incoming_order_ref %></td>
+  <td><%= assignment.incoming_transport_ref %></td>
   <td><%= assignment.other_ref %></td>
   <!-- <td><%= assignment.note %></td> -->
   <td><%=link_to '<i class="fas fa-pen"></i>'.html_safe, edit_modal_in_assignment_path(id: assignment), method: :post, remote: true %></td>
@@ -38,7 +39,7 @@
 <% end %>
 <tr>
   <td><strong>Total</strong></td>
-  <td colspan="5"></td>
+  <td colspan="4"></td>
   <td><strong><%= @total_number_of_boxe %></strong></td>
   <td><strong><%= @total_number_of_pallet %></strong></td>
   <td><strong><%= @total_net_weight %></strong></td>

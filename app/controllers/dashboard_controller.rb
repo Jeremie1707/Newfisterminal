@@ -22,6 +22,7 @@ class DashboardController < ApplicationController
                                                                                     :net_weight,
                                                                                     :lot_nr,
                                                                                     :incoming_order_ref,
+                                                                                    :incoming_transport_ref,
                                                                                     :other_ref]))
     end
 
@@ -41,6 +42,7 @@ class DashboardController < ApplicationController
                                                                                        :net_weight,
                                                                                        :lot_nr,
                                                                                        :incoming_order_ref,
+                                                                                       :incoming_transport_ref,
                                                                                        :other_ref]))
     end
 
@@ -148,10 +150,10 @@ class DashboardController < ApplicationController
   private
 
   def in_assignment_params
-    params.permit(:packer, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet,:net_weight, :load_in_id)
+    params.permit(:packer, :lot_nr, :incoming_order_ref, :incoming_transport_ref, :other_ref, :number_of_boxe, :number_of_pallet,:net_weight, :load_in_id)
   end
 
   def out_assignment_params
-    params.permit(:packer,:lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet,:net_weight, :load_out_id)
+    params.permit(:packer,:lot_nr, :incoming_order_ref, :incoming_transport_ref, :other_ref, :number_of_boxe, :number_of_pallet,:net_weight, :load_out_id)
   end
 end

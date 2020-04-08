@@ -52,6 +52,11 @@
   <% if @load_in.errors["in_assignments.incoming_order_ref"].present? %>
   <div class="invalid-message"><%="#{@load_in.errors["in_assignments.incoming_order_ref"][0]}"%></div>
   <% end %>
+  <label class="form-group string required" for="load_in_in_assignments_attributes_incoming_transport_ref"></label>
+  <input class="form-control" label = "false" type="text" placeholder="Inco. Transport Ref." name="load_in[in_assignments_attributes][][incoming_transport_ref]" value = "<%= @load_in.in_assignments.first.incoming_transport_ref%>">
+  <% if @load_in.errors["in_assignments.incoming_transport_ref"].present? %>
+  <div class="invalid-message"><%="#{@load_in.errors["in_assignments.incoming_transport_ref"][0]}"%></div>
+  <% end %>
   <label class=" form-group string required" for="load_in_in_assignments_attributes_other_ref"></label>
 </div>
 <a class="m-2" data-toggle="collapse" href="#form_out_assignment" role="button" aria-expanded="false" aria-controls="form_out_assignment"><i class="fas fa-plus-circle mr-2 my-2"></i>Add Truck Out infos</a>

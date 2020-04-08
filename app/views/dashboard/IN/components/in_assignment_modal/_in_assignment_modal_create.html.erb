@@ -1,31 +1,46 @@
 <div>
-  <%= simple_form_for([@in_assignment], html: {class: "form-inline modal-form create in-assignment-form-create"}, remote: true) do |form| %>
+  <%= simple_form_for([@in_assignment], html: {class: "modal-form create in-assignment-form-create bg-light p-1 m-1"}, remote: true) do |form| %>
   <% if @in_assignment.errors.any? %>
     <% @in_assignment.errors.full_messages.each do |message| %>
       <li class="invalid-message"><%= message %></li>
     <% end %>
   <% end %>
-  <div class="form-inline col-md-12">
-    <%= form.input :order_index, as: :string, label: false, placeholder: "Position" %>
-    <label class="form-group string required" for="in_assignments_attributes_packer" id="packers-list-modal" data-packers="<%= @packers.to_json %>" ></label>
-    <input class="form-control form-group" label ="false" type="text" placeholder="Packer number" id="packer-form-modal" name="in_assignment[packer]" >
-    <%= form.association :recipient, label: false, input: Recipient.all, include_blank: true, prompt: "Select a Recipient" %>
-      <%= form.input :lot_nr, as: :string, label: false, placeholder: "Lot" %>
-      <%= form.input :incoming_order_ref, as: :string, label: false, placeholder: "Incoming order" %>
-      <%= form.button :submit, value:"create", class:"btn btn-success"%>
-      <div id="in-assignment-form-create-close">
-      <button type="button" class="btn btn-outline-secondary ml-1 ">Close</button>
+  <div class="row">
+    <div class="form-inline col-md-12">
+      <%= form.input :order_index, as: :string, label: false, placeholder: "Position" %>
+      <label class="form-group string required" for="in_assignments_attributes_packer" id="packers-list-modal" data-packers="<%= @packers.to_json %>" ></label>
+      <input class="form-control form-group" label ="false" type="text" placeholder="Packer number" id="packer-form-modal" name="in_assignment[packer]" >
+      <%= form.association :recipient, label: false, input: Recipient.all, include_blank: true, prompt: "Select a Recipient" %>
+        <%= form.button :submit, value:"create", class:"btn btn-success"%>
+        <div id="in-assignment-form-create-close">
+        <button type="button" class="btn btn-outline-secondary ml-1 ">Close</button>
+        </div>
     </div>
   </div>
-  <div class="form-group form-inline col-md-12">
+  <div class="row">
+    <div class=" form-inline col-md-12">
       <%= form.input :number_of_boxe, as: :string, label: false, placeholder: "Boxes" %>
       <%= form.input :number_of_pallet, as: :string, label: false, placeholder: "Pallet" %>
       <%= form.input :net_weight, as: :string, label: false, placeholder: "Net Weight" %>
-      <%= form.input :other_ref, as: :string, label: false, placeholder: "Other Ref." %>
       <%= form.input :load_in_id, :as => :hidden, :input_html => { :value => @load_in.id }%>
+    </div>
   </div>
-  <div class="form-group form-inline col-md-12">
+  <div class="row">
+    <div class=" form-inline col-md-12">
+    <%= form.input :lot_nr, as: :string, label: false, placeholder: "Lot Number" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class=" form-inline col-md-12">
+    <%= form.input :incoming_order_ref, as: :string, label: false, placeholder: "Order Ref." %>
+    <%= form.input :incoming_transport_ref, as: :string, label: false, placeholder: "Inco. Transport Ref." %>
+    <%= form.input :other_ref, as: :string, label: false, placeholder: "Other Ref." %>
+    </div>
+  </div>
+  <div class="row">
+    <div class=" col-md-6 note">
     <%= form.input :note, label: false, as: :text, placeholder: "add a Note"%>
+    </div>
   </div>
 </div>
 <% end %>
