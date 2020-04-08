@@ -87,6 +87,8 @@ class LoadInsController < ApplicationController
                                           lot_nr: params[:load_in][:in_assignments_attributes][0][:lot_nr],
                                           recipient_id: params[:load_in][:in_assignments_attributes][0][:recipient_id],
                                           other_ref: params[:load_in][:in_assignments_attributes][0][:other_ref],
+                                          incoming_order_ref: params[:load_in][:in_assignments_attributes][0][:incoming_order_ref],
+                                          incoming_transport_ref: params[:load_in][:in_assignments_attributes][0][:incoming_transport_ref],
                                           packer: params[:load_in][:in_assignments_attributes][0][:packer],
                                           number_of_boxe: params[:load_in][:in_assignments_attributes][0][:number_of_boxe],
                                           number_of_pallet: params[:load_in][:in_assignments_attributes][0][:number_of_pallet],
@@ -145,7 +147,7 @@ class LoadInsController < ApplicationController
 
   def strong_params
     params.require(:load_in).permit(
-    :t1_customer_id, :status, :arrival_date, :truck_nr, :trailer_nr, :type_of_service,:note,:trip_ref, :in_assignments_attributes => [ :packer,:number_of_boxe,:net_weight, :lot_nr, :incoming_order_ref, :other_ref]
+    :t1_customer_id, :status, :arrival_date, :truck_nr, :trailer_nr, :type_of_service,:note,:trip_ref, :in_assignments_attributes => [ :packer,:number_of_boxe,:net_weight, :lot_nr, :incoming_order_ref,:incoming_transport_ref, :other_ref]
   )
   end
 

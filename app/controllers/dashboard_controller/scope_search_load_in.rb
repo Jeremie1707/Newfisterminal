@@ -1,7 +1,7 @@
 class DashboardController
 
   class ScopeSearchLoadIn < ScopeSearch
-    attr_reader :load_ins, :total_load_ins, :parameters, :start_date, :end_date, :status, :t1_customer, :truck_nr, :trailer_nr, :type_of_service, :total_weight, :last_week
+    attr_reader :load_ins, :total_load_ins, :parameters, :start_date, :end_date, :status, :t1_customer, :truck_nr, :trailer_nr, :type_of_service, :total_weight, :last_week, :remove_done
 
     def initialize(parameters = {}, current_user)
       super(parameters, current_user)
@@ -15,6 +15,7 @@ class DashboardController
       @type_of_service = parameters[:type_of_service]
       @total_weight = parameters[:total_weight]
       @last_week = parameters[:last_week]
+      @remove_done = parameters[:remove_done]
 
       if @user.admin == true
         @scope = load_in_filters.order(@sort)
@@ -45,6 +46,7 @@ class DashboardController
     def load_in_filters
     @load_ins_filtered = LoadIn.where(nil) # creates an anonymous scope
     @load_ins_filtered = @load_ins_filtered.load_in_filter_by_last_week if (@last_week.present?)
+    @load_ins_filtered = @load_ins_filtered.load_in_filter_by_remove_done if (@remove_done.present?)
     @load_ins_filtered = @load_ins_filtered.load_in_filter_by_start_date(@start_date) if (@start_date.present?)
     @load_ins_filtered = @load_ins_filtered.load_in_filter_by_end_date(@end_date) if (@end_date.present?)
     @load_ins_filtered = @load_ins_filtered.load_in_filter_by_status(@status) if @status.present?

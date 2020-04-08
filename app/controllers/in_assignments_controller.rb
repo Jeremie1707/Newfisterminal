@@ -67,6 +67,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
                                       recipient_id: params[:in_assignment][:recipient_id],
                                       other_ref: params[:in_assignment][:other_ref],
                                       incoming_order_ref: params[:in_assignment][:incoming_order_ref],
+                                      incoming_transport_ref: params[:in_assignment][:incoming_transport_ref],
                                       number_of_boxe: params[:in_assignment][:number_of_boxe],
                                       number_of_pallet: params[:in_assignment][:number_of_pallet],
                                       net_weight: params[:in_assignment][:net_weight])
@@ -94,7 +95,7 @@ before_action :set_in_assignment, only: [:edit, :update, :destroy]
 
   private
   def strong_params
-    params.require(:in_assignment).permit(:order_index, :packer, :lot_nr, :recipient_id, :note, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :net_weight, :load_in_id)
+    params.require(:in_assignment).permit(:order_index, :packer, :lot_nr, :recipient_id, :note, :incoming_order_ref, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :net_weight, :load_in_id)
   end
 
   def set_in_assignment

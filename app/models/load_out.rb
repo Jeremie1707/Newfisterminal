@@ -10,13 +10,14 @@ class LoadOut < ApplicationRecord
   validates :t1_customer_id, :presence => { :message => "Please Select a Customer" }
 
   pg_search_scope :global_search, against: [:reference, :status, :truck_nr, :trailer_nr, :departure_date, :type_of_service,:trip_ref], associated_against: {
-      out_assignments: [:reference, :lot_nr, :incoming_order_ref, :other_ref, :number_of_boxe, :number_of_pallet, :packer],
+      out_assignments: [:reference, :lot_nr, :incoming_order_ref,:incoming_transport_ref, :other_ref, :number_of_boxe, :number_of_pallet, :packer],
       t1_customer: [:name]
      },
       using: {
         tsearch: { prefix: true }
       }
   scope :load_out_filter_by_status, -> (status) { where status: status }
+  scope :load_in_filter_by_remove_done, lambda { where("status <> ?", 2) }
   scope :load_out_filter_by_last_week, lambda { where("departure_date >= ? AND departure_date <= ?", 1.week.ago, Time.now) }
   scope :load_out_filter_by_start_date, lambda {|start_date| where("departure_date >= ? ", start_date )}
   scope :load_out_filter_by_end_date, lambda {|end_date| where("departure_date <= ? ", end_date )}

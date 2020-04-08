@@ -10,7 +10,6 @@
 <%= f.input :type_of_service,label: "Type of service:",as: :radio_buttons, collection: LoadOut.type_of_services.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline, checked: :truck_to_truck %>
 <%= f.input :departure_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "departure date?" %>
 <%= f.input :note, label: false,as: :text, placeholder: "add a note"%>
-
 <div class="d-flex justify-content-between">
   <div class="mr-1">
     <%= f.input :truck_nr, label: false, placeholder: "Truck_nr"%>
@@ -18,7 +17,6 @@
   <div>
     <%= f.input :trailer_nr, label: false, placeholder: "Trailer_nr"%>
   </div>
-  <%= f.input :trip_ref, label: false, placeholder: "Incoming Ref."%>
 </div>
 <%= f.input :trip_ref, label: false, placeholder: "Incoming Ref."%>
 <a class="m-2" data-toggle="collapse" href="#form_out_assignment" role="button" aria-expanded="false" aria-controls="form_out_assignment"><i class="fas fa-plus-circle mr-2 my-2"></i>Add Assignment infos</a>
@@ -53,6 +51,11 @@
 <input class="form-control" label = "false" type="text" placeholder="Order Ref." name="load_out[out_assignments_attributes][][incoming_order_ref]" value = "<%= @load_out.out_assignments.first.incoming_order_ref%>" >
 <% if @load_out.errors["out_assignments.incoming_order_ref"].present? %>
 <div class="invalid-message"><%="#{@load_out.errors["out_assignments.incoming_order_ref"][0]}"%></div>
+<% end %>
+<label class="form-group string required" for="load_out_out_assignments_attributes_incoming_transport_ref"></label>
+<input class="form-control" label = "false" type="text" placeholder="Inco. Transport Ref." name="load_out[out_assignments_attributes][][incoming_transport_ref]" value = "<%= @load_out.out_assignments.first.incoming_transport_ref%>" >
+<% if @load_out.errors["out_assignments.incoming_transport_ref"].present? %>
+<div class="invalid-message"><%="#{@load_out.errors["out_assignments.incoming_transport_ref"][0]}"%></div>
 <% end %>
 <label class=" form-group string required" for="load_out_out_assignments_attributes_other_ref"></label>
 </div>
