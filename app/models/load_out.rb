@@ -17,6 +17,7 @@ class LoadOut < ApplicationRecord
         tsearch: { prefix: true }
       }
   scope :load_out_filter_by_status, -> (status) { where status: status }
+  scope :load_in_filter_by_remove_done, lambda { where("status <> ?", 2) }
   scope :load_out_filter_by_last_week, lambda { where("departure_date >= ? AND departure_date <= ?", 1.week.ago, Time.now) }
   scope :load_out_filter_by_start_date, lambda {|start_date| where("departure_date >= ? ", start_date )}
   scope :load_out_filter_by_end_date, lambda {|end_date| where("departure_date <= ? ", end_date )}

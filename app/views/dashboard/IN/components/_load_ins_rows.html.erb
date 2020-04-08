@@ -11,17 +11,13 @@
   <td><%= load_in.in_assignments.first.packer %></td>
   <td><%= load_in.in_assignments.sum(:number_of_boxe) %></td>
   <td><%= load_in.total_weight %></td>
-  <td><%= load_in.status.humanize.upcase  %></td>
+  <td><span class="decorate-<%= load_in.status%>"><%= load_in.status.humanize.upcase  %></span></td>
   <td><%= load_in.type_of_service.humanize.upcase  %></td>
   <td><%= load_in.arrival_date&.strftime("%d/%m/%Y") %></td>
-
-
-
-
   <td><%= link_to '<i class="fas fa-ellipsis-h"></i>'.html_safe, set_modal_load_in_path(load_in: load_in), method: :post, remote: true %></td>
 </tr>
 <% if !load_in.in_assignments.nil? %>
-<tr class="in-assignment-title collapse" id="accordeon-load_in-<%= load_in.id %>">
+<tr class="in-assignment-title collapse load_in-collapsable" id="accordeon-load_in-<%= load_in.id %>">
   <th></th>
   <th colspan="3">In Assignment Number</th>
   <th>Lot Nr</th>
@@ -35,7 +31,7 @@
 </tr>
 
   <% load_in.in_assignments.each do |assignment| %>
-  <tr class="in-assignment-rows in_assignment_row_single-<%= assignment.id %> collapse" id="accordeon-load_in-<%= load_in.id %>">
+  <tr class="in-assignment-rows in_assignment_row_single-<%= assignment.id %> collapse load_in-collapsable" id="accordeon-load_in-<%= load_in.id %>">
     <td></td>
     <td colspan="3"><%= assignment.reference %></td>
     <td><%= assignment.lot_nr %></td>
@@ -45,13 +41,10 @@
     <td><%= assignment.number_of_pallet %></td>
     <td ><%= assignment.incoming_order_ref %></td>
     <td><%= assignment.other_ref %></td>
-
     <td></td>
   </tr>
   <% end %>
-
 <% end %>
-<!-- </tr> -->
 <% end %>
 
 

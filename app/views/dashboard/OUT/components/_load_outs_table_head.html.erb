@@ -1,7 +1,7 @@
  <% link_args = { page: @page, rows_per_page: @rows_per_page, query: @query, start_date: @start_date, end_date: @end_date, status: @status, t1_customer: @t1_customer, truck_nr: @truck_nr, trailer_nr: @trailer_nr, type_of_service: @type_of_service,total_weight: @total_weight} %>
 
  <tr>
-  <th class="clickable" data-toggle="collapse" data-target=".collapse"><i class="fas fa-plus-circle"></i></th>
+  <th class="clickable" data-toggle="collapse" data-target=".load_in-collapsable"><i class="fas fa-plus-circle"></i></th>
   <!-- <th>Customer</th> -->
   <% link_args[:sort] = "reference_desc"%>
   <th>Trip Number<%= link_to  "⬆︎", scope_search_load_out_path(link_args), method: :post, remote: true %><% link_args[:sort] = "reference_asc"%><%= link_to  "⬇︎", scope_search_load_out_path(link_args), method: :post, remote: true %></th>

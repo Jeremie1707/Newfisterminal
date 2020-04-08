@@ -68,6 +68,7 @@ class DashboardController < ApplicationController
     @type_of_service = @scope_search.type_of_service
     @total_weight = @scope_search.total_weight
     @last_week = @scope_search.last_week
+    @remove_done = @scope_search.remove_done
 
   end
 
@@ -116,6 +117,7 @@ class DashboardController < ApplicationController
     @type_of_service = @scope_search.type_of_service
     @total_weight = @scope_search.total_weight
     @last_week = @scope_search.last_week
+    @remove_done = @scope_search.remove_done
   end
 
 
