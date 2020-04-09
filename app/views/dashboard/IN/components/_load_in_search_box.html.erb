@@ -35,7 +35,7 @@
         <div><%= select_tag(:t1_customer, options_from_collection_for_select(T1Customer.all, :id, :name),include_blank:"ALL CUSTOMERS", class:"form-control ml-4 ") %>
         </div>
         <% else %>
-        <%= hidden_field_tag :t1_customer, value: current_user.t1_customer_id%>
+        <%= form.hidden_field :t1_customer,value: current_user.t1_customer_id%>
         <% end %>
       </div>
         <div class=" form-group form-inline">
@@ -49,7 +49,7 @@
       </div>
     </div>
   <%= form.hidden_field :sort, value: @sort %>
-  <%= form.hidden_field :rows_per_page, value: @rows_per_page %>
+  <%= form.hidden_field :rows_per_page,value: @rows_per_page %>
 </form>
 </div>
 <% end %>
