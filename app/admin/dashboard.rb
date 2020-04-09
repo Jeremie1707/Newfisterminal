@@ -9,13 +9,12 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-    # Here is an example of a simple dashboard with columns and panels.
-    #
+
     # columns do
     #   column do
-    #     panel "Recent Posts" do
+    #     panel "Recent Incoming Trip" do
     #       ul do
-    #         Post.recent(5).map do |post|
+    #         LoadIn.recent(5).map do |post|
     #           li link_to(post.title, admin_post_path(post))
     #         end
     #       end
