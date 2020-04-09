@@ -232,7 +232,7 @@ ActiveAdmin.setup do |config|
   #
     config.namespace :admin do |admin|
       admin.build_menu :utility_navigation do |menu|
-        menu.add label: "Terminal 1", url: "/dashboard/index", html_options: { target: :blank }
+        menu.add label: "Terminal 1", url: "/dashboard/index"
         admin.add_logout_button_to_menu menu
       end
     end
