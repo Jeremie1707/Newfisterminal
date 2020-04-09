@@ -37,7 +37,15 @@
       <div class="row ml-3 mt-1">
         <div class="col-2">
           <p class="title">MARKED:</p>
-          <p class="text-bold"><%= assignment.other_ref %></p>
+          <% if assignment.incoming_order_ref.present?  %>
+          <p class="text-bold">Order Ref. : <%= assignment.incoming_order_ref %></p>
+          <% end %>
+          <% if assignment.incoming_transport_ref.present?  %>
+          <p class="text-bold">Inco. Transport Ref : <%= assignment.incoming_transport_ref %></p>
+          <% end %>
+          <% if assignment.other_ref.present?  %>
+          <p class="text-bold">Other Ref. : <%= assignment.other_ref %></p>
+          <% end %>
         </div>
         <div class="col-2">
           <p class="title">BOXES:</p>
