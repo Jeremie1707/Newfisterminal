@@ -1,5 +1,5 @@
 ActiveAdmin.register Packer do
-
+menu priority: 3
   permit_params :packer_nr,
                 :name,
                 address_attributes:[:street, :street_nr, :postcode, :city, :country, :phone_nr]

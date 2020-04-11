@@ -5,6 +5,7 @@ class OutAssignment < ApplicationRecord
   has_one :assignment, dependent: :destroy
   belongs_to :load_out
   belongs_to :recipient, optional: true
+  has_paper_trail
 
   def set_reference
     self.reference = (self.id.to_i).to_s + "-OUTA"

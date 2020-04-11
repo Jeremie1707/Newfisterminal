@@ -150,11 +150,11 @@ puts "User count  = #{User.count}"
 
 puts "---------- creating Loadins ----------"
 counter = 0
-1000.times do
+50.times do
 loadin_attributes = {
   t1_customer_id: rand(2..5),
   status: rand(0..2),
-  arrival_date: Time.new(2020, 1, 3),
+  arrival_date: Time.new(2020, rand(3..6),rand(2..28)),
   truck_nr: truck_nr_in[rand(0..4)],
   trailer_nr: trailer_nr_in[rand(0..4)],
   type_of_service: rand(0..2),
@@ -231,7 +231,7 @@ end
 puts "---------- creating IN Assignments ----------"
 counter = 0
 
-1000.times do
+50.times do
 in_assignment_attributes = {
   load_in_id: counter + 1,
   packer: packer[rand(0..4)],
@@ -264,11 +264,11 @@ end
 puts "---------- creating Loadouts ----------"
 counter = 0
 
-1000.times do
+50.times do
 loadout_attributes = {
   t1_customer_id: rand(2..5),
   status: rand(0..2),
-  departure_date: Time.new(2020, 1, 4),
+  departure_date: Time.new(2020, rand(3..6),rand(2..28)),
   truck_nr: truck_nr_out[rand(0..4)],
   type_of_service: rand(0..2),
   trailer_nr: trailer_nr_out[rand(0..4)],
@@ -283,7 +283,7 @@ end
 puts "---------- creating OUT Assignments ----------"
 counter = 0
 
-1000.times do
+50.times do
 out_assignment_attributes = {
   load_out_id: counter + 1,
   recipient_id: rand(2..5),
@@ -311,7 +311,7 @@ end
 puts "---------- creating Assignments ----------"
 counter = 0
 
-1000.times do
+50.times do
 assignment_attributes = {
   in_assignment_id: counter + 1,
   out_assignment_id: counter + 1

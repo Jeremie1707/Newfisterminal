@@ -1,17 +1,20 @@
 const printTableFirst = () => {
-  document.getElementById("btnPrintTableFirst").addEventListener('click', (event) => {
-    console.log(event);
+  if(document.getElementById('btnPrintTableFirst') != null) {
+    document.getElementById("btnPrintTableFirst").addEventListener('click', (event) => {
     event.preventDefault();
     printElement(document.querySelector(".printTableFirst"));
-  });
-}
+    });
+  };
+};
+
 const printTableSecond = () => {
-  document.getElementById("btnPrintTableSecond").addEventListener('click', (event) => {
-    console.log(event);
+  if(document.getElementById('btnPrintTableSecond') != null) {
+     document.getElementById("btnPrintTableSecond").addEventListener('click', (event) => {
     event.preventDefault();
     printElement(document.querySelector(".printTableSecond"));
-  });
-}
+    });
+  };
+};
 
 function printElement(elem) {
     var domClone = elem.cloneNode(true);
