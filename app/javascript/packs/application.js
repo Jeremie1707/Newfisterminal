@@ -3,6 +3,8 @@
 // first in their respected files in order to be available
 
 import "bootstrap";
+import Chartkick from "chartkick"
+import Chart from "chart.js"
 
 import { replaceElement } from '../components/replaceElements';
 import { showModal } from '../components/showModal';
@@ -16,9 +18,12 @@ import { packerOutAutocompleteSearch, packerAutocompleteSearch, packerModalAutoc
 import { inAssignmentClickCloseCreate, inAssignmentClickCloseEdit, loadinClickClose, outAssignmentClickCloseCreate, outAssignmentClickCloseEdit, loadoutClickClose } from '../components/modalForm';
 import { printArea, printElement } from '../packs/print';
 import { printTableFirst, printTableSecond} from '../packs/printTable';
+// import { initChart } from '../plugins/chart';
+
 
 
 initFlatpickr();
+
 window.inAssignmentClickCloseCreate = inAssignmentClickCloseCreate ;
 window.inAssignmentClickCloseEdit = inAssignmentClickCloseEdit ;
 window.loadinClickClose = loadinClickClose ;
@@ -36,11 +41,13 @@ window.packerModalAutocompleteSearch = packerModalAutocompleteSearch;
 window.packerAutocompleteSearch = packerAutocompleteSearch;
 window.packerOutAutocompleteSearch = packerOutAutocompleteSearch;
 window.initFlatpickr = initFlatpickr;
-packerAutocompleteSearch();
-packerOutAutocompleteSearch();
+
+
+
 printTableFirst();
 printTableSecond();
 
-
+packerAutocompleteSearch();
+packerOutAutocompleteSearch();
 
 

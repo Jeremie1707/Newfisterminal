@@ -5,6 +5,7 @@ class InAssignment < ApplicationRecord
   belongs_to :load_in
   belongs_to :recipient, optional: true
   has_one :assignment, dependent: :destroy
+  has_paper_trail
 
   def set_reference
     self.reference = (self.id.to_i).to_s + "-INA"

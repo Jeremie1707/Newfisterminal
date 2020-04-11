@@ -154,7 +154,7 @@ counter = 0
 loadin_attributes = {
   t1_customer_id: rand(2..5),
   status: rand(0..2),
-  arrival_date: Time.new(2020, 1, 3),
+  arrival_date: Time.new(2020, rand(3..6),rand(2..28)),
   truck_nr: truck_nr_in[rand(0..4)],
   trailer_nr: trailer_nr_in[rand(0..4)],
   type_of_service: rand(0..2),
@@ -268,7 +268,7 @@ counter = 0
 loadout_attributes = {
   t1_customer_id: rand(2..5),
   status: rand(0..2),
-  departure_date: Time.new(2020, 1, 4),
+  departure_date: Time.new(2020, rand(3..6),rand(2..28)),
   truck_nr: truck_nr_out[rand(0..4)],
   type_of_service: rand(0..2),
   trailer_nr: trailer_nr_out[rand(0..4)],

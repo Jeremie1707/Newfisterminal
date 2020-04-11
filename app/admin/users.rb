@@ -1,5 +1,6 @@
 ActiveAdmin.register User do
   permit_params :email,:t1_customer_id, :password, :password_confirmation
+menu priority: 5
 
   index do
     selectable_column

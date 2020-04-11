@@ -1,14 +1,54 @@
 ActiveAdmin.register_page "Dashboard" do
+
   menu priority: 1, label: proc {("Admin Board") }
 
   content title: proc { ("Admin Board") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span ("Admin Board")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+    div class: "recent_container row", id: "recent-container" do
+      div style:'max-width: 50vw' do
+        users = PaperTrail::Version.all.order('id DESC') #by_customer is scope
+        panel 'Last Modifications' do
+          paginated_collection(users.page(params[:users_page]).per(15), param_name: 'users_page') do
+            table_for(collection) do |v|
+              column("item") { |v| v.item}
+              column ("Type") { |v| v.item_type.underscore.humanize }
+              column ("Event") { |v| v.event }
+              column ("Modified at") { |v| v.created_at.to_s :long }
+
+              column ("User") { |v| if v.whodunnit
+               link_to User.find(v.whodunnit).email, [:admin, User.find(v.whodunnit)]
+               end }
+
+            end
+          end
+        end
       end
     end
 
+    div class: "recent_container row", id: "recent-container" do
+      div style:'max-width: 50vw' do
+        panel 'Load In and Load Out Net Weight Evolution' do
+         render 'shared/load_in_line'
+        end
+      end
+      div style:'max-width: 50vw' do
+        panel 'Load In and Load Out Number of Trucks per day' do
+         render 'shared/load_in_out_trucks'
+        end
+      end
+    end
+
+    div class: "recent_container row", id: "recent-container" do
+      div style:'max-width: 50vw' do
+        panel 'Load in Split by Status' do
+         render 'shared/load_in_out_chart'
+        end
+      end
+    end
+
+   # controller do
+   #  def show
+   #    @users = User.all
+   #  end
 
     # columns do
     #   column do

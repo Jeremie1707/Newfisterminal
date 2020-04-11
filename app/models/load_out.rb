@@ -6,6 +6,7 @@ class LoadOut < ApplicationRecord
   include PgSearch::Model
   belongs_to :t1_customer
   has_many :out_assignments, dependent: :destroy
+  has_paper_trail
   accepts_nested_attributes_for :out_assignments
   validates :t1_customer_id, :presence => { :message => "Please Select a Customer" }
 
