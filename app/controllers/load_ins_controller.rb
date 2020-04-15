@@ -50,23 +50,22 @@ class LoadInsController < ApplicationController
         @load_in.save
         if @load_in.truck_to_truck? || @load_in.truck_terminal_truck?
           if create_load_out_and_out_assignment(params)
-            flash[:notice] = "Load In and Load Out were successfully created."
-          format.html { redirect_to dashboard_index_path}
-          format.js {render js: "window.location='#{dashboard_index_path}'"}
+            flash[:notice] = "Incoming Trip and Outgoing Trip were successfully created."
+            format.html { redirect_to dashboard_index_path}
+            format.js {render js: "window.location='#{dashboard_index_path}'"}
           else
             flash[:error_load_in]
-            format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the LoadOut. " }
+            format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the Outgoing Trip. " }
             format.js
           end
         else
-          flash[:notice] = "Load In was successfully created."
-          format.html { redirect_to dashboard_index_path, notice: 'Load In was successfully created.' }
+          flash[:notice] = "Incoming Trip was successfully created."
+          format.html { redirect_to dashboard_index_path, notice: 'Incoming Trip was successfully created.' }
           format.js {render js: "window.location='#{dashboard_index_path}'"}
         end
       else
-        p "hello error"
         flash[:error_load_in] << @load_in.errors
-        format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the Load In. " }
+        format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the Incoming Trip. " }
         format.js
       end
     end
@@ -123,7 +122,8 @@ class LoadInsController < ApplicationController
     @load_in.update_attributes(strong_params)
     respond_to do |format|
       if @load_in.save
-        format.html { redirect_to dashboard_index_path, success: 'Load In was successfully updated.' }
+        flash[:notice] = "Incoming Trip was successfully updated."
+        format.html { redirect_to dashboard_index_path, success: 'Incoming Trip was successfully updated.' }
         format.js
       else
         format.html { render action: "update" }
@@ -135,8 +135,9 @@ class LoadInsController < ApplicationController
     @load_in = LoadIn.find(params[:id])
     @load_in.destroy
     respond_to do |format|
-    if @load_in.destroy!
-      format.html { redirect_to dashboard_index_path, success: 'Load In was successfully deleted.' }
+    if @load_in.destroy
+      flash[:notice] = "Incoming Trip was successfully deleted."
+      format.html { redirect_to dashboard_index_path, success: 'Incoming Trip was successfully deleted.' }
     else
         format.html { render action: "new" }
       end

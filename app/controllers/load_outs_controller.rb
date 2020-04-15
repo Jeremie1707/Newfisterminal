@@ -48,13 +48,11 @@ class LoadOutsController < ApplicationController
        @load_out.save
        @out_assignment = OutAssignment.find_by(id: @load_out.out_assignments.first.id)
        @out_assignment.set_reference
-        flash[:notice] = "Load Out was successfully created."
-        format.html { redirect_to dashboard_index_path, notice: 'Load Out was successfully created.' }
+        format.html { redirect_to dashboard_index_path, notice: 'Outgoing Trip was successfully created.' }
         format.js {render js: "window.location='#{dashboard_index_path}'"}
       else
-        flash[:notice] = "There were errors in creating the Load Out."
         flash[:load_out_error] << @load_out.errors
-        format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the LoadOut. " }
+        format.html { redirect_to dashboard_index_path(request.parameters), :alert => "There were errors in creating the Outgoing Trip. " }
         format.json { render json: @load_out.errors, status: :unprocessable_entity }
         format.js
       end
@@ -73,7 +71,8 @@ class LoadOutsController < ApplicationController
     @load_out.update_attributes(strong_params)
     respond_to do |format|
       if @load_out.save
-        format.html { redirect_to dashboard_index_path, success: 'Load Out was successfully updated.' }
+        flash[:notice] = "Outgoing Trip was successfully updated."
+        format.html { redirect_to dashboard_index_path, success: 'Outgoing Trip was successfully updated.' }
         format.js
       else
         format.html { render action: "update" }
@@ -86,8 +85,9 @@ class LoadOutsController < ApplicationController
     @load_out = LoadOut.find(params[:id])
     @load_out.destroy
     respond_to do |format|
-    if @load_out.destroy!
-      format.html { redirect_to dashboard_index_path, success: 'Load Out was successfully deleted.' }
+    if @load_out.destroy
+      flash[:notice] = "Outgoing Trip was successfully deleted."
+      format.html { redirect_to dashboard_index_path, success: 'Outgoing Trip was successfully deleted.' }
     else
         format.html { render action: "new" }
         format.json { render json: @load_out.errors, status: :unprocessable_entity }
