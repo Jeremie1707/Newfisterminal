@@ -83,7 +83,6 @@ class LoadOutsController < ApplicationController
 
   def destroy
     @load_out = LoadOut.find(params[:id])
-    @load_out.destroy
     respond_to do |format|
     if @load_out.destroy
       flash[:notice] = "Outgoing Trip was successfully deleted."

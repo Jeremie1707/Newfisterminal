@@ -43,15 +43,20 @@ const packerOutAutocompleteSearch = function() {
   };
 };
 
-const packerModalAutocompleteSearch = function() {
+let packerModalAutocompleteSearch = function() {
   if(document.getElementById('packers-list-modal') != null) {
-    const search = JSON.parse(document.getElementById('packers-list-modal').dataset.packers)
-    const searchInput = document.getElementById('packer-form-modal');
+    console.log('hello auto');
+    let search = JSON.parse(document.getElementById('packers-list-modal').dataset.packers)
+    console.log(search);
+    let searchInput = document.getElementById('packer-form-modal');
+    console.log(searchInput);
     if (search && searchInput) {
+      console.log('ok go');
       new autocomplete({
         selector: searchInput,
         minChars: 1,
         source: function(term, suggest){
+          console.log('hello function');
             term = term.toLowerCase();
             const choices = search;
             const matches = [];

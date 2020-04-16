@@ -133,7 +133,6 @@ class LoadInsController < ApplicationController
 
   def destroy
     @load_in = LoadIn.find(params[:id])
-    @load_in.destroy
     respond_to do |format|
     if @load_in.destroy
       flash[:notice] = "Incoming Trip was successfully deleted."

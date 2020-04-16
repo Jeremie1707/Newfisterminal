@@ -5,11 +5,11 @@ ActiveAdmin.register_page "Dashboard" do
   content title: proc { ("Admin Board") } do
     div class: "recent_container row", id: "recent-container" do
       div style:'max-width: 50vw' do
-        users = PaperTrail::Version.all.order('id DESC') #by_customer is scope
+        event_users = PaperTrail::Version.all.order('id DESC') #by_customer is scope
         panel 'Last Modifications' do
-          paginated_collection(users.page(params[:users_page]).per(15), param_name: 'users_page') do
+          paginated_collection(event_users.page(params[:event_users_page]).per(15), param_name: 'event_users_page') do
             table_for(collection) do |v|
-              column("item") { |v| v.item}
+              column("item") { |v| "#{v.item_type}-##{v.item_id}" }
               column ("Type") { |v| v.item_type.underscore.humanize }
               column ("Event") { |v| v.event }
               column ("Modified at") { |v| v.created_at.to_s :long }

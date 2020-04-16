@@ -1,14 +1,19 @@
 if (document.querySelector('.in-assignment-form-edit') != null) {
-  document.querySelector('.in-assignment-form-edit').remove();
-  console.log("remove");
+  let elem = document.querySelector('.in-assignment-form-edit');
+  elem.parentNode.removeChild(elem);
   document.querySelector('.modal-body >table').insertAdjacentHTML('beforebegin','<%= j render partial: "dashboard/IN/components/in_assignment_modal/in_assignment_modal_edit" %>');
-  packerModalAutocompleteSearch();
+}
+
+else if (document.querySelector('.in-assignment-form-create') != null) {
+  let elem = document.querySelector('.in-assignment-form-create');
+  elem.parentNode.removeChild(elem);
+  document.querySelector('.modal-body >table').insertAdjacentHTML('beforebegin','<%= j render partial: "dashboard/IN/components/in_assignment_modal/in_assignment_modal_edit" %>');
 }
 
 else {
   document.querySelector('.modal-body >table').insertAdjacentHTML('beforebegin','<%= j render partial: "dashboard/IN/components/in_assignment_modal/in_assignment_modal_edit" %>');
-  packerModalAutocompleteSearch();
 };
 
+packerModalAutocompleteSearch();
 inAssignmentClickCloseEdit();
 
