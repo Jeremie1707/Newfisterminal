@@ -1,5 +1,5 @@
 
-const printArea = () => {
+/*const printArea = () => {
   document.getElementById("btnPrint").addEventListener('click', (event) => {
     console.log(event);
     event.preventDefault();
@@ -23,4 +23,6 @@ function printElement(elem) {
     window.print();
 }
 
+
 export {printElement, printArea}
+*/

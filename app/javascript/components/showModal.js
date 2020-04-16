@@ -1,14 +1,11 @@
 function showModal() {
   $('#my-modal').modal('show');
-  console.log("hello Modal");
-  printArea();
 };
 
 
 function destroyModal() {
   $(document).on('hidden.bs.modal', '.modal', function () {
   $(this).removeData('bs.modal');
-  console.log("byebye Modal");
   });
 };
 
