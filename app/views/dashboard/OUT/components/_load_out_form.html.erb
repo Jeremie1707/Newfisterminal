@@ -9,7 +9,7 @@
 <% if flash[:error_load_out].present? && flash[:error_load_out][0]["t1_customer_id"].present?  %>
   <div class="invalid-message"><%= flash[:error_load_out][0]["t1_customer_id"][0] %></div>
 <% end %>
-<%= f.input :status,label: "Status:",as: :radio_buttons, collection: LoadOut.statuses.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline, checked: :in%>
+<%= f.input :status,label: "Status:",as: :radio_buttons, collection: LoadOut.statuses.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline, checked: :out%>
 <%= f.input :type_of_service,label: "Type of service:",as: :radio_buttons, collection: LoadOut.type_of_services.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline, checked: :truck_to_truck %>
 <%= f.input :departure_date, as: :string, input_html: {class: 'datepicker'}, label: false, placeholder: "departure date?" %>
 <%= f.input :note, label: false,as: :text, placeholder: "add a note"%>
@@ -28,7 +28,7 @@
 <div class="d-flex justify-content-between">
   <div class="mr-1">
     <label class="string required" for="load_out_out_assignments_attributes_number_of_boxe"></label>
-    <input class="form-control" label = "false" type="text" placeholder="Boxe nr" name="load_out[out_assignments_attributes][][number_of_boxe]">
+    <input class="form-control" label = "false" type="text" placeholder="Box nr" name="load_out[out_assignments_attributes][][number_of_boxe]">
     <% if flash[:error_load_out].present?  && flash[:error_load_out][0]["out_assignments.number_of_boxe"].present?  %>
     <div class="invalid-message"><%= flash[:error_load_out][0]["out_assignments.number_of_boxe"][0] %></div>
     <% end %>

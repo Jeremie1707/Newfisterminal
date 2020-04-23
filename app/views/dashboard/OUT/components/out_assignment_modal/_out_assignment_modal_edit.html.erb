@@ -11,7 +11,7 @@
         <label class="form-group string required" for="out_assignments_attributes_packer" id="packers-list-modal" data-packers="<%= @packers.to_json %>" ></label>
         <input class="form-control form-group" label ="false" type="text" placeholder="Packer number" id="packer-form-modal" name="out_assignment[packer]" value = "<%= @out_assignment.packer%>" >
         <%= form.association :recipient, label: false, input: Recipient.all, include_blank: true, prompt: "Select a Recipient" %>
-        <%= form.button :submit, value:"update", class:"btn btn-success"%></td>
+        <%= form.button :submit, value:"Update Done", class:"btn btn-success"%></td>
         <div id="out-assignment-form-edit-close">
           <button type="button" class="btn btn-outline-secondary ml-1 ">Close</button>
         </div>
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="form-inline col-md-12">
-        <%= form.input :number_of_boxe, as: :string, label: false, placeholder: "Boxes" %>
+        <%= form.input :number_of_boxe, as: :string, label: false, placeholder: "Box" %>
         <%= form.input :number_of_pallet, as: :string, label: false, placeholder: "Pallet"  %>
         <%= form.input :net_weight, as: :string, label: false, placeholder: "Net Weight"  %>
       </div>

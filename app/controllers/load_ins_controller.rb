@@ -74,12 +74,23 @@ class LoadInsController < ApplicationController
 
   def create_load_out_and_out_assignment(params = {})
     LoadOut.transaction do
+      if params[:load_out_trip_ref].empty?
+        @load_out = LoadOut.new(t1_customer_id: params[:load_in][:t1_customer_id],
+                              type_of_service: params[:load_in][:type_of_service],
+                              note: params[:load_in][:note],
+                              total_weight: params[:load_in][:total_weight],
+                              truck_nr: params[:load_out_truck_nr],
+                              trailer_nr: params[:load_out_trailer_nr],
+                              trip_ref: @load_in.reference)
+      else
       @load_out = LoadOut.new(t1_customer_id: params[:load_in][:t1_customer_id],
                               type_of_service: params[:load_in][:type_of_service],
                               note: params[:load_in][:note],
                               total_weight: params[:load_in][:total_weight],
                               truck_nr: params[:load_out_truck_nr],
-                              trailer_nr: params[:load_out_trailer_nr])
+                              trailer_nr: params[:load_out_trailer_nr],
+                              trip_ref: params[:load_out_trip_ref])
+      end
       @load_out.save
 
       @out_assignment = OutAssignment.new(load_out_id: @load_out.id,

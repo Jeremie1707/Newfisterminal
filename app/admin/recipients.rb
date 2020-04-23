@@ -6,6 +6,8 @@ menu priority: 4
   # Uncomment all parameters which should be permitted for assignment
 
   #
+actions :index, :show, :new, :create, :edit, :update
+
   permit_params :name,
                 :email,
                 address_attributes:[:street, :street_nr, :postcode, :city, :country, :phone_nr]

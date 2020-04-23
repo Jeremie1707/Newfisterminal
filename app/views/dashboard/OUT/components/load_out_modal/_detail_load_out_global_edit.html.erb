@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-4 modal-detail load_out-arrival">
       <h6>Departure date:</h6>
-      <%= form.input :departure_date, as: :datetime, label: false, placeholder: "departure date?" %>
+      <%= form.input :departure_date, as: :datetime,include_blank: true,label: false, placeholder: "departure date?" %>
     </div>
     <div class="col-md-4 modal-detail status">
       <%= form.input :type_of_service,label: "Type of service:",as: :radio_buttons, collection: LoadOut.type_of_services.keys.map { |w| [w.humanize.upcase, w] }, wrapper: :vertical_collection_inline%>
@@ -39,7 +39,7 @@
   </div>
   <div class="row ">
     <div class="col-md-3 d-flex flex-row">
-      <%= form.button :submit, value:"update Load Out", class:"btn btn-success mb-2"%>
+      <%= form.button :submit, value:"update Done", class:"btn btn-success mb-2"%>
       <div id="load_out-form-edit-close">
            <button type="button" class="btn btn-outline-secondary ml-1 ">Close</button>
         </div>

@@ -1,6 +1,6 @@
 ActiveAdmin.register_page "Dashboard" do
-
   menu priority: 1, label: proc {("Admin Board") }
+
 
   content title: proc { ("Admin Board") } do
     div class: "recent_container row", id: "recent-container" do
@@ -13,8 +13,10 @@ ActiveAdmin.register_page "Dashboard" do
               column ("Type") { |v| v.item_type.underscore.humanize }
               column ("Event") { |v| v.event }
               column ("Modified at") { |v| v.created_at.to_s :long }
-
-              column ("User") { |v| if v.whodunnit
+              column ("User name") { |v| if v.whodunnit
+               "#{User.find(v.whodunnit).first_name} #{User.find(v.whodunnit).last_name}"
+               end }
+              column ("User email") { |v| if v.whodunnit
                link_to User.find(v.whodunnit).email, [:admin, User.find(v.whodunnit)]
                end }
 
@@ -44,6 +46,9 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
+
+
+
 
    # controller do
    #  def show
