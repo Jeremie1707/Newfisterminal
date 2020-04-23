@@ -27,7 +27,7 @@
   <div class="d-flex justify-content-between">
   <div class="mr-1">
     <label class="string required" for="load_in_in_assignments_attributes_number_of_boxe"></label>
-    <input class="form-control" label = "false" type="text" placeholder="Boxe nr" name="load_in[in_assignments_attributes][][number_of_boxe]">
+    <input class="form-control" label = "false" type="text" placeholder="Box nr" name="load_in[in_assignments_attributes][][number_of_boxe]">
     <% if flash[:error_load_in].present?  && flash[:error_load_in][0]["in_assignments.number_of_boxe"].present?  %>
     <div class="invalid-message"><%= flash[:error_load_in][0]["in_assignments.number_of_boxe"][0] %></div>
     <% end %>
@@ -56,17 +56,18 @@
 <% if flash[:error_load_in].present?  && flash[:error_load_in][0]["in_assignments.incoming_order_ref"].present?  %>
   <div class="invalid-message"><%= flash[:error_load_in][0]["in_assignments.incoming_order_ref"][0] %></div>
 <% end %>
-<label class="form-group string required" for="load_in_in_assignments_attributes_incoming_transport_ref"></label>
+<!-- <label class="form-group string required" for="load_in_in_assignments_attributes_incoming_transport_ref"></label>
 <input class="form-control" label = "false" type="text" placeholder="Inco. Transport Ref." name="load_in[in_assignments_attributes][][incoming_transport_ref]">
-<% if flash[:error_load_in].present?  && flash[:error_load_in][0]["in_assignments.incoming_transport_ref"].present?  %>
-  <div class="invalid-message"><%= flash[:error_load_in][0]["in_assignments.incoming_transport_ref"][0] %></div>
-<% end %>
+<#% if flash[:error_load_in].present?  && flash[:error_load_in][0]["in_assignments.incoming_transport_ref"].present?  %>
+  <div class="invalid-message"><%#= flash[:error_load_in][0]["in_assignments.incoming_transport_ref"][0] %></div>
+<#% end %> -->
 <label class=" form-group string required" for="load_in_in_assignments_attributes_other_ref"></label>
 </div>
 <a class="m-2" data-toggle="collapse" href="#form_in_assignment_truck_out" role="button" aria-expanded="false" aria-controls="form_in_assignment_truck_out"><i class="fas fa-plus-circle mr-2 my-2"></i>Add Truck Out infos</a>
 <div class="collapse" id="form_in_assignment_truck_out">
   <div><%= text_field_tag([:load_out_truck_nr], "", class:'form-group form-control mb-1', placeholder:"truck nr") %></div>
   <div><%= text_field_tag([:load_out_trailer_nr], "", class:' form-group form-control mb-1',placeholder:"trailer nr")%></div>
+  <div><%= text_field_tag([:load_out_trip_ref], "", class:' form-group form-control mb-1',placeholder:"Ref Display in Outgoing")%></div>
 </div>
 
 <%= f.button :submit, "Add", class: 'btn btn-success btn-sm w-100'%>

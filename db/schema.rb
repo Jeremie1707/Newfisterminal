@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_09_121324) do
+ActiveRecord::Schema.define(version: 2020_04_23_125355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2020_04_09_121324) do
   create_table "load_outs", force: :cascade do |t|
     t.string "reference"
     t.bigint "t1_customer_id"
-    t.integer "status", default: 1, null: false
+    t.integer "status", default: 0, null: false
     t.datetime "departure_date"
     t.string "truck_nr"
     t.string "trailer_nr"
@@ -156,6 +156,8 @@ ActiveRecord::Schema.define(version: 2020_04_09_121324) do
     t.datetime "updated_at", null: false
     t.bigint "t1_customer_id"
     t.boolean "admin", default: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["t1_customer_id"], name: "index_users_on_t1_customer_id"

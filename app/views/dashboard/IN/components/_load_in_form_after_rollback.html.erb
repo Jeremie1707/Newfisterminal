@@ -24,7 +24,7 @@
   <div class="d-flex justify-content-between">
     <div class="mr-1">
       <label class="string required" for="load_in_in_assignments_attributes_number_of_boxe"></label>
-      <input class="form-control" label = "false" type="text" placeholder="Boxe nr" name="load_in[in_assignments_attributes][][number_of_boxe]" value = "<%= @load_in.in_assignments.first.number_of_boxe%>">
+      <input class="form-control" label = "false" type="text" placeholder="Box nr" name="load_in[in_assignments_attributes][][number_of_boxe]" value = "<%= @load_in.in_assignments.first.number_of_boxe%>">
       <% if @load_in.errors["in_assignments.number_of_boxe"].present?  %>
       <div class="invalid-message"><%= @load_in.errors["in_assignments.number_of_boxe"][0] %></div>
       <% end %>
@@ -63,6 +63,7 @@
 <div class="collapse" id="form_out_assignment">
   <div><%= text_field_tag([:load_out_truck_nr], "", class:'form-group form-control mb-1', placeholder:"truck nr") %></div>
   <div><%= text_field_tag([:load_out_trailer_nr], "", class:' form-group form-control mb-1',placeholder:"trailer nr")%></div>
+  <div><%= text_field_tag([:load_out_trip_ref], "", class:' form-group form-control mb-1',placeholder:"Ref Display in Outgoing")%></div>
 </div>
 <%= f.button :submit, "Add", class: 'btn btn-success w-100'%>
 <%#= f.submit "Search", class: "btn btn-primary" %>
