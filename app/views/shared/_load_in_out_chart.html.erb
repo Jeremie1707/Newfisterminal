@@ -1,5 +1,2 @@
-
-<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-<%= javascript_pack_tag "application" %>
 <% my_chart = LoadIn.group(:status).count %>
 <%= pie_chart my_chart %>

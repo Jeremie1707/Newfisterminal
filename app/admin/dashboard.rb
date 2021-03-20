@@ -26,26 +26,26 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-    div class: "recent_container row", id: "recent-container" do
-      div style:'max-width: 50vw' do
-        panel 'Load In and Load Out Net Weight Evolution' do
-         render 'shared/load_in_line'
-        end
-      end
-      div style:'max-width: 50vw' do
-        panel 'Load In and Load Out Number of Trucks per day' do
-         render 'shared/load_in_out_trucks'
-        end
-      end
-    end
+    # div class: "recent_container row", id: "recent-container" do
+    #   div style:'max-width: 50vw' do
+    #     panel 'Load In and Load Out Net Weight Evolution' do
+    #      render 'shared/load_in_line'
+    #     end
+    #   end
+    #   div style:'max-width: 50vw' do
+    #     panel 'Load In and Load Out Number of Trucks per day' do
+    #      render 'shared/load_in_out_trucks'
+    #     end
+    #   end
+    # end
 
-    div class: "recent_container row", id: "recent-container" do
-      div style:'max-width: 50vw' do
-        panel 'Load in Split by Status' do
-         render 'shared/load_in_out_chart'
-        end
-      end
-    end
+    # div class: "recent_container row", id: "recent-container" do
+    #   div style:'max-width: 50vw' do
+    #     panel 'Load in Split by Status' do
+    #      render 'shared/load_in_out_chart'
+    #     end
+    #   end
+    # end
 
 
 

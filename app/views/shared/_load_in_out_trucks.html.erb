@@ -1,5 +1,3 @@
-<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-<%= javascript_pack_tag "application" %>
 <% load_in_line_my_chart = LoadIn.where("arrival_date >= ? AND arrival_date <= ?", Time.now, Time.now + 7.days).group_by_day(:arrival_date).count %>
 <% load_out_line_my_chart = LoadOut.where("departure_date >= ? AND departure_date <= ?", Time.now, Time.now + 7.days).group_by_day(:departure_date).count %>
 <%= line_chart [{ name: "Truck In Number", data: load_in_line_my_chart},

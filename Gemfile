@@ -25,6 +25,8 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'turbolinks'
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'

@@ -1,6 +1,3 @@
-
-<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-<%= javascript_pack_tag "application" %>
 <% load_in_line_my_chart = LoadIn.where("arrival_date >= ? AND arrival_date <= ?", Time.now, Time.now + 7.days).group_by_day(:arrival_date).sum(:total_weight) %>
 <% load_out_line_my_chart = LoadOut.where("departure_date >= ? AND departure_date <= ?", Time.now, Time.now + 7.days).group_by_day(:departure_date).sum(:total_weight) %>
 <%= line_chart [{ name: "Incoming Trip", data: load_in_line_my_chart},
