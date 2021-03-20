@@ -72,7 +72,7 @@ class LoadOutsController < ApplicationController
     respond_to do |format|
       if @load_out.save
         flash[:notice] = "Outgoing Trip was successfully updated."
-        format.html { redirect_to dashboard_index_path, success: 'Outgoing Trip was successfully updated.' }
+        # format.html { redirect_to dashboard_index_path, success: 'Outgoing Trip was successfully updated.' }
         format.js
       else
         format.html { render action: "update" }
