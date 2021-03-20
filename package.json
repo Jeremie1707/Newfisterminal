@@ -7,7 +7,7 @@
     "chart.js": "^2.9.3",
     "chartkick": "^3.2.0",
     "flatpickr": "^4.6.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "js-autocomplete": "^1.0.4",
     "minimist": "^1.2.3",
     "popper.js": "^1.16.0"
