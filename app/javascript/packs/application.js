@@ -15,11 +15,11 @@ import { showModal } from "../components/showModal";
 import { destroyModal } from "../components/showModal";
 import { listSize } from "../components/listSize";
 import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
+// import "flatpickr/dist/flatpickr.min.css";
 
 import { initFlatpickr } from "../plugins/flatpickr";
 import { autoSearch } from "../components/autoSearch";
-import "js-autocomplete/auto-complete.css";
+// import "js-autocomplete/auto-complete.css";
 import autocomplete from "js-autocomplete";
 import {
   packerOutAutocompleteSearch,

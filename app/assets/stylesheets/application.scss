@@ -8,7 +8,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "flatpickr/dist/flatpickr.min";
-
+@import "js-autocomplete/auto-complete";
 
 // Your CSS partials
 @import "components/index";
@@ -17,7 +17,4 @@
 @import "components/modal";
 @import "components/navigation";
 
-
-
 @import "pages/index";
-
