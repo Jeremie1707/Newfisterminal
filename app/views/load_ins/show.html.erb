@@ -22,7 +22,7 @@
           <% if packer = Packer.find_by(packer_nr: assignment.packer)%>
           <p><%="#{packer.address&.street_nr}, #{packer.address&.street}" %></p>
           <p><%="#{packer.address&.postcode}, #{packer.address&.city}" %></p>
-          <p><%="#{packer&.address.country}"%></p>
+          <p><%="#{packer&.address&.country}"%></p>
           <% end %>
         </div>
         <div class="col-2" >
